@@ -25,9 +25,13 @@ git clone <repository-url>
 cd ai-agents
 
 # Python environment (Windows)
-python -m venv ai-agents-env
-ai-agents-env\Scripts\activate
+python -m venv .venv
+.venv\Scripts\activate
 pip install -r requirements.txt
+# (optional) Dev tools
+pip install -r requirements-dev.txt
+# (optional) Azure SDKs
+pip install -r requirements-optional-azure.txt
 
 # Node.js dependencies
 npm install
@@ -55,6 +59,13 @@ npm install
 3. **Coordinate**: Use `orchestrator.py` for multi-agent scenarios
 4. **Test**: Validate with both unit and integration tests
 5. **Monitor**: Track performance and behavior patterns
+
+## Code Quality (Ruff + pre-commit)
+- Install dev tools: `pip install -r requirements-dev.txt`
+- Install hooks: `pre-commit install`
+- Run on all files once: `pre-commit run --all-files`
+- Lint manually: `ruff check .`
+- Format Python: `black .`
 
 ## Development Phases
 
@@ -91,7 +102,10 @@ npm install
 - **Windows Compatibility**: Native Windows development environment
 - **Multi-Agent Coordination**: Built-in orchestration capabilities
 - **Tool Integration**: Standardized tool framework
-- **Performance Monitoring**: Metrics and observability built-in
+- **Performance Monitoring**: Metrics and observability built-in (JSON logs, simple metrics)
+- **Durable Memory**: Optional SQLite-backed memory store for agents
+- **Safe Sandboxes**: Whitelisted command execution via `tools/safe_exec_tool.py`
+- **MCP Stubs**: Minimal Python stubs under `frameworks/claude-code/mcp-servers/`
 - **Error Recovery**: Robust error handling and retry mechanisms
 
 ## Architecture

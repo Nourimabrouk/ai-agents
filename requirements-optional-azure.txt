@@ -1,0 +1,6 @@
+# Microsoft Azure SDKs (install only if needed)
+azure-identity>=1.15.0
+azure-ai-formrecognizer>=3.3.0
+# Note: azure-cognitiveservices-language-textanalytics is legacy; consider
+#       modernizing to azure-ai-textanalytics when integrating text analytics.
+azure-cognitiveservices-language-textanalytics>=5.3.0

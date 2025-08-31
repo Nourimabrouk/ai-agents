@@ -3,6 +3,8 @@ anthropic>=0.40.0
 openai>=1.50.0
 langchain>=0.1.0
 langchain-community>=0.0.10
+langchain-openai>=0.1.0
+langchain-anthropic>=0.1.0
 langgraph>=0.0.20
 langsmith>=0.0.60
 
@@ -25,9 +27,9 @@ httpx>=0.25.0
 
 # Database and storage
 sqlalchemy>=2.0.0
-sqlite3
 psycopg2-binary>=2.9.7
 redis>=5.0.0
+networkx>=3.0
 
 # Accounting and finance specific
 python-dateutil>=2.8.2
@@ -36,12 +38,7 @@ xlsxwriter>=3.1.9
 pdfplumber>=0.9.0
 python-docx>=0.8.11
 
-# Testing and development
-pytest>=7.4.0
-pytest-asyncio>=0.21.0
-black>=23.9.0
-flake8>=6.1.0
-mypy>=1.6.0
+# Testing and development (see requirements-dev.txt)
 
 # Environment and configuration
 python-dotenv>=1.0.0
@@ -49,7 +46,6 @@ pydantic>=2.4.0
 pydantic-settings>=2.0.0
 
 # Async and concurrency
-asyncio
 aiohttp>=3.9.0
 aiofiles>=23.2.0
 
@@ -59,12 +55,6 @@ rich>=13.6.0
 tqdm>=4.66.0
 python-json-logger>=2.0.7
 
-# Microsoft Azure (for Microsoft AI agents)
-azure-ai-formrecognizer>=3.3.0
-azure-cognitiveservices-language-textanalytics>=5.3.0
-azure-identity>=1.15.0
+# Microsoft Azure (optional; see requirements-optional-azure.txt)
 
-# Development and debugging
-jupyter>=1.0.0
-ipython>=8.16.0
-notebook>=7.0.0
+# Development and debugging (see requirements-dev.txt)
