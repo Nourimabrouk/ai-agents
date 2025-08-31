@@ -1,0 +1,116 @@
+{
+  "environmentContext": {
+    "operatingSystem": "Windows 11",
+    "ide": "Cursor",
+    "primaryTool": "Claude Code",
+    "workingDirectory": "C:\\Users\\Nouri\\Documents\\GitHub\\ai-agents",
+    "executionPreference": "parallel"
+  },
+  
+  "codeStandards": {
+    "noEmojisInCode": true,
+    "windowsPathFormat": true,
+    "preferAsyncAwait": true,
+    "requireTypeHints": true,
+    "maxLineLength": 100,
+    "indentStyle": "spaces",
+    "indentSize": 4
+  },
+  
+  "commandStandards": {
+    "listFiles": "dir",
+    "pathSeparator": "\\",
+    "virtualEnvActivation": "env\\Scripts\\activate",
+    "pythonExecution": "python -m",
+    "testRunner": "python -m pytest"
+  },
+  
+  "agentDevelopment": {
+    "baseTemplate": "templates/base_agent.py",
+    "orchestrator": "orchestrator.py",
+    "toolFramework": "tools/tool_framework.py",
+    "supportMultiAgent": true,
+    "requireErrorHandling": true,
+    "includeMetrics": true,
+    "preferParallelExecution": true
+  },
+  
+  "frameworkSupport": {
+    "claudeCode": {
+      "mcpServers": true,
+      "toolIntegration": true,
+      "priority": "primary"
+    },
+    "microsoft": {
+      "azureAI": true,
+      "copilotStudio": true,
+      "priority": "secondary"
+    },
+    "langchain": {
+      "langGraph": true,
+      "langSmith": true,
+      "priority": "tertiary"
+    }
+  },
+  
+  "executionPatterns": {
+    "preferAsync": true,
+    "enableParallelProcessing": true,
+    "useConnectionPooling": true,
+    "implementTimeouts": true,
+    "includeRetryLogic": true,
+    "supportGracefulShutdown": true
+  },
+  
+  "qualityRequirements": {
+    "typeHints": "required",
+    "docstrings": "comprehensive",
+    "errorHandling": "explicit",
+    "testCoverage": "minimum_80_percent",
+    "logging": "structured",
+    "performanceMetrics": "included"
+  },
+  
+  "windowsSpecific": {
+    "useWindowsPaths": true,
+    "supportPowerShell": true,
+    "handleFilePermissions": true,
+    "considerTerminalCompatibility": true,
+    "noUnicodeInCode": true
+  },
+  
+  "multiAgentCoordination": {
+    "messagePassingProtocol": "structured",
+    "consensusMechanisms": true,
+    "failureRecovery": true,
+    "loadBalancing": true,
+    "emergentBehaviorDetection": true
+  },
+  
+  "promptingGuidelines": {
+    "includeEnvironmentContext": true,
+    "specifyWindowsCompatibility": true,
+    "requestParallelSolutions": true,
+    "emphasizePracticalImplementation": true,
+    "avoidTheoreticalAbstractions": true
+  },
+  
+  "fileStructure": {
+    "agents": "Framework-specific agent implementations",
+    "frameworks": "Learning templates and examples", 
+    "projects": "End-to-end implementations",
+    "assets": "Generated content and outputs",
+    "utils": "Shared utilities and integrations",
+    "tools": "Tool framework and implementations",
+    "templates": "Base classes and patterns"
+  },
+  
+  "developmentWorkflow": {
+    "startWithTemplate": true,
+    "implementParallelFirst": true,
+    "addMetricsEarly": true,
+    "testMultiAgentScenarios": true,
+    "validateWindowsCompatibility": true,
+    "documentPracticalUsage": true
+  }
+}

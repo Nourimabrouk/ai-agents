@@ -1,0 +1,151 @@
+# Cursor IDE Rules for AI Agents Repository
+
+## Environment Context
+- Operating System: Windows 11
+- Development Environment: Cursor IDE
+- Primary AI Tool: Claude Code
+- Repository Focus: Multi-framework AI agent development
+
+## Code Standards
+
+### General Principles
+- Write practical, working code over theoretical concepts
+- Focus on multi-agent coordination and parallel execution
+- Design for Windows compatibility first
+- No emojis in code files (terminal display issues)
+- Prefer async/await patterns for concurrent operations
+
+### File and Path Handling
+- Use Windows-style paths with backslashes: `C:\Users\Nouri\Documents\GitHub\ai-agents\`
+- Use `os.path.join()` or `pathlib.Path` for cross-platform compatibility when needed
+- Use `dir` instead of `ls` in documentation examples
+- Virtual environment activation: `env\Scripts\activate` not `source activate`
+
+### Python Code Style
+```python
+# Good - Windows compatible with proper typing
+from pathlib import Path
+import asyncio
+from typing import Dict, List, Optional, Any
+
+class AgentExample:
+    def __init__(self, config: Dict[str, Any]) -> None:
+        self.config = config
+        self.base_path = Path(r"C:\Users\Nouri\Documents\GitHub\ai-agents")
+    
+    async def process_parallel(self, tasks: List[str]) -> List[Any]:
+        results = await asyncio.gather(*[self.process_task(task) for task in tasks])
+        return results
+```
+
+### Avoid These Patterns
+```python
+# Bad - Linux-style paths
+file_path = "/home/user/project/file.txt"
+
+# Bad - Emojis in code
+def process_data():  # ❌ Don't use emojis
+    return "Hello 👋"  # ❌ Avoid emojis in strings too
+
+# Bad - Blocking synchronous code when async is better
+def slow_operation():
+    time.sleep(5)  # Use asyncio.sleep() instead
+```
+
+### Agent Development Standards
+- Inherit from `templates/base_agent.py` BaseAgent class
+- Implement proper error handling with try/except blocks  
+- Include comprehensive logging with the `logging` module
+- Support both individual and coordinated execution patterns
+- Design for parallel processing from the start
+- Include performance metrics and monitoring capabilities
+
+### Multi-Agent Coordination
+- Use the `orchestrator.py` for coordinating multiple agents
+- Implement proper message passing between agents
+- Support parallel task execution with asyncio
+- Include consensus and collaboration mechanisms
+- Design agents to work together efficiently
+
+### Testing Requirements
+- Write unit tests for all agent functionality
+- Use `python -m pytest` for test execution
+- Include integration tests for multi-agent scenarios
+- Test both Windows and general compatibility
+- Mock external API calls properly
+
+### Documentation Style
+- Use clear, concise docstrings without excessive adjectives
+- Focus on what the code does, not how "amazing" it is
+- Include practical examples in docstrings
+- Document Windows-specific considerations
+- Explain agent coordination patterns clearly
+
+### Performance Guidelines
+- Use async/await for I/O bound operations
+- Implement proper connection pooling for external APIs
+- Include timeout handling for all network operations
+- Monitor memory usage in long-running agents
+- Design for horizontal scaling across multiple agents
+
+### Security Considerations
+- Never hard-code API keys or credentials
+- Use environment variables for configuration
+- Implement proper input validation
+- Handle sensitive data appropriately
+- Include proper authentication for agent communication
+
+### File Organization
+- Keep related functionality in the same module
+- Separate concerns clearly between files
+- Use meaningful file and directory names
+- Follow the established repository structure
+- Group similar agents together
+
+## IDE-Specific Settings
+
+### Cursor Preferences
+- Enable Python type checking
+- Use automatic import sorting
+- Configure black formatter for consistent style
+- Enable async/await syntax highlighting
+- Set line length to 100 characters
+
+### Debugging Setup
+- Configure breakpoints for agent execution flows
+- Enable async debugging for multi-agent scenarios
+- Set up logging output in debug console
+- Use proper exception handling and display
+
+## Project-Specific Guidelines
+
+### Framework Integration
+- Claude Code: Focus on MCP server development
+- Microsoft: Use Azure AI Studio patterns
+- LangChain: Implement LangGraph workflows
+- Keep framework code organized in separate directories
+
+### Agent Communication
+- Use structured message passing
+- Implement proper serialization/deserialization
+- Handle communication failures gracefully
+- Support both sync and async communication patterns
+
+### Deployment Considerations
+- Design for Windows-first deployment
+- Include proper requirements.txt management
+- Support virtual environment workflows
+- Consider Docker for cross-platform compatibility when needed
+
+## Quality Checklist
+
+Before committing code, ensure:
+- [ ] No emojis in code files
+- [ ] Windows-compatible paths and commands
+- [ ] Proper async/await usage where applicable
+- [ ] Type hints for all function parameters and returns
+- [ ] Comprehensive error handling
+- [ ] Unit tests for new functionality
+- [ ] Clear, practical documentation
+- [ ] Multi-agent coordination capabilities
+- [ ] Performance monitoring included

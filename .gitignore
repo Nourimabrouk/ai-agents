@@ -1,0 +1,149 @@
+# CRITICAL SECURITY - Environment and API Keys
+.env
+.env.*
+*.env
+*api*key*
+*token*
+*secret*
+*password*
+credentials/
+secrets/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+ai-agents-env/
+venv/
+ENV/
+env/
+.venv/
+Scripts/
+pyvenv.cfg
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+
+# Jupyter
+.ipynb_checkpoints
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Build outputs
+dist/
+build/
+.next/
+.nuxt/
+.cache/
+.parcel-cache/
+
+# Windows specific
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.cursor/
+
+# Logs
+*.log
+logs/
+*.log.*
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Generated assets (keep structure but ignore large files)
+assets/documents/*.pdf
+assets/documents/*.docx
+assets/visualizations/*.png
+assets/visualizations/*.html
+assets/data/processed/
+assets/models/
+
+# Temporary files
+tmp/
+temp/
+.tmp/
+*.tmp
+
+# Security files
+*.pem
+*.key
+*.cert
+*.p12
+*.pfx
+
+# Large files
+*.csv
+*.xlsx
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# Model files (can be very large)
+*.pkl
+*.joblib
+*.h5
+*.pt
+*.pth
+*.model
+*.bin
+
+# Backup files
+*.bak
+*.backup
+*.old
+*.orig
+
+# Agent runtime data
+agent_memory/
+agent_logs/
+performance_data/

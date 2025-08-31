@@ -1,0 +1,39 @@
+{
+  "mcpServers": {
+    "accounting-tools": {
+      "command": "python",
+      "args": ["frameworks/claude-code/mcp-servers/accounting_tools.py"],
+      "env": {
+        "PYTHONPATH": "."
+      }
+    },
+    "invoice-processor": {
+      "command": "python", 
+      "args": ["frameworks/claude-code/mcp-servers/invoice_processor.py"],
+      "env": {
+        "PYTHONPATH": "."
+      }
+    },
+    "reconciliation-engine": {
+      "command": "python",
+      "args": ["frameworks/claude-code/mcp-servers/reconciliation_engine.py"],
+      "env": {
+        "PYTHONPATH": "."
+      }
+    },
+    "compliance-monitor": {
+      "command": "python",
+      "args": ["frameworks/claude-code/mcp-servers/compliance_monitor.py"], 
+      "env": {
+        "PYTHONPATH": "."
+      }
+    },
+    "data-connector": {
+      "command": "python",
+      "args": ["utils/integrations/mcp_data_connector.py"],
+      "env": {
+        "PYTHONPATH": "."
+      }
+    }
+  }
+}
