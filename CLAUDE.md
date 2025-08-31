@@ -16,6 +16,12 @@
 4. **Parallel Execution**: Prefer async/await and concurrent processing patterns
 5. **Clean Code**: No emojis in code files (terminal compatibility issues on Windows)
 
+## Testing & CI (Experimental-Friendly)
+- Python: `pytest -q` (async via `pytest-asyncio`); see `tests/python/` for contract and orchestration smoke tests.
+- Node: `npm test` (Jest) for JS utilities/MCP stubs; tests in `agents/__tests__/`.
+- Keep tests fast and non-flaky; prefer interface/contract checks over brittle E2E.
+- CI suggestion: run lint + unit/smoke tests in parallel Python/Node jobs; do not hard-fail on coverage early on.
+
 ### Command Standards
 ```bash
 # Use Windows paths

@@ -29,3 +29,9 @@ Each subdirectory contains:
 - Follow framework-specific best practices
 - Include comprehensive error handling
 - Document agent capabilities and limitations
+
+## Testing
+
+- Python agents/orchestration: run `pytest -q` from repo root. Async tests use `pytest-asyncio` (configured in `pytest.ini`).
+- Node utilities/MCP: run `npm test` (Jest). JS tests live under `agents/__tests__/` as `*.test.js`.
+- Suggested patterns: contract tests for `templates/base_agent.py`; orchestration smoke tests for `orchestrator.py`; mock external APIs.

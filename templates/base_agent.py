@@ -8,13 +8,17 @@ from typing import Any, Dict, List, Optional, Callable
 from dataclasses import dataclass, field
 from datetime import datetime
 from abc import ABC, abstractmethod
-import anthropic
+try:
+    import anthropic  # type: ignore
+except Exception:  # Optional dependency for tests without SDK
+    anthropic = None
 import logging
 from enum import Enum
 
-# Configure logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+from utils.observability.logging import get_logger
+from utils.persistence.memory_store import SqliteMemoryStore, SemanticProxy
+
+logger = get_logger(__name__)
 
 
 class AgentState(Enum):
@@ -60,23 +64,57 @@ class Observation:
 class Memory:
     """Agent memory system with episodic and semantic storage"""
     
-    def __init__(self, max_episodes: int = 1000):
+    def __init__(self, agent_name: str, max_episodes: int = 1000, backend: Optional[SqliteMemoryStore] = None):
+        self.agent_name = agent_name
         self.episodic_memory: List[Observation] = []
         self.semantic_memory: Dict[str, Any] = {}
         self.working_memory: Dict[str, Any] = {}
         self.max_episodes = max_episodes
+        self.backend = backend
+        if self.backend:
+            # Load existing semantic memory into a proxy
+            existing = self.backend.all_semantic(self.agent_name)
+            self.semantic_memory = SemanticProxy(self.agent_name, self.backend, existing)
     
     async def store_episode(self, observation: Observation) -> None:
         """Store an episodic memory"""
         self.episodic_memory.append(observation)
         if len(self.episodic_memory) > self.max_episodes:
             self.episodic_memory.pop(0)
+        if self.backend:
+            # Persist episode
+            try:
+                await asyncio.to_thread(self.backend.save_episode, self.agent_name, observation)
+            except Exception as e:
+                logger.error(f"{self.agent_name}: Failed to persist episode: {e}")
     
     async def recall_similar(self, context: Dict[str, Any], k: int = 5) -> List[Observation]:
         """Recall similar past experiences"""
         # Implement semantic similarity search
-        # For now, return most recent k episodes
-        return self.episodic_memory[-k:] if self.episodic_memory else []
+        # Persisted fallback: recent episodes from store
+        if self.episodic_memory:
+            return self.episodic_memory[-k:]
+        if self.backend:
+            raw = await asyncio.to_thread(self.backend.recent_episodes, self.agent_name, k)
+            recents: List[Observation] = []
+            for item in raw:
+                action = Action(
+                    action_type=item["action"].get("action_type", "unknown"),
+                    parameters=item["action"].get("parameters", {}),
+                    tools_used=item["action"].get("tools_used", []),
+                    expected_outcome=item["action"].get("expected_outcome", ""),
+                    timestamp=datetime.fromisoformat(item["timestamp"]) if item.get("timestamp") else datetime.now(),
+                )
+                obs = Observation(
+                    action=action,
+                    result=item.get("result"),
+                    success=item.get("success", False),
+                    learnings=item.get("learnings", []),
+                    timestamp=datetime.fromisoformat(item["timestamp"]) if item.get("timestamp") else datetime.now(),
+                )
+                recents.append(obs)
+            return recents
+        return []
     
     async def extract_patterns(self) -> Dict[str, Any]:
         """Extract patterns from accumulated memories"""
@@ -145,9 +183,14 @@ class BaseAgent(ABC):
         self.config = config or {}
         
         # Core components
-        self.client = anthropic.Anthropic(api_key=api_key) if api_key else None
+        self.client = anthropic.Anthropic(api_key=api_key) if (api_key and anthropic) else None
         self.tools = tools or []
-        self.memory = Memory()
+        # Optional durable memory backend
+        backend = None
+        db_path = (self.config or {}).get("memory_db_path")
+        if (self.config or {}).get("memory_backend") == "sqlite":
+            backend = SqliteMemoryStore(db_path or "ai_agents_memory.db")
+        self.memory = Memory(agent_name=name, backend=backend)
         self.learning_system = LearningSystem()
         
         # Metrics tracking

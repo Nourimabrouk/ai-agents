@@ -423,6 +423,13 @@ global_tool_registry = ToolRegistry()
 global_tool_registry.register(GitHubTool())
 global_tool_registry.register(DataAnalysisTool())
 global_tool_registry.register(CodeGenerationTool())
+try:
+    from tools.safe_exec_tool import SafeExecTool
+
+    global_tool_registry.register(SafeExecTool())
+except Exception:
+    # SafeExecTool optional if dependencies differ by environment
+    pass
 
 
 from datetime import datetime

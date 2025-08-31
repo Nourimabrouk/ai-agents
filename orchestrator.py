@@ -15,8 +15,10 @@ from collections import defaultdict
 
 # Import base agent template
 from templates.base_agent import BaseAgent, AgentState, Thought, Action, Observation
+from utils.observability.logging import get_logger
+from utils.observability.metrics import global_metrics
 
-logger = logging.getLogger(__name__)
+logger = get_logger(__name__)
 
 
 class CommunicationProtocol(Enum):
@@ -126,6 +128,7 @@ class AgentOrchestrator:
         Automatically selects best agents based on capabilities
         """
         logger.info(f"Delegating task {task.id}: {task.description}")
+        global_metrics.incr("orchestrator.tasks.delegated")
         
         # Find suitable agents
         suitable_agents = await self._find_suitable_agents(task)
@@ -150,6 +153,7 @@ class AgentOrchestrator:
         task.status = "completed"
         task.result = result
         self.total_tasks_completed += 1
+        global_metrics.incr("orchestrator.tasks.completed")
         
         return result
     
@@ -256,6 +260,7 @@ class AgentOrchestrator:
     async def parallel_execution(self, agents: List[BaseAgent], task: Task) -> List[Any]:
         """Execute task with multiple agents in parallel"""
         logger.info(f"Parallel execution with {len(agents)} agents")
+        global_metrics.incr("orchestrator.exec.parallel")
         
         tasks = [
             agent.process_task(task.description, task.requirements)
@@ -272,6 +277,7 @@ class AgentOrchestrator:
     async def sequential_execution(self, agents: List[BaseAgent], task: Task) -> Any:
         """Execute task with agents in sequence, passing results forward"""
         logger.info(f"Sequential execution with {len(agents)} agents")
+        global_metrics.incr("orchestrator.exec.sequential")
         
         result = None
         for agent in agents:
