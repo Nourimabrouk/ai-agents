@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="3" skipped="0" tests="32" time="1.429" timestamp="2025-09-02T12:30:48.575939+02:00" hostname="Nouri-PC"><testcase classname="tests.python.test_utils_comprehensive.TestLoggingUtilities" name="test_logger_initialization" time="0.001" /><testcase classname="tests.python.test_utils_comprehensive.TestLoggingUtilities" name="test_logger_singleton_behavior" time="0.001" /><testcase classname="tests.python.test_utils_comprehensive.TestLoggingUtilities" name="test_agent_formatter" time="0.001" /><testcase classname="tests.python.test_utils_comprehensive.TestLoggingUtilities" name="test_error_level_formatting" time="0.001" /><testcase classname="tests.python.test_utils_comprehensive.TestLoggingUtilities" name="test_log_context_manager" time="0.001" /><testcase classname="tests.python.test_utils_comprehensive.TestLoggingUtilities" name="test_log_context_restoration" time="0.001" /><testcase classname="tests.python.test_utils_comprehensive.TestLoggingUtilities" name="test_multiple_log_levels" time="0.002"><failure message="TypeError: '&gt;=' not supported between instances of 'int' and 'Mock'">tests\python\test_utils_comprehensive.py:133: in test_multiple_log_levels
+    test_logger.info("Info message")
+C:\Program Files\Python313\Lib\logging\__init__.py:1520: in info
+    self._log(INFO, msg, args, **kwargs)
+C:\Program Files\Python313\Lib\logging\__init__.py:1665: in _log
+    self.handle(record)
+C:\Program Files\Python313\Lib\logging\__init__.py:1681: in handle
+    self.callHandlers(record)
+C:\Program Files\Python313\Lib\logging\__init__.py:1736: in callHandlers
+    if record.levelno &gt;= hdlr.level:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   TypeError: '&gt;=' not supported between instances of 'int' and 'Mock'</failure></testcase><testcase classname="tests.python.test_utils_comprehensive.TestMetricsCollection" name="test_metrics_collector_initialization" time="0.001" /><testcase classname="tests.python.test_utils_comprehensive.TestMetricsCollection" name="test_counter_metrics" time="0.001" /><testcase classname="tests.python.test_utils_comprehensive.TestMetricsCollection" name="test_gauge_metrics" time="0.001" /><testcase classname="tests.python.test_utils_comprehensive.TestMetricsCollection" name="test_timing_metrics" time="0.107" /><testcase classname="tests.python.test_utils_comprehensive.TestMetricsCollection" name="test_timer_context_manager" time="0.011" /><testcase classname="tests.python.test_utils_comprehensive.TestMetricsCollection" name="test_async_timer_context_manager" time="0.023" /><testcase classname="tests.python.test_utils_comprehensive.TestMetricsCollection" name="test_metric_tags" time="0.001" /><testcase classname="tests.python.test_utils_comprehensive.TestMetricsCollection" name="test_get_all_stats" time="0.001" /><testcase classname="tests.python.test_utils_comprehensive.TestMetricsCollection" name="test_metrics_reset" time="0.001" /><testcase classname="tests.python.test_utils_comprehensive.TestMetricsCollection" name="test_global_metrics_instance" time="0.001" /><testcase classname="tests.python.test_utils_comprehensive.TestMemoryPersistence" name="test_memory_store_initialization" time="0.018" /><testcase classname="tests.python.test_utils_comprehensive.TestMemoryPersistence" name="test_save_and_retrieve_episode" time="0.020" /><testcase classname="tests.python.test_utils_comprehensive.TestMemoryPersistence" name="test_multiple_episodes_retrieval" time="0.041" /><testcase classname="tests.python.test_utils_comprehensive.TestMemoryPersistence" name="test_semantic_memory_operations" time="0.019" /><testcase classname="tests.python.test_utils_comprehensive.TestMemoryPersistence" name="test_semantic_memory_update" time="0.023" /><testcase classname="tests.python.test_utils_comprehensive.TestMemoryPersistence" name="test_get_all_semantic_memory" time="0.029" /><testcase classname="tests.python.test_utils_comprehensive.TestMemoryPersistence" name="test_clear_agent_memory" time="0.030" /><testcase classname="tests.python.test_utils_comprehensive.TestMemoryPersistence" name="test_memory_store_error_handling" time="0.002" /><testcase classname="tests.python.test_utils_comprehensive.TestMemoryPersistence" name="test_semantic_proxy" time="0.037" /><testcase classname="tests.python.test_utils_comprehensive.TestMemoryPersistence" name="test_semantic_proxy_error_handling" time="0.001" /><testcase classname="tests.python.test_utils_comprehensive.TestUtilityIntegration" name="test_agent_with_full_utility_integration" time="0.088" /><testcase classname="tests.python.test_utils_comprehensive.TestUtilityIntegration" name="test_concurrent_utility_access" time="0.239"><failure message="assert 4.0 == 10.0">tests\python\test_utils_comprehensive.py:614: in test_concurrent_utility_access
+    assert counter_stats["value"] == 10.0  # All agents share the same metrics instance
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   assert 4.0 == 10.0</failure></testcase><testcase classname="tests.python.test_utils_comprehensive.TestUtilityIntegration" name="test_utility_error_isolation" time="0.029" /><testcase classname="tests.python.test_utils_comprehensive.TestWindowsCompatibility" name="test_windows_file_path_handling" time="0.021"><failure message="PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\Nouri\\AppData\\Local\\Temp\\tmppdxxg50h\\windows_test.db'">C:\Program Files\Python313\Lib\shutil.py:625: in _rmtree_unsafe
+    os.unlink(fullname)
+E   PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\Nouri\\AppData\\Local\\Temp\\tmppdxxg50h\\windows_test.db'
+
+During handling of the above exception, another exception occurred:
+tests\python\test_utils_comprehensive.py:663: in test_windows_file_path_handling
+    with tempfile.TemporaryDirectory() as temp_dir:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\Python313\Lib\tempfile.py:951: in __exit__
+    self.cleanup()
+C:\Program Files\Python313\Lib\tempfile.py:955: in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+C:\Program Files\Python313\Lib\tempfile.py:935: in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+C:\Program Files\Python313\Lib\shutil.py:790: in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\Python313\Lib\shutil.py:629: in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+C:\Program Files\Python313\Lib\tempfile.py:910: in onexc
+    _os.unlink(path)
+E   PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\Nouri\\AppData\\Local\\Temp\\tmppdxxg50h\\windows_test.db'</failure></testcase><testcase classname="tests.python.test_utils_comprehensive.TestWindowsCompatibility" name="test_concurrent_file_access_windows" time="0.110" /></testsuite></testsuites>

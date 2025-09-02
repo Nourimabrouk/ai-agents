@@ -1,0 +1,722 @@
+openapi: 3.0.3
+info:
+  title: Enterprise AI Document Intelligence Platform API
+  description: |
+    RESTful API for document processing, AI coordination, and business intelligence.
+    Built on Windows-first architecture with budget-conscious design.
+  version: 1.0.0
+  contact:
+    name: AI Agents Platform
+    url: https://github.com/ai-agents/enterprise-platform
+
+servers:
+  - url: https://api.aidocintelligence.com/v1
+    description: Production server
+  - url: https://staging-api.aidocintelligence.com/v1
+    description: Staging server
+  - url: http://localhost:8000/v1
+    description: Local development server
+
+security:
+  - ApiKeyAuth: []
+  - BearerAuth: []
+
+paths:
+  # Document Processing Endpoints
+  /documents:
+    post:
+      summary: Upload and process document
+      description: Upload a document for AI processing with automatic type detection
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: Document file (PDF, image, Excel, CSV)
+                document_type:
+                  type: string
+                  enum: [auto, invoice, purchase_order, contract, receipt, bank_statement, legal_document]
+                  default: auto
+                processing_options:
+                  $ref: '#/components/schemas/ProcessingOptions'
+              required:
+                - file
+      responses:
+        '202':
+          description: Document accepted for processing
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentProcessingResponse'
+        '400':
+          description: Invalid request
+        '413':
+          description: File too large
+        '429':
+          description: Rate limit exceeded
+
+    get:
+      summary: List processed documents
+      description: Retrieve paginated list of processed documents
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 50
+            maximum: 100
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [processing, completed, failed, needs_review]
+        - name: document_type
+          in: query
+          schema:
+            type: string
+        - name: from_date
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: to_date
+          in: query
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: List of documents
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentList'
+
+  /documents/{document_id}:
+    get:
+      summary: Get document details
+      description: Retrieve detailed information about a processed document
+      parameters:
+        - name: document_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Document details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentDetails'
+        '404':
+          description: Document not found
+
+  /documents/{document_id}/reprocess:
+    post:
+      summary: Reprocess document
+      description: Trigger reprocessing of a document with different options
+      parameters:
+        - name: document_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProcessingOptions'
+      responses:
+        '202':
+          description: Reprocessing initiated
+        '404':
+          description: Document not found
+
+  # AI Agent Coordination Endpoints
+  /agents:
+    get:
+      summary: List available agents
+      description: Get information about all available AI agents
+      responses:
+        '200':
+          description: List of agents
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentList'
+
+  /agents/{agent_name}/performance:
+    get:
+      summary: Get agent performance metrics
+      description: Retrieve detailed performance metrics for a specific agent
+      parameters:
+        - name: agent_name
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: days
+          in: query
+          schema:
+            type: integer
+            default: 30
+      responses:
+        '200':
+          description: Agent performance metrics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentPerformance'
+
+  /orchestration/competitive:
+    post:
+      summary: Run competitive agent processing
+      description: Process document using multiple agents competitively
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                document_id:
+                  type: integer
+                agents:
+                  type: array
+                  items:
+                    type: string
+                selection_criteria:
+                  type: string
+                  enum: [highest_confidence, fastest_processing, consensus_voting]
+                  default: highest_confidence
+      responses:
+        '200':
+          description: Competitive processing results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompetitiveResults'
+
+  # Business Intelligence Endpoints
+  /analytics/overview:
+    get:
+      summary: Get processing analytics overview
+      description: High-level analytics dashboard data
+      parameters:
+        - name: period
+          in: query
+          schema:
+            type: string
+            enum: [day, week, month, quarter, year]
+            default: month
+      responses:
+        '200':
+          description: Analytics overview
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyticsOverview'
+
+  /analytics/roi:
+    get:
+      summary: Get ROI calculations
+      description: Calculate return on investment from document processing automation
+      parameters:
+        - name: baseline_manual_cost_per_doc
+          in: query
+          schema:
+            type: number
+            format: float
+            default: 5.0
+      responses:
+        '200':
+          description: ROI calculations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ROIAnalysis'
+
+  /anomalies:
+    get:
+      summary: Get detected anomalies
+      description: Retrieve list of detected anomalies requiring attention
+      parameters:
+        - name: severity
+          in: query
+          schema:
+            type: string
+            enum: [low, medium, high, critical]
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [open, investigating, resolved]
+            default: open
+      responses:
+        '200':
+          description: List of anomalies
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnomalyList'
+
+  # Human-in-the-Loop Endpoints
+  /reviews:
+    get:
+      summary: Get review queue
+      description: Retrieve documents requiring human review
+      parameters:
+        - name: priority
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 4
+      responses:
+        '200':
+          description: Review queue
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReviewQueue'
+
+  /reviews/{document_id}/approve:
+    post:
+      summary: Approve reviewed document
+      description: Approve document after human review with optional corrections
+      parameters:
+        - name: document_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                corrections:
+                  type: object
+                  description: Corrected field values
+                reviewer_notes:
+                  type: string
+      responses:
+        '200':
+          description: Document approved
+        '404':
+          description: Document not found
+
+  # Integration Endpoints
+  /integrations:
+    get:
+      summary: List configured integrations
+      responses:
+        '200':
+          description: List of integrations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntegrationList'
+
+    post:
+      summary: Configure new integration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IntegrationConfig'
+      responses:
+        '201':
+          description: Integration configured
+        '400':
+          description: Invalid configuration
+
+  /integrations/{integration_id}/sync:
+    post:
+      summary: Trigger integration sync
+      parameters:
+        - name: integration_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '202':
+          description: Sync initiated
+
+  # Webhook Management
+  /webhooks:
+    get:
+      summary: List webhook configurations
+      responses:
+        '200':
+          description: List of webhooks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookList'
+
+    post:
+      summary: Create webhook
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookConfig'
+      responses:
+        '201':
+          description: Webhook created
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+    BearerAuth:
+      type: http
+      scheme: bearer
+
+  schemas:
+    ProcessingOptions:
+      type: object
+      properties:
+        method:
+          type: string
+          enum: [auto, regex_only, ai_enhanced, competitive_agents]
+          default: auto
+        confidence_threshold:
+          type: number
+          format: float
+          minimum: 0.0
+          maximum: 1.0
+          default: 0.7
+        enable_human_review:
+          type: boolean
+          default: true
+        webhook_url:
+          type: string
+          format: uri
+        priority:
+          type: integer
+          minimum: 1
+          maximum: 4
+          default: 2
+
+    DocumentProcessingResponse:
+      type: object
+      properties:
+        document_id:
+          type: integer
+        status:
+          type: string
+        estimated_completion:
+          type: string
+          format: date-time
+        processing_options:
+          $ref: '#/components/schemas/ProcessingOptions'
+
+    DocumentDetails:
+      type: object
+      properties:
+        id:
+          type: integer
+        filename:
+          type: string
+        document_type:
+          type: string
+        status:
+          type: string
+        confidence_score:
+          type: number
+          format: float
+        extraction_results:
+          type: object
+        validation_errors:
+          type: array
+          items:
+            type: string
+        processing_timeline:
+          type: array
+          items:
+            type: object
+            properties:
+              timestamp:
+                type: string
+                format: date-time
+              event:
+                type: string
+              agent_name:
+                type: string
+        created_at:
+          type: string
+          format: date-time
+        completed_at:
+          type: string
+          format: date-time
+
+    DocumentList:
+      type: object
+      properties:
+        documents:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentDetails'
+        pagination:
+          type: object
+          properties:
+            page:
+              type: integer
+            limit:
+              type: integer
+            total:
+              type: integer
+            total_pages:
+              type: integer
+
+    AgentList:
+      type: object
+      properties:
+        agents:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              specialization:
+                type: string
+              status:
+                type: string
+              capabilities:
+                type: array
+                items:
+                  type: string
+              performance_score:
+                type: number
+                format: float
+
+    AgentPerformance:
+      type: object
+      properties:
+        agent_name:
+          type: string
+        period_days:
+          type: integer
+        total_tasks:
+          type: integer
+        success_rate:
+          type: number
+          format: float
+        average_confidence:
+          type: number
+          format: float
+        average_processing_time_ms:
+          type: integer
+        total_cost:
+          type: number
+          format: float
+        specialization_accuracy:
+          type: object
+          additionalProperties:
+            type: number
+            format: float
+
+    CompetitiveResults:
+      type: object
+      properties:
+        winning_agent:
+          type: string
+        selection_criteria:
+          type: string
+        all_results:
+          type: array
+          items:
+            type: object
+            properties:
+              agent_name:
+                type: string
+              result:
+                type: object
+              confidence_score:
+                type: number
+                format: float
+              processing_time_ms:
+                type: integer
+        consensus_metrics:
+          type: object
+
+    AnalyticsOverview:
+      type: object
+      properties:
+        period:
+          type: string
+        total_documents:
+          type: integer
+        successful_extractions:
+          type: integer
+        accuracy_rate:
+          type: number
+          format: float
+        average_processing_time:
+          type: integer
+        cost_savings:
+          type: number
+          format: float
+        document_type_breakdown:
+          type: object
+          additionalProperties:
+            type: integer
+        trends:
+          type: object
+
+    ROIAnalysis:
+      type: object
+      properties:
+        baseline_manual_cost:
+          type: number
+          format: float
+        automated_processing_cost:
+          type: number
+          format: float
+        cost_savings:
+          type: number
+          format: float
+        roi_percentage:
+          type: number
+          format: float
+        payback_period_months:
+          type: number
+          format: float
+        efficiency_gains:
+          type: object
+
+    AnomalyList:
+      type: object
+      properties:
+        anomalies:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              document_id:
+                type: integer
+              anomaly_type:
+                type: string
+              severity:
+                type: string
+              description:
+                type: string
+              detected_at:
+                type: string
+                format: date-time
+              status:
+                type: string
+
+    ReviewQueue:
+      type: object
+      properties:
+        pending_reviews:
+          type: array
+          items:
+            type: object
+            properties:
+              document_id:
+                type: integer
+              filename:
+                type: string
+              confidence_score:
+                type: number
+                format: float
+              reason_for_review:
+                type: string
+              priority:
+                type: integer
+              submitted_at:
+                type: string
+                format: date-time
+
+    IntegrationConfig:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [quickbooks, sap, netsuite, xero, custom_webhook]
+        name:
+          type: string
+        configuration:
+          type: object
+        sync_frequency:
+          type: string
+          enum: [real_time, hourly, daily, weekly]
+
+    IntegrationList:
+      type: object
+      properties:
+        integrations:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              type:
+                type: string
+              name:
+                type: string
+              status:
+                type: string
+              last_sync:
+                type: string
+                format: date-time
+
+    WebhookConfig:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+        events:
+          type: array
+          items:
+            type: string
+            enum: [document.processed, review.completed, anomaly.detected, integration.synced]
+        active:
+          type: boolean
+          default: true
+        secret:
+          type: string
+
+    WebhookList:
+      type: object
+      properties:
+        webhooks:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              url:
+                type: string
+              events:
+                type: array
+                items:
+                  type: string
+              active:
+                type: boolean
+              created_at:
+                type: string
+                format: date-time

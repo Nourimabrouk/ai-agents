@@ -1,0 +1,395 @@
+# Docker Compose configuration for Enterprise Document Processing API
+# Production-ready multi-service setup with monitoring and persistence
+
+version: '3.8'
+
+networks:
+  enterprise-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+  uploads_data:
+    driver: local
+  logs_data:
+    driver: local
+  prometheus_data:
+    driver: local
+  grafana_data:
+    driver: local
+
+services:
+  # =============================================================================
+  # Core Application Services
+  # =============================================================================
+  
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runtime
+      args:
+        ENVIRONMENT: production
+        BUILD_DATE: ${BUILD_DATE:-}
+        GIT_COMMIT: ${GIT_COMMIT:-}
+        VERSION: ${VERSION:-1.0.0}
+    container_name: enterprise-api
+    restart: unless-stopped
+    ports:
+      - "${API_PORT:-8000}:8000"
+    environment:
+      # Application
+      - ENVIRONMENT=production
+      - API_HOST=0.0.0.0
+      - API_PORT=8000
+      - WORKERS=${API_WORKERS:-4}
+      
+      # Database
+      - DATABASE_URL=postgresql+asyncpg://enterprise:${POSTGRES_PASSWORD:-enterprise123}@postgres:5432/enterprise_docs
+      - DATABASE_POOL_SIZE=20
+      - DATABASE_POOL_MAX_OVERFLOW=30
+      
+      # Redis
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/1
+      - CELERY_RESULT_BACKEND=redis://redis:6379/2
+      
+      # Security
+      - SECRET_KEY=${SECRET_KEY:-your-super-secret-key-change-in-production}
+      - API_KEY_PREFIX=eapi_
+      
+      # Processing
+      - MAX_FILE_SIZE_MB=50
+      - MAX_BATCH_SIZE=100
+      - DEFAULT_CONFIDENCE_THRESHOLD=0.95
+      - MAX_COST_PER_DOCUMENT=0.05
+      
+      # Integrations
+      - QUICKBOOKS_CLIENT_ID=${QUICKBOOKS_CLIENT_ID:-}
+      - QUICKBOOKS_CLIENT_SECRET=${QUICKBOOKS_CLIENT_SECRET:-}
+      - SAP_SERVER_URL=${SAP_SERVER_URL:-}
+      - NETSUITE_ACCOUNT_ID=${NETSUITE_ACCOUNT_ID:-}
+      - XERO_CLIENT_ID=${XERO_CLIENT_ID:-}
+      
+      # Monitoring
+      - LOG_LEVEL=${LOG_LEVEL:-info}
+      - ENABLE_METRICS=true
+      - METRICS_PORT=9090
+      
+      # Email (optional)
+      - SMTP_SERVER=${SMTP_SERVER:-}
+      - SMTP_USERNAME=${SMTP_USERNAME:-}
+      - SMTP_PASSWORD=${SMTP_PASSWORD:-}
+      
+    volumes:
+      - uploads_data:/app/data/uploads
+      - logs_data:/app/logs
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - enterprise-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.api.rule=Host(`api.${DOMAIN:-localhost}`)"
+      - "traefik.http.services.api.loadbalancer.server.port=8000"
+
+  # Background task processor
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runtime
+    container_name: enterprise-worker
+    restart: unless-stopped
+    command: >
+      celery -A api.celery_app worker
+      --loglevel=info
+      --concurrency=4
+      --prefetch-multiplier=1
+      --max-tasks-per-child=1000
+    environment:
+      - ENVIRONMENT=production
+      - DATABASE_URL=postgresql+asyncpg://enterprise:${POSTGRES_PASSWORD:-enterprise123}@postgres:5432/enterprise_docs
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/1
+      - CELERY_RESULT_BACKEND=redis://redis:6379/2
+      - SECRET_KEY=${SECRET_KEY:-your-super-secret-key-change-in-production}
+    volumes:
+      - uploads_data:/app/data/uploads
+      - logs_data:/app/logs
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - enterprise-net
+    healthcheck:
+      test: ["CMD", "celery", "-A", "api.celery_app", "inspect", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Background task scheduler
+  scheduler:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runtime
+    container_name: enterprise-scheduler
+    restart: unless-stopped
+    command: >
+      celery -A api.celery_app beat
+      --loglevel=info
+      --schedule=/app/celerybeat-schedule
+      --pidfile=/app/celerybeat.pid
+    environment:
+      - ENVIRONMENT=production
+      - DATABASE_URL=postgresql+asyncpg://enterprise:${POSTGRES_PASSWORD:-enterprise123}@postgres:5432/enterprise_docs
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/1
+      - CELERY_RESULT_BACKEND=redis://redis:6379/2
+    volumes:
+      - logs_data:/app/logs
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - enterprise-net
+
+  # =============================================================================
+  # Database Services
+  # =============================================================================
+  
+  postgres:
+    image: postgres:15-alpine
+    container_name: enterprise-postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=enterprise_docs
+      - POSTGRES_USER=enterprise
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-enterprise123}
+      - POSTGRES_INITDB_ARGS=--encoding=UTF-8 --lc-collate=C --lc-ctype=C
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql:ro
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    networks:
+      - enterprise-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U enterprise -d enterprise_docs"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    command: >
+      postgres
+      -c shared_preload_libraries=pg_stat_statements
+      -c pg_stat_statements.track=all
+      -c max_connections=200
+      -c shared_buffers=256MB
+      -c effective_cache_size=1GB
+      -c maintenance_work_mem=64MB
+      -c checkpoint_completion_target=0.9
+      -c wal_buffers=16MB
+      -c default_statistics_target=100
+
+  redis:
+    image: redis:7-alpine
+    container_name: enterprise-redis
+    restart: unless-stopped
+    command: >
+      redis-server
+      --appendonly yes
+      --appendfsync everysec
+      --maxmemory 512mb
+      --maxmemory-policy allkeys-lru
+      --tcp-keepalive 60
+    volumes:
+      - redis_data:/data
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    networks:
+      - enterprise-net
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # =============================================================================
+  # Monitoring and Observability
+  # =============================================================================
+  
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: enterprise-prometheus
+    restart: unless-stopped
+    ports:
+      - "${PROMETHEUS_PORT:-9090}:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=30d'
+      - '--web.enable-lifecycle'
+    networks:
+      - enterprise-net
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:9090/-/healthy"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: enterprise-grafana
+    restart: unless-stopped
+    ports:
+      - "${GRAFANA_PORT:-3000}:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-admin123}
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_INSTALL_PLUGINS=grafana-piechart-panel,grafana-worldmap-panel
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards:ro
+      - ./monitoring/grafana/datasources:/etc/grafana/provisioning/datasources:ro
+    networks:
+      - enterprise-net
+    depends_on:
+      - prometheus
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:3000/api/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Log aggregation
+  loki:
+    image: grafana/loki:latest
+    container_name: enterprise-loki
+    restart: unless-stopped
+    ports:
+      - "${LOKI_PORT:-3100}:3100"
+    volumes:
+      - ./monitoring/loki.yml:/etc/loki/local-config.yaml:ro
+    command: -config.file=/etc/loki/local-config.yaml
+    networks:
+      - enterprise-net
+
+  # =============================================================================
+  # Reverse Proxy and Load Balancer
+  # =============================================================================
+  
+  traefik:
+    image: traefik:v3.0
+    container_name: enterprise-traefik
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "${TRAEFIK_DASHBOARD_PORT:-8080}:8080"
+    environment:
+      - TRAEFIK_API_DASHBOARD=true
+      - TRAEFIK_API_INSECURE=true
+      - TRAEFIK_PROVIDERS_DOCKER=true
+      - TRAEFIK_PROVIDERS_DOCKER_EXPOSEDBYDEFAULT=false
+      - TRAEFIK_ENTRYPOINTS_HTTP_ADDRESS=:80
+      - TRAEFIK_ENTRYPOINTS_HTTPS_ADDRESS=:443
+      - TRAEFIK_CERTIFICATESRESOLVERS_LETSENCRYPT_ACME_EMAIL=${ACME_EMAIL:-admin@example.com}
+      - TRAEFIK_CERTIFICATESRESOLVERS_LETSENCRYPT_ACME_STORAGE=/letsencrypt/acme.json
+      - TRAEFIK_CERTIFICATESRESOLVERS_LETSENCRYPT_ACME_HTTPCHALLENGE_ENTRYPOINT=http
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./certs:/letsencrypt
+    networks:
+      - enterprise-net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dashboard.rule=Host(`traefik.${DOMAIN:-localhost}`)"
+      - "traefik.http.routers.dashboard.service=api@internal"
+
+  # =============================================================================
+  # Development and Testing Services (optional)
+  # =============================================================================
+  
+  mailhog:
+    image: mailhog/mailhog:latest
+    container_name: enterprise-mailhog
+    restart: unless-stopped
+    ports:
+      - "${MAILHOG_SMTP_PORT:-1025}:1025"
+      - "${MAILHOG_WEB_PORT:-8025}:8025"
+    networks:
+      - enterprise-net
+    profiles:
+      - dev
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: enterprise-pgadmin
+    restart: unless-stopped
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL:-admin@example.com}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD:-admin123}
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+    volumes:
+      - ./scripts/servers.json:/pgadmin4/servers.json:ro
+    networks:
+      - enterprise-net
+    depends_on:
+      - postgres
+    profiles:
+      - dev
+
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: enterprise-redis-commander
+    restart: unless-stopped
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    ports:
+      - "${REDIS_COMMANDER_PORT:-8081}:8081"
+    networks:
+      - enterprise-net
+    depends_on:
+      - redis
+    profiles:
+      - dev
+
+# =============================================================================
+# Additional Configuration
+# =============================================================================
+
+# Health check for the entire stack
+x-healthcheck-config: &default-healthcheck
+  interval: 30s
+  timeout: 10s
+  retries: 3
+  start_period: 60s
+
+# Resource limits
+x-resource-limits: &default-resources
+  deploy:
+    resources:
+      limits:
+        memory: 512M
+      reservations:
+        memory: 256M

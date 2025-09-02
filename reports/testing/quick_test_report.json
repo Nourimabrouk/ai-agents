@@ -1,0 +1,44 @@
+{
+  "timestamp": "2025-09-02T12:13:59.111417",
+  "summary": {
+    "tests_run": 5,
+    "tests_passed": 5,
+    "pass_rate": 100.0,
+    "total_duration": 1.1933474999968894,
+    "health": "GOOD"
+  },
+  "detailed_results": {
+    "Core Functionality": {
+      "core_agent_works": true,
+      "agent_state": "idle",
+      "result_received": true,
+      "success_rate": 1.0,
+      "duration": 0.8248166999983368
+    },
+    "Orchestration": {
+      "orchestration_works": true,
+      "agents_registered": 1,
+      "task_completed": true,
+      "result_received": true,
+      "duration": 0.34458160000212956
+    },
+    "Communication": {
+      "communication_works": true,
+      "message_sent": true,
+      "response_received": true,
+      "duration": 0.010316400002921
+    },
+    "Meta System": {
+      "meta_system_works": true,
+      "agents_initialized": true,
+      "config_loaded": true,
+      "duration": 0.0004248000041116029
+    },
+    "Windows Compatibility": {
+      "windows_compatibility": true,
+      "path_handling": true,
+      "file_operations": true,
+      "duration": 0.013192200000048615
+    }
+  }
+}

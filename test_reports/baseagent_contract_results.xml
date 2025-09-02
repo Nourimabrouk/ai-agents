@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="0.045" timestamp="2025-09-02T12:30:52.464530+02:00" hostname="Nouri-PC"><testcase classname="tests.python.test_base_agent" name="test_base_agent_contract_runs_end_to_end" time="0.006" /></testsuite></testsuites>

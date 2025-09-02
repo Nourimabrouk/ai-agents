@@ -14,7 +14,13 @@
       "Bash(dir \"C:\\Users\\Nouri\\Documents\\GitHub\\ai-agents\\.claude\\agents\")",
       "Read(C:\\Users\\Nouri/**)",
       "Bash(mkdir:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git push:*)",
+      "Bash(tree:*)",
+      "Bash(del orchestrator.py)",
+      "Bash(pip install:*)",
+      "Bash(curl:*)",
+      "Bash(del nul)"
     ],
     "deny": [],
     "ask": []

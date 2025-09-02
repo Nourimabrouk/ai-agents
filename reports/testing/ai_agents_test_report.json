@@ -1,0 +1,390 @@
+{
+  "test_execution": {
+    "start_time": "2025-09-02T12:10:43.059095",
+    "end_time": "2025-09-02T12:10:47.029112",
+    "total_duration": 3.969876,
+    "tests_run": 23,
+    "tests_passed": 15,
+    "tests_failed": 8,
+    "overall_pass_rate": 65.21739130434783
+  },
+  "performance_metrics": {
+    "average_test_duration": 0.17247429565126685,
+    "fastest_test": 2.200000744778663e-05,
+    "slowest_test": 1.654748799992376,
+    "total_test_time": 3.9669087999791373
+  },
+  "category_analysis": {
+    "Core Functionality": {
+      "total": 3,
+      "passed": 3,
+      "failed": 0,
+      "pass_rate": 100.0
+    },
+    "Orchestration": {
+      "total": 7,
+      "passed": 6,
+      "failed": 1,
+      "pass_rate": 85.71428571428571
+    },
+    "Communication": {
+      "total": 3,
+      "passed": 0,
+      "failed": 3,
+      "pass_rate": 0.0
+    },
+    "Meta System": {
+      "total": 2,
+      "passed": 0,
+      "failed": 2,
+      "pass_rate": 0.0
+    },
+    "Integration": {
+      "total": 3,
+      "passed": 3,
+      "failed": 0,
+      "pass_rate": 100.0
+    },
+    "Performance": {
+      "total": 3,
+      "passed": 2,
+      "failed": 1,
+      "pass_rate": 66.66666666666666
+    },
+    "Windows Compatibility": {
+      "total": 3,
+      "passed": 1,
+      "failed": 2,
+      "pass_rate": 33.33333333333333
+    }
+  },
+  "detailed_results": [
+    {
+      "test_name": "test_base_agent_functionality",
+      "passed": true,
+      "error": null,
+      "duration": 1.654748799992376,
+      "details": {
+        "agent_created": true,
+        "task_processed": true,
+        "metrics_available": true,
+        "success_rate": 1.0
+      }
+    },
+    {
+      "test_name": "test_agent_memory_system",
+      "passed": true,
+      "error": null,
+      "duration": 2.200000744778663e-05,
+      "details": {
+        "episodes_stored": 1,
+        "patterns_extracted": 2,
+        "semantic_memory_size": 0
+      }
+    },
+    {
+      "test_name": "test_agent_learning_system",
+      "passed": true,
+      "error": null,
+      "duration": 2.8399997972883284e-05,
+      "details": {
+        "strategies_learned": 2,
+        "recommended_strategy": "strategy_2",
+        "adaptations_made": 0
+      }
+    },
+    {
+      "test_name": "test_orchestrator_initialization",
+      "passed": true,
+      "error": null,
+      "duration": 0.5063109999900917,
+      "details": {
+        "orchestrator_initialized": true,
+        "agents_registered": 1,
+        "blackboard_available": true
+      }
+    },
+    {
+      "test_name": "test_task_delegation",
+      "passed": true,
+      "error": null,
+      "duration": 0.23798119999992196,
+      "details": {
+        "task_delegated": true,
+        "result_received": true,
+        "task_completed": true,
+        "agents_available": 3
+      }
+    },
+    {
+      "test_name": "test_parallel_execution",
+      "passed": true,
+      "error": null,
+      "duration": 0.015829399999347515,
+      "details": {
+        "parallel_results": 3,
+        "execution_time": 0.015313700001570396,
+        "agents_used": 3,
+        "all_succeeded": true
+      }
+    },
+    {
+      "test_name": "test_sequential_execution",
+      "passed": true,
+      "error": null,
+      "duration": 0.046271100000012666,
+      "details": {
+        "sequential_result": true,
+        "agents_chained": 3,
+        "final_result": {
+          "step": "seq_2",
+          "input": "sequential test task"
+        }
+      }
+    },
+    {
+      "test_name": "test_collaborative_execution",
+      "passed": true,
+      "error": null,
+      "duration": 0.005390200007241219,
+      "details": {
+        "collaboration_completed": true,
+        "agents_participated": 3,
+        "result_synthesized": true
+      }
+    },
+    {
+      "test_name": "test_consensus_execution",
+      "passed": true,
+      "error": null,
+      "duration": 0.003512600000249222,
+      "details": {
+        "consensus_reached": true,
+        "voting_completed": true,
+        "final_solution": true
+      }
+    },
+    {
+      "test_name": "test_message_bus_functionality",
+      "passed": false,
+      "error": null,
+      "duration": 0.016761100006988272,
+      "details": {
+        "error": "f-string: single '}' is not allowed (specialized_agents.py, line 963)"
+      }
+    },
+    {
+      "test_name": "test_agent_communication",
+      "passed": false,
+      "error": null,
+      "duration": 0.011697800000547431,
+      "details": {
+        "error": "f-string: single '}' is not allowed (specialized_agents.py, line 963)"
+      }
+    },
+    {
+      "test_name": "test_parallel_coordination",
+      "passed": false,
+      "error": null,
+      "duration": 0.011409499988076277,
+      "details": {
+        "error": "f-string: single '}' is not allowed (specialized_agents.py, line 963)"
+      }
+    },
+    {
+      "test_name": "test_meta_orchestrator",
+      "passed": false,
+      "error": null,
+      "duration": 0.022208099995623343,
+      "details": {
+        "error": "f-string: single '}' is not allowed (specialized_agents.py, line 963)"
+      }
+    },
+    {
+      "test_name": "test_specialized_agents",
+      "passed": false,
+      "error": null,
+      "duration": 0.011307799999485724,
+      "details": {
+        "error": "f-string: single '}' is not allowed (specialized_agents.py, line 963)"
+      }
+    },
+    {
+      "test_name": "test_end_to_end_workflow",
+      "passed": true,
+      "error": null,
+      "duration": 0.0561083999928087,
+      "details": {
+        "workflow_completed": true,
+        "task_result": true,
+        "metrics_updated": true,
+        "agents_coordinated": 3
+      }
+    },
+    {
+      "test_name": "test_error_handling",
+      "passed": true,
+      "error": null,
+      "duration": 0.001269999993382953,
+      "details": {
+        "individual_error_caught": true,
+        "orchestrator_error_handled": false,
+        "agents_registered": 2,
+        "error_recovery": true
+      }
+    },
+    {
+      "test_name": "test_recovery_mechanisms",
+      "passed": true,
+      "error": null,
+      "duration": 0.0011362999939592555,
+      "details": {
+        "recovery_successful": true,
+        "state_recovered": true,
+        "total_attempts": 4,
+        "final_state": "idle"
+      }
+    },
+    {
+      "test_name": "test_concurrent_performance",
+      "passed": true,
+      "error": null,
+      "duration": 1.0944844000041485,
+      "details": {
+        "agents_created": 10,
+        "tasks_processed": 5,
+        "execution_time": 1.0931710000004387,
+        "tasks_per_second": 4.573849836848941,
+        "performance_acceptable": false
+      }
+    },
+    {
+      "test_name": "test_memory_usage",
+      "passed": false,
+      "error": null,
+      "duration": 0.04792989999987185,
+      "details": {
+        "error": "Can't instantiate abstract class BaseAgent without an implementation for abstract method 'execute'"
+      }
+    },
+    {
+      "test_name": "test_scalability",
+      "passed": true,
+      "error": null,
+      "duration": 0.10350509999261703,
+      "details": {
+        "scale_tests_completed": 4,
+        "scalability_results": {
+          "5": {
+            "tasks_completed": 5,
+            "duration": 0.024454700003843755,
+            "throughput": 204.45967438627778
+          },
+          "10": {
+            "tasks_completed": 5,
+            "duration": 0.023380799990263768,
+            "throughput": 213.8506809896197
+          },
+          "20": {
+            "tasks_completed": 5,
+            "duration": 0.02278929999738466,
+            "throughput": 219.40121024225442
+          },
+          "50": {
+            "tasks_completed": 5,
+            "duration": 0.022994099999777973,
+            "throughput": 217.4470842541469
+          }
+        },
+        "scales_well": true,
+        "max_agents_tested": 50
+      }
+    },
+    {
+      "test_name": "test_windows_paths",
+      "passed": false,
+      "error": null,
+      "duration": 0.010687400004826486,
+      "details": {
+        "error": "Can't instantiate abstract class BaseAgent without an implementation for abstract method 'execute'"
+      }
+    },
+    {
+      "test_name": "test_async_patterns",
+      "passed": true,
+      "error": null,
+      "duration": 0.07866540001123212,
+      "details": {
+        "basic_async": true,
+        "concurrent_execution": true,
+        "task_management": true,
+        "agent_async": true,
+        "windows_async_compatible": true
+      }
+    },
+    {
+      "test_name": "test_file_operations",
+      "passed": false,
+      "error": null,
+      "duration": 0.029642900000908412,
+      "details": {
+        "error": "[WinError 32] The process cannot access the file because it is being used by another process: 'C:\\\\Users\\\\Nouri\\\\AppData\\\\Local\\\\Temp\\\\ai_agents_file_test\\\\test_memory.db'"
+      }
+    }
+  ],
+  "failed_tests": [
+    {
+      "test_name": "test_message_bus_functionality",
+      "error": null,
+      "duration": 0.016761100006988272
+    },
+    {
+      "test_name": "test_agent_communication",
+      "error": null,
+      "duration": 0.011697800000547431
+    },
+    {
+      "test_name": "test_parallel_coordination",
+      "error": null,
+      "duration": 0.011409499988076277
+    },
+    {
+      "test_name": "test_meta_orchestrator",
+      "error": null,
+      "duration": 0.022208099995623343
+    },
+    {
+      "test_name": "test_specialized_agents",
+      "error": null,
+      "duration": 0.011307799999485724
+    },
+    {
+      "test_name": "test_memory_usage",
+      "error": null,
+      "duration": 0.04792989999987185
+    },
+    {
+      "test_name": "test_windows_paths",
+      "error": null,
+      "duration": 0.010687400004826486
+    },
+    {
+      "test_name": "test_file_operations",
+      "error": null,
+      "duration": 0.029642900000908412
+    }
+  ],
+  "recommendations": [
+    "Communication system issues detected. Verify message bus and agent protocol.",
+    "Windows compatibility issues detected. Review path handling and async patterns.",
+    "Communication category has low pass rate (0.0%). Requires attention.",
+    "Meta System category has low pass rate (0.0%). Requires attention.",
+    "Windows Compatibility category has low pass rate (33.3%). Requires attention."
+  ],
+  "system_health": {
+    "status": "fair",
+    "score": 65.47619047619047,
+    "weighted_calculation": true,
+    "categories_assessed": 7
+  }
+}

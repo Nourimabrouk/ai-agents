@@ -12,7 +12,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 
 from templates.base_agent import BaseAgent, Action
-from orchestrator import AgentOrchestrator, Task, CustomerSupportAgent, DataAnalystAgent
+from core.orchestration.orchestrator import AgentOrchestrator, Task, CustomerSupportAgent, DataAnalystAgent
 from utils.observability.logging import get_logger
 from utils.observability.metrics import global_metrics
 
