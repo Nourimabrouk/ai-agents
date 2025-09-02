@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir:*)",
+      "Bash(pip --version)",
+      "Bash(python -m pytest tests/python/test_base_agent.py -v)",
+      "Bash(.venvScriptsactivate)",
+      "Bash(source:*)",
+      "Bash(python -m pytest tests/python/test_orchestrator.py -v)",
+      "Bash(python -m pytest tests/python/ -v)",
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "Bash(python:*)",
+      "Bash(dir \"C:\\Users\\Nouri\\Documents\\GitHub\\ai-agents\\.claude\\agents\")",
+      "Read(C:\\Users\\Nouri/**)",
+      "Bash(mkdir:*)",
+      "Bash(git add:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

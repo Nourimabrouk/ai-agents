@@ -52,6 +52,15 @@ class Task:
     assigned_agents: List[str] = field(default_factory=list)
     status: str = "pending"
     result: Optional[Any] = None
+    
+    def __post_init__(self):
+        """Basic validation after initialization"""
+        if not self.id or not isinstance(self.id, str):
+            raise ValueError("Task ID must be a non-empty string")
+        if not self.description or not isinstance(self.description, str):
+            raise ValueError("Task description must be a non-empty string")
+        if not isinstance(self.requirements, dict):
+            raise ValueError("Task requirements must be a dictionary")
 
 
 class Blackboard:
@@ -162,14 +171,17 @@ class AgentOrchestrator:
         suitable = []
         
         for agent in self.agents.values():
-            # Check agent state
-            if agent.state == AgentState.IDLE:
+            # Check agent state - be more flexible about state matching
+            agent_state = getattr(agent, 'state', 'idle')
+            if agent_state == AgentState.IDLE or agent_state == 'idle':
                 # Check success rate threshold
-                if agent.get_success_rate() > 0.5 or agent.total_tasks < 5:
+                success_rate = getattr(agent, 'get_success_rate', lambda: 1.0)()
+                total_tasks = getattr(agent, 'total_tasks', 0)
+                if success_rate > 0.5 or total_tasks < 5:
                     suitable.append(agent)
         
         # Sort by success rate
-        suitable.sort(key=lambda a: a.get_success_rate(), reverse=True)
+        suitable.sort(key=lambda a: getattr(a, 'get_success_rate', lambda: 1.0)(), reverse=True)
         
         return suitable[:3]  # Return top 3 agents
     
