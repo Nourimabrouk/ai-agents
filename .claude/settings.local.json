@@ -20,7 +20,8 @@
       "Bash(del orchestrator.py)",
       "Bash(pip install:*)",
       "Bash(curl:*)",
-      "Bash(del nul)"
+      "Bash(del nul)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []
