@@ -1,0 +1,679 @@
+{
+  "metadata": {
+    "scenario": "high_performance",
+    "description": "Optimized high-performance agent scenario"
+  },
+  "agent_network": {
+    "agents": [
+      {
+        "id": "agent-01",
+        "name": "Coordinating-Agent-01",
+        "type": "coordinating",
+        "status": "active",
+        "position": {
+          "x": -3.2568918099016835,
+          "y": 2.453702907128406,
+          "z": 2.9920363397507574
+        },
+        "performance": {
+          "throughput": 177.88805075370357,
+          "accuracy": 99.9,
+          "responseTime": 164.23490441742453,
+          "utilization": 60.733207566069254
+        },
+        "connections": [
+          "agent-06",
+          "agent-12",
+          "agent-06",
+          "agent-12"
+        ],
+        "lastActivity": "2025-09-03T18:47:03.020166",
+        "metadata": {
+          "specialization": "task_delegation",
+          "version": "1.4.1",
+          "capabilities": [
+            "monitoring",
+            "optimization",
+            "resource_management"
+          ],
+          "learning_rate": 0.05,
+          "collaboration_score": 0.9
+        }
+      },
+      {
+        "id": "agent-02",
+        "name": "Coordinating-Agent-02",
+        "type": "coordinating",
+        "status": "active",
+        "position": {
+          "x": -1.2867378865685317,
+          "y": 2.686356032301739,
+          "z": -1.3423221600430886
+        },
+        "performance": {
+          "throughput": 126.26617914400468,
+          "accuracy": 99.38826553198258,
+          "responseTime": 208.31935680248498,
+          "utilization": 100
+        },
+        "connections": [
+          "agent-06",
+          "agent-04",
+          "agent-10",
+          "agent-07",
+          "agent-05"
+        ],
+        "lastActivity": "2025-09-03T18:47:21.020250",
+        "metadata": {
+          "specialization": "coordination",
+          "version": "1.2.5",
+          "capabilities": [
+            "learning",
+            "task_delegation",
+            "optimization",
+            "coordination",
+            "monitoring"
+          ],
+          "learning_rate": 0.05,
+          "collaboration_score": 0.9
+        }
+      },
+      {
+        "id": "agent-03",
+        "name": "Coordinating-Agent-03",
+        "type": "coordinating",
+        "status": "idle",
+        "position": {
+          "x": -1.3319458789381964,
+          "y": 3.0631027476836765,
+          "z": -1.303053826855552
+        },
+        "performance": {
+          "throughput": 175.84189664517095,
+          "accuracy": 99.9,
+          "responseTime": 223.92045117089052,
+          "utilization": 92.37368575896242
+        },
+        "connections": [
+          "agent-12",
+          "agent-06",
+          "agent-11",
+          "agent-04",
+          "agent-12",
+          "agent-04",
+          "agent-05",
+          "agent-02"
+        ],
+        "lastActivity": "2025-09-03T18:44:34.020312",
+        "metadata": {
+          "specialization": "coordination",
+          "version": "1.0.5",
+          "capabilities": [
+            "coordination",
+            "learning",
+            "optimization",
+            "resource_management",
+            "monitoring",
+            "task_delegation"
+          ],
+          "learning_rate": 0.05,
+          "collaboration_score": 0.9
+        }
+      },
+      {
+        "id": "agent-04",
+        "name": "Processing-Agent-01",
+        "type": "processing",
+        "status": "idle",
+        "position": {
+          "x": -0.5278039155476026,
+          "y": 2.444886765140443,
+          "z": -8.302955765035936
+        },
+        "performance": {
+          "throughput": 184.23948463184334,
+          "accuracy": 95.34971237111064,
+          "responseTime": 101.2524930047212,
+          "utilization": 70.89698796024258
+        },
+        "connections": [
+          "agent-03",
+          "agent-03"
+        ],
+        "lastActivity": "2025-09-03T18:47:37.020362",
+        "metadata": {
+          "specialization": "computation",
+          "version": "1.6.9",
+          "capabilities": [
+            "transformation",
+            "monitoring",
+            "data_processing",
+            "computation",
+            "learning",
+            "optimization"
+          ],
+          "learning_rate": 0.08,
+          "collaboration_score": 0.6
+        }
+      },
+      {
+        "id": "agent-05",
+        "name": "Processing-Agent-02",
+        "type": "processing",
+        "status": "active",
+        "position": {
+          "x": -5.420206160565998,
+          "y": 1.8617255266592876,
+          "z": -7.585264687579056
+        },
+        "performance": {
+          "throughput": 224.05276464754596,
+          "accuracy": 96.40664232236662,
+          "responseTime": 67.78742841210885,
+          "utilization": 94.27462431758582
+        },
+        "connections": [
+          "agent-01",
+          "agent-03",
+          "agent-02"
+        ],
+        "lastActivity": "2025-09-03T18:43:18.020405",
+        "metadata": {
+          "specialization": "transformation",
+          "version": "1.5.0",
+          "capabilities": [
+            "learning",
+            "optimization",
+            "monitoring",
+            "transformation",
+            "computation",
+            "data_processing"
+          ],
+          "learning_rate": 0.08,
+          "collaboration_score": 0.6
+        }
+      },
+      {
+        "id": "agent-06",
+        "name": "Processing-Agent-03",
+        "type": "processing",
+        "status": "active",
+        "position": {
+          "x": -5.520907048370647,
+          "y": 2.8883200364077593,
+          "z": 2.0848037840336726
+        },
+        "performance": {
+          "throughput": 167.34275926189437,
+          "accuracy": 95.53828385456256,
+          "responseTime": 78.55675225513133,
+          "utilization": 85.34993084250264
+        },
+        "connections": [
+          "agent-03",
+          "agent-01",
+          "agent-01",
+          "agent-02"
+        ],
+        "lastActivity": "2025-09-03T18:47:31.020448",
+        "metadata": {
+          "specialization": "transformation",
+          "version": "1.2.1",
+          "capabilities": [
+            "learning",
+            "transformation",
+            "computation",
+            "monitoring",
+            "optimization",
+            "data_processing"
+          ],
+          "learning_rate": 0.08,
+          "collaboration_score": 0.6
+        }
+      },
+      {
+        "id": "agent-07",
+        "name": "Processing-Agent-04",
+        "type": "processing",
+        "status": "idle",
+        "position": {
+          "x": -6.1726993812653035,
+          "y": 1.9660685285254087,
+          "z": -3.278582412784827
+        },
+        "performance": {
+          "throughput": 297.8339678416057,
+          "accuracy": 97.15588095407847,
+          "responseTime": 99.35392520511158,
+          "utilization": 94.78736005937347
+        },
+        "connections": [
+          "agent-02",
+          "agent-01"
+        ],
+        "lastActivity": "2025-09-03T18:43:54.020495",
+        "metadata": {
+          "specialization": "computation",
+          "version": "1.9.5",
+          "capabilities": [
+            "computation",
+            "optimization",
+            "data_processing"
+          ],
+          "learning_rate": 0.08,
+          "collaboration_score": 0.6
+        }
+      },
+      {
+        "id": "agent-08",
+        "name": "Analysis-Agent-01",
+        "type": "analysis",
+        "status": "idle",
+        "position": {
+          "x": 11.714430015493859,
+          "y": 1.6855276675486168,
+          "z": 2.8364726063834134
+        },
+        "performance": {
+          "throughput": 151.3170689213517,
+          "accuracy": 99.9,
+          "responseTime": 354.3773817407647,
+          "utilization": 52.97576399607981
+        },
+        "connections": [
+          "agent-10",
+          "agent-02"
+        ],
+        "lastActivity": "2025-09-03T18:44:41.020539",
+        "metadata": {
+          "specialization": "pattern_recognition",
+          "version": "1.5.3",
+          "capabilities": [
+            "optimization",
+            "learning",
+            "pattern_recognition",
+            "anomaly_detection",
+            "prediction",
+            "monitoring"
+          ],
+          "learning_rate": 0.03,
+          "collaboration_score": 0.4
+        }
+      },
+      {
+        "id": "agent-09",
+        "name": "Analysis-Agent-02",
+        "type": "analysis",
+        "status": "error",
+        "position": {
+          "x": 7.672119173879512,
+          "y": 2.2498070041912,
+          "z": 10.264658545943329
+        },
+        "performance": {
+          "throughput": 150.72201458890424,
+          "accuracy": 99.9,
+          "responseTime": 174.94189509962428,
+          "utilization": 62.272912857528084
+        },
+        "connections": [
+          "agent-10",
+          "agent-08"
+        ],
+        "lastActivity": "2025-09-03T18:45:48.020580",
+        "metadata": {
+          "specialization": "anomaly_detection",
+          "version": "1.7.2",
+          "capabilities": [
+            "optimization",
+            "monitoring",
+            "learning",
+            "prediction"
+          ],
+          "learning_rate": 0.03,
+          "collaboration_score": 0.4
+        }
+      },
+      {
+        "id": "agent-10",
+        "name": "Analysis-Agent-03",
+        "type": "analysis",
+        "status": "active",
+        "position": {
+          "x": 7.384588003379655,
+          "y": 1.3884459211575417,
+          "z": 2.3808530887969486
+        },
+        "performance": {
+          "throughput": 169.67941436476255,
+          "accuracy": 99.9,
+          "responseTime": 443.83487043978096,
+          "utilization": 71.56469034376886
+        },
+        "connections": [
+          "agent-04",
+          "agent-06"
+        ],
+        "lastActivity": "2025-09-03T18:46:39.020620",
+        "metadata": {
+          "specialization": "prediction",
+          "version": "1.3.0",
+          "capabilities": [
+            "anomaly_detection",
+            "learning",
+            "monitoring",
+            "optimization",
+            "prediction"
+          ],
+          "learning_rate": 0.03,
+          "collaboration_score": 0.4
+        }
+      },
+      {
+        "id": "agent-11",
+        "name": "Integration-Agent-01",
+        "type": "integration",
+        "status": "active",
+        "position": {
+          "x": 0.13647024189329146,
+          "y": 2.113570384788577,
+          "z": -8.699276182953241
+        },
+        "performance": {
+          "throughput": 119.30636797302505,
+          "accuracy": 91.37763463612296,
+          "responseTime": 216.06120104189125,
+          "utilization": 91.62204049099529
+        },
+        "connections": [
+          "agent-04",
+          "agent-02",
+          "agent-03"
+        ],
+        "lastActivity": "2025-09-03T18:47:15.020662",
+        "metadata": {
+          "specialization": "data_flow",
+          "version": "1.5.1",
+          "capabilities": [
+            "monitoring",
+            "system_integration",
+            "learning"
+          ],
+          "learning_rate": 0.06,
+          "collaboration_score": 0.8
+        }
+      },
+      {
+        "id": "agent-12",
+        "name": "Integration-Agent-02",
+        "type": "integration",
+        "status": "active",
+        "position": {
+          "x": -3.2916091394491027,
+          "y": 2.108766499435544,
+          "z": -5.913307980085598
+        },
+        "performance": {
+          "throughput": 180.75029972214446,
+          "accuracy": 93.21657810014858,
+          "responseTime": 79.15420739779852,
+          "utilization": 78.183107960817
+        },
+        "connections": [
+          "agent-01",
+          "agent-07",
+          "agent-03"
+        ],
+        "lastActivity": "2025-09-03T18:44:21.020701",
+        "metadata": {
+          "specialization": "system_integration",
+          "version": "1.5.4",
+          "capabilities": [
+            "system_integration",
+            "optimization",
+            "data_flow",
+            "api_management",
+            "monitoring",
+            "learning"
+          ],
+          "learning_rate": 0.06,
+          "collaboration_score": 0.8
+        }
+      }
+    ],
+    "connections": [
+      {
+        "id": "agent-01-agent-06",
+        "sourceId": "agent-01",
+        "targetId": "agent-06",
+        "type": "coordination",
+        "strength": 0.9055895680942386,
+        "latency": 117.93961062560591,
+        "bandwidth": 528.3803845813238,
+        "messages": 208,
+        "direction": "source_to_target"
+      },
+      {
+        "id": "agent-01-agent-12",
+        "sourceId": "agent-01",
+        "targetId": "agent-12",
+        "type": "coordination",
+        "strength": 0.8705610616589008,
+        "latency": 118.70788591704762,
+        "bandwidth": 1355.8084105562461,
+        "messages": 97,
+        "direction": "target_to_source"
+      },
+      {
+        "id": "agent-02-agent-10",
+        "sourceId": "agent-02",
+        "targetId": "agent-10",
+        "type": "data_flow",
+        "strength": 0.929582318790648,
+        "latency": 186.21644972690385,
+        "bandwidth": 476.8948091507664,
+        "messages": 359,
+        "direction": "target_to_source"
+      },
+      {
+        "id": "agent-02-agent-07",
+        "sourceId": "agent-02",
+        "targetId": "agent-07",
+        "type": "coordination",
+        "strength": 0.9115579970943859,
+        "latency": 19.897315534004782,
+        "bandwidth": 872.8798976003502,
+        "messages": 961,
+        "direction": "target_to_source"
+      },
+      {
+        "id": "agent-02-agent-05",
+        "sourceId": "agent-02",
+        "targetId": "agent-05",
+        "type": "coordination",
+        "strength": 0.9029794791904184,
+        "latency": 80.75533131288128,
+        "bandwidth": 1728.5908099553628,
+        "messages": 814,
+        "direction": "source_to_target"
+      },
+      {
+        "id": "agent-03-agent-12",
+        "sourceId": "agent-03",
+        "targetId": "agent-12",
+        "type": "data_flow",
+        "strength": 0.9721001153574885,
+        "latency": 62.030020214084395,
+        "bandwidth": 491.61874455578123,
+        "messages": 805,
+        "direction": "bidirectional"
+      },
+      {
+        "id": "agent-03-agent-04",
+        "sourceId": "agent-03",
+        "targetId": "agent-04",
+        "type": "data_flow",
+        "strength": 0.9520679166232076,
+        "latency": 73.90451050939095,
+        "bandwidth": 721.4897959694523,
+        "messages": 740,
+        "direction": "target_to_source"
+      },
+      {
+        "id": "agent-03-agent-05",
+        "sourceId": "agent-03",
+        "targetId": "agent-05",
+        "type": "data_flow",
+        "strength": 0.8691211971455048,
+        "latency": 177.6324592273571,
+        "bandwidth": 1662.3772479750783,
+        "messages": 358,
+        "direction": "source_to_target"
+      },
+      {
+        "id": "agent-03-agent-02",
+        "sourceId": "agent-03",
+        "targetId": "agent-02",
+        "type": "data_flow",
+        "strength": 0.8036220751785443,
+        "latency": 144.8284134262286,
+        "bandwidth": 1922.755927991904,
+        "messages": 870,
+        "direction": "target_to_source"
+      },
+      {
+        "id": "agent-04-agent-03",
+        "sourceId": "agent-04",
+        "targetId": "agent-03",
+        "type": "coordination",
+        "strength": 0.7840505890962927,
+        "latency": 62.824482811366856,
+        "bandwidth": 1509.344802075266,
+        "messages": 929,
+        "direction": "target_to_source"
+      },
+      {
+        "id": "agent-05-agent-03",
+        "sourceId": "agent-05",
+        "targetId": "agent-03",
+        "type": "data_flow",
+        "strength": 1.0,
+        "latency": 158.1556657968996,
+        "bandwidth": 551.2086179777052,
+        "messages": 722,
+        "direction": "target_to_source"
+      },
+      {
+        "id": "agent-05-agent-02",
+        "sourceId": "agent-05",
+        "targetId": "agent-02",
+        "type": "coordination",
+        "strength": 0.8982895889882174,
+        "latency": 73.19025124635851,
+        "bandwidth": 1912.0245266541403,
+        "messages": 717,
+        "direction": "bidirectional"
+      },
+      {
+        "id": "agent-06-agent-01",
+        "sourceId": "agent-06",
+        "targetId": "agent-01",
+        "type": "data_flow",
+        "strength": 1.0,
+        "latency": 61.33349081176341,
+        "bandwidth": 784.8050669620487,
+        "messages": 380,
+        "direction": "target_to_source"
+      },
+      {
+        "id": "agent-06-agent-02",
+        "sourceId": "agent-06",
+        "targetId": "agent-02",
+        "type": "data_flow",
+        "strength": 0.9653804082871634,
+        "latency": 50.023999235272015,
+        "bandwidth": 900.280108623024,
+        "messages": 333,
+        "direction": "source_to_target"
+      },
+      {
+        "id": "agent-07-agent-01",
+        "sourceId": "agent-07",
+        "targetId": "agent-01",
+        "type": "data_flow",
+        "strength": 0.887508011469862,
+        "latency": 189.95271258241232,
+        "bandwidth": 1273.553956517913,
+        "messages": 361,
+        "direction": "bidirectional"
+      },
+      {
+        "id": "agent-08-agent-02",
+        "sourceId": "agent-08",
+        "targetId": "agent-02",
+        "type": "data_flow",
+        "strength": 0.7260578251695422,
+        "latency": 134.6253895488102,
+        "bandwidth": 870.7410770573333,
+        "messages": 835,
+        "direction": "bidirectional"
+      },
+      {
+        "id": "agent-09-agent-08",
+        "sourceId": "agent-09",
+        "targetId": "agent-08",
+        "type": "data_flow",
+        "strength": 0.8008902391131896,
+        "latency": 13.909469904788423,
+        "bandwidth": 1844.3843303223027,
+        "messages": 522,
+        "direction": "source_to_target"
+      },
+      {
+        "id": "agent-10-agent-06",
+        "sourceId": "agent-10",
+        "targetId": "agent-06",
+        "type": "data_flow",
+        "strength": 0.7357233487664008,
+        "latency": 113.1434806887068,
+        "bandwidth": 1731.9419914047376,
+        "messages": 387,
+        "direction": "bidirectional"
+      },
+      {
+        "id": "agent-11-agent-02",
+        "sourceId": "agent-11",
+        "targetId": "agent-02",
+        "type": "coordination",
+        "strength": 0.8879043682103278,
+        "latency": 154.43994900461078,
+        "bandwidth": 537.1709192467526,
+        "messages": 940,
+        "direction": "source_to_target"
+      },
+      {
+        "id": "agent-11-agent-03",
+        "sourceId": "agent-11",
+        "targetId": "agent-03",
+        "type": "data_flow",
+        "strength": 0.76904168346695,
+        "latency": 27.068054743749162,
+        "bandwidth": 1332.0544526271908,
+        "messages": 66,
+        "direction": "source_to_target"
+      },
+      {
+        "id": "agent-12-agent-03",
+        "sourceId": "agent-12",
+        "targetId": "agent-03",
+        "type": "data_flow",
+        "strength": 0.9617444224253362,
+        "latency": 10.015558646596858,
+        "bandwidth": 1963.1349499177788,
+        "messages": 315,
+        "direction": "bidirectional"
+      }
+    ],
+    "timestamp": "2025-09-03T18:47:47.022919"
+  }
+}

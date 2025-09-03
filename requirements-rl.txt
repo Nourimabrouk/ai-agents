@@ -1,0 +1,15 @@
+# Optional Reinforcement Learning Dependencies
+# Install these only if using RL features: pip install -r requirements-rl.txt
+
+# Core RL libraries
+torch>=2.1.0
+gymnasium>=0.29.0
+stable-baselines3>=2.2.0
+
+# Additional RL utilities
+tensorboard>=2.14.0
+wandb>=0.15.0
+
+# GPU acceleration (optional)
+# torch-audio>=2.1.0  # Uncomment if needed
+# torchvision>=0.16.0  # Uncomment if needed

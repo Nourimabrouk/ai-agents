@@ -1,0 +1,32 @@
+# Reinforcement Learning Framework Requirements
+# Core RL and ML libraries
+torch>=2.0.0
+torchvision>=0.15.0
+numpy>=1.21.0
+gymnasium>=0.29.0
+
+# Multi-agent and environment libraries
+pettingzoo>=1.24.0
+networkx>=3.0
+
+# Data processing and visualization
+pandas>=1.5.0
+matplotlib>=3.6.0
+seaborn>=0.12.0
+plotly>=5.15.0
+
+# Async and utilities
+asyncio-throttle>=1.0.0
+tqdm>=4.64.0
+
+# Testing
+pytest>=7.0.0
+pytest-asyncio>=0.21.0
+
+# Optional GPU support (uncomment if needed)
+# torch-audio>=2.0.0
+
+# Development tools
+black>=23.0.0
+flake8>=6.0.0
+mypy>=1.5.0

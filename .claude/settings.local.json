@@ -21,7 +21,17 @@
       "Bash(pip install:*)",
       "Bash(curl:*)",
       "Bash(del nul)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(cat:*)",
+      "Read(C:\\c\\Users\\Nouri\\Documents\\GitHub\\ai-agents/**)",
+      "Read(C:\\c\\Users\\Nouri\\Documents\\GitHub\\ai-agents/**)",
+      "Read(C:\\c\\Users\\Nouri\\Documents\\GitHub\\ai-agents/**)",
+      "Read(C:\\c\\Users\\Nouri\\Documents\\GitHub\\ai-agents/**)",
+      "Read(C:\\c\\Users\\Nouri\\Documents\\GitHub\\ai-agents/**)",
+      "Bash(chmod:*)",
+      "Bash(grep:*)",
+      "Bash(find:*)",
+      "Bash(pkill:*)"
     ],
     "deny": [],
     "ask": []

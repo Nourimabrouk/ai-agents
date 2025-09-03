@@ -37,39 +37,39 @@ env\Scripts\activate  # not source activate
 Get-ChildItem  # PowerShell equivalent of ls
 ```
 
-## 📁 REPOSITORY ARCHITECTURE
+## Repository Structure
 
-### Semantic Directory Structure
+### Directory Layout
 ```
-ai-agents/                          # Root: Multi-framework agentic AI ecosystem
-├── agents/                         # CORE: Agent implementations by framework
-│   ├── claude-code/               # PRIMARY: Claude Code & MCP agents (START HERE)
-│   ├── microsoft/                 # SECONDARY: Azure AI, Copilot Studio agents
-│   ├── langchain/                 # TERTIARY: LangChain/LangGraph workflows
-│   └── accountancy/               # DOMAIN: Specialized domain agents
-├── frameworks/                     # LEARNING: Templates, examples, tutorials
-├── projects/                      # INTEGRATION: End-to-end implementations
-├── assets/                        # GENERATED: Auto-created content
-├── planning/                      # STRATEGY: Learning and exploration roadmaps
-├── utils/                         # SHARED: Cross-cutting utilities
-└── docs/                          # KNOWLEDGE: Documentation and guides
+ai-agents/                  # Root: AI agent development repository
+├── agents/                 # Agent implementations by framework
+│   ├── claude-code/       # Claude Code & MCP agents
+│   ├── microsoft/         # Azure AI agents
+│   ├── langchain/         # LangChain workflows
+│   └── accountancy/       # Domain-specific agents
+├── frameworks/             # Templates and examples
+├── projects/              # Complete implementations
+├── assets/                # Generated content
+├── planning/              # Project roadmaps
+├── utils/                 # Shared utilities
+└── docs/                  # Documentation
 ```
 
-### Navigation Optimization
-- **Exploration Path**: `agents/claude-code/` → `frameworks/` → `projects/`
-- **Learning Loop**: Experiment → Document → Refine → Scale
-- **Asset Generation**: Always create in `assets/` with timestamp and metadata
-- **Utility Reuse**: Check `utils/` before implementing shared functionality
-- **Pattern Discovery**: Continuously identify and abstract successful patterns
+### Development Workflow
+- **Starting Point**: `agents/claude-code/` for MCP development
+- **Iteration Process**: Build → Test → Document → Improve
+- **Asset Storage**: Use `assets/` for generated files
+- **Code Reuse**: Check `utils/` for existing functionality
+- **Pattern Library**: Document reusable patterns
 
 ## Agent Development Standards
 
 ### Base Agent Architecture
 ```python
 # Standard agent structure for this repository
-class AgenticAgent:
+class BaseAgent:
     """
-    Base agent with learning and coordination capabilities
+    Base agent with coordination capabilities
     """
     def __init__(self, config: Dict[str, Any]):
         self.config = config
@@ -79,7 +79,7 @@ class AgenticAgent:
         self.learning_system = self._init_learning()
     
     async def think(self, input_data: Any, context: Dict = None) -> Thought:
-        """Meta-cognitive reasoning about the task"""
+        """Analyze task requirements"""
         return await self.reflection_engine.analyze(
             task=input_data,
             context=context,
@@ -107,7 +107,7 @@ class AgenticAgent:
 
 ### Multi-Agent Coordination Patterns
 ```python
-# ADVANCED: Multi-agent orchestration patterns
+# Multi-agent coordination patterns
 class AgentOrchestrator:
     """Coordinates multiple specialized agents"""
     
@@ -129,8 +129,8 @@ class AgentOrchestrator:
             conversation.add_message(response)
         return conversation.final_solution()
     
-    async def swarm_intelligence(self, swarm: AgentSwarm, objective: Objective) -> Solution:
-        """Emergent intelligence from simple agent interactions"""
+    async def coordinate_agents(self, agents: AgentGroup, objective: Objective) -> Solution:
+        """Coordinate multiple agents for task completion"""
         for iteration in range(self.max_iterations):
             await swarm.share_local_information()
             await swarm.update_individual_strategies()
@@ -138,9 +138,9 @@ class AgentOrchestrator:
                 break
         return await swarm.extract_solution()
 
-# SUB-AGENT: Specialized micro-agents for specific capabilities
-class ToolUseAgent(AgenticAgent):
-    """Specialized in dynamic tool selection and chaining"""
+# Specialized tool-using agent
+class ToolUseAgent(BaseAgent):
+    """Agent for tool selection and usage"""
     
     async def plan_tool_sequence(self, goal: Goal) -> ToolPlan:
         """Plan optimal sequence of tool usage"""
@@ -156,8 +156,8 @@ class ToolUseAgent(AgenticAgent):
                 return await self.execute_with_adaptation(adapted_plan)
         return result
 
-# MEMORY AGENT: Persistent learning and pattern recognition
-class MemoryAgent(AgenticAgent):
+# Agent with memory capabilities
+class MemoryAgent(BaseAgent):
     """Manages long-term memory and pattern extraction"""
     
     async def episodic_memory(self, experience: Experience) -> None:
@@ -226,12 +226,12 @@ Structure your response as:
 """
 ```
 
-## 🧬 DOMAIN SPECIALIZATION FRAMEWORK
+## Domain Specialization
 
 ### Domain Agent Architecture
 ```python
-# EXTENSIBLE: Domain-agnostic specialization pattern
-class DomainSpecialist(AgenticAgent):
+# Domain specialization pattern
+class DomainSpecialist(BaseAgent):
     """Base class for domain-specific agents"""
     
     def __init__(self, domain_knowledge: DomainKB, config: Dict[str, Any]):
@@ -254,7 +254,7 @@ class DomainSpecialist(AgenticAgent):
         abstracted_pattern = await self.abstract_pattern(insight)
         return await self.adapt_to_domain(abstracted_pattern, target_domain)
 
-# ACCOUNTANCY: Example domain specialization
+# Example: Accounting domain
 class AccountancyAgent(DomainSpecialist):
     """Specialized for financial data processing and analysis"""
     
@@ -278,12 +278,12 @@ class AccountancyAgent(DomainSpecialist):
 
 ### Universal Integration Patterns
 ```python
-# FLEXIBLE: System-agnostic integration framework
-class SystemConnector(AgenticAgent):
-    """Universal connector for external systems"""
+# System integration helper
+class SystemConnector(BaseAgent):
+    """Connector for external systems"""
     
-    async def auto_discover_schema(self, system_endpoint: str) -> Schema:
-        """Automatically discover and map system schemas"""
+    async def discover_schema(self, system_endpoint: str) -> Schema:
+        """Discover system schemas"""
         raw_schema = await self.introspect_api(system_endpoint)
         return await self.normalize_schema(raw_schema)
     
@@ -292,21 +292,21 @@ class SystemConnector(AgenticAgent):
         auth_patterns = await self.detect_auth_pattern(system)
         return await self.execute_auth_flow(auth_patterns)
     
-    async def intelligent_data_mapping(self, source: Schema, target: Schema) -> Mapping:
-        """AI-powered schema mapping and transformation"""
+    async def map_data(self, source: Schema, target: Schema) -> Mapping:
+        """Map data between schemas"""
         semantic_similarity = await self.compute_semantic_similarity(source, target)
         return await self.generate_mapping_rules(semantic_similarity)
 ```
 
-## 🚀 ADVANCED AGENTIC CAPABILITIES
+## Agent Capabilities
 
-### Self-Evolving Systems
+### Adaptive Systems
 ```python
-class EvolutionaryAgentSystem:
-    """Self-modifying and improving agent ecosystem"""
+class AdaptiveAgentSystem:
+    """Agent system with improvement capabilities"""
     
-    async def genetic_algorithm_optimization(self, population: List[Agent]) -> List[Agent]:
-        """Evolve agent capabilities through genetic algorithms"""
+    async def optimize_agents(self, population: List[Agent]) -> List[Agent]:
+        """Optimize agent performance through iteration"""
         for generation in range(self.max_generations):
             # Evaluate fitness based on performance metrics
             fitness_scores = await self.evaluate_population(population)
@@ -324,8 +324,8 @@ class EvolutionaryAgentSystem:
             
         return population
     
-    async def emergent_behavior_detection(self, agent_network: AgentNetwork) -> List[EmergentPattern]:
-        """Identify unexpected emergent behaviors"""
+    async def detect_patterns(self, agent_network: AgentNetwork) -> List[Pattern]:
+        """Identify behavioral patterns"""
         interactions = await agent_network.get_interaction_history()
         patterns = await self.pattern_mining.find_emergent_patterns(interactions)
         
@@ -338,17 +338,17 @@ class EvolutionaryAgentSystem:
         
         return novel_patterns
     
-    async def meta_meta_learning(self, learning_experiences: List[LearningExperience]) -> MetaStrategy:
-        """Learn how to learn better - meta^2 learning"""
+    async def improve_learning(self, experiences: List[Experience]) -> Strategy:
+        """Improve learning strategies based on experience"""
         learning_patterns = await self.extract_learning_patterns(learning_experiences)
         meta_strategies = await self.generate_meta_strategies(learning_patterns)
         optimal_strategy = await self.optimize_meta_strategy(meta_strategies)
         
         return optimal_strategy
 
-# ADAPTIVE LEARNING: Self-improving agent capabilities
-class AdaptiveLearningEngine:
-    """Advanced learning system for continuous agent improvement"""
+# Learning system for agents
+class LearningEngine:
+    """Learning system for agent improvement"""
     
     def __init__(self):
         self.pattern_recognizer = PatternRecognizer()
@@ -379,9 +379,9 @@ class AdaptiveLearningEngine:
 
 ### Advanced Reasoning Architectures
 ```python
-# NEURO-SYMBOLIC: Hybrid symbolic and neural reasoning
-class NeuroSymbolicAgent(AgenticAgent):
-    """Combines neural networks with symbolic reasoning"""
+# Hybrid reasoning approach
+class HybridAgent(BaseAgent):
+    """Agent using multiple reasoning approaches"""
     
     def __init__(self, config: Dict[str, Any]):
         super().__init__(config)
@@ -413,9 +413,9 @@ class NeuroSymbolicAgent(AgenticAgent):
         
         return CausalModel(graph=causal_graph, strengths=causal_strengths)
 
-# OPTIMIZATION ALGORITHMS: Advanced optimization techniques
-class OptimizationAgent(AgenticAgent):
-    """Uses advanced algorithms for task optimization"""
+# Optimization agent
+class OptimizationAgent(BaseAgent):
+    """Agent for task optimization"""
     
     async def parallel_search(self, search_space: SearchSpace) -> Solution:
         """Explore multiple solution paths in parallel"""
@@ -444,34 +444,34 @@ class OptimizationAgent(AgenticAgent):
         return swarm.get_best_solution()
 ```
 
-## 📊 LEARNING AND OPTIMIZATION METRICS
+## Performance Metrics
 
-### Agentic Intelligence Indicators
+### Agent Performance Indicators
 ```python
 INTELLIGENCE_METRICS = {
     "reasoning_capability": {
-        "problem_decomposition_depth": "measure complexity handling",
-        "solution_novelty_score": "track creative problem-solving",
-        "cross_domain_transfer": "measure knowledge generalization",
-        "meta_learning_rate": "speed of learning-to-learn improvement"
+        "problem_decomposition": "measure task breakdown",
+        "solution_quality": "track implementation effectiveness",
+        "knowledge_transfer": "measure reusability",
+        "learning_rate": "improvement over time"
     },
     "collaboration_effectiveness": {
-        "multi_agent_coordination": "measure swarm intelligence emergence",
-        "knowledge_sharing_efficiency": "track collective learning",
-        "conflict_resolution_success": "agent negotiation capabilities",
-        "emergent_behavior_discovery": "novel patterns from interaction"
+        "agent_coordination": "measure multi-agent efficiency",
+        "knowledge_sharing": "track information exchange",
+        "conflict_resolution": "handle conflicting decisions",
+        "pattern_detection": "identify useful behaviors"
     },
-    "adaptation_intelligence": {
-        "environment_adaptation_speed": "measure plasticity",
-        "failure_recovery_capability": "resilience and learning from errors",
-        "strategy_evolution_rate": "continuous self-improvement",
-        "uncertainty_handling": "decision-making under ambiguity"
+    "adaptation_metrics": {
+        "environment_adaptation": "measure flexibility",
+        "error_recovery": "handle and learn from failures",
+        "strategy_improvement": "iterative refinement",
+        "uncertainty_management": "handle incomplete information"
     },
     "exploration_metrics": {
-        "curiosity_driven_exploration": "autonomous learning motivation",
-        "pattern_discovery_rate": "finding hidden structures",
-        "hypothesis_generation": "creative theory formation",
-        "experimental_design": "systematic exploration strategies"
+        "exploration_efficiency": "systematic testing approach",
+        "pattern_identification": "recognize useful structures",
+        "hypothesis_testing": "validate assumptions",
+        "experiment_design": "structured testing methodology"
     }
 }
 ```
@@ -483,9 +483,9 @@ INTELLIGENCE_METRICS = {
 4. **Weekly**: Performance review and optimization
 5. **Monthly**: Architecture improvements and capability expansion
 
-## 🎯 ADVANCED EXECUTION COMMANDS
+## Execution Commands
 
-### Experimental Development Workflow
+### Development Commands
 ```bash
 # OPTIMIZE: Run performance optimization on agent systems
 python optimize/agent_optimizer.py --mode=performance --target=throughput
@@ -503,10 +503,10 @@ python integrate/system_connector.py --target=accounting_system --mode=test
 python benchmark/agent_benchmark.py --suite=complete --compare=baseline
 ```
 
-### Meta-Agent Development Cycle
+### Agent Development Pipeline
 ```bash
 # 1. DESIGN: Create agent architectures for specific use cases
-python design/agent_designer.py --use_case=accounting --requirements=enterprise
+python design/agent_designer.py --use_case=accounting --requirements=basic
 
 # 2. BUILD: Implement agent with proper testing
 python build/agent_builder.py --template=base_agent --domain=financial
@@ -521,9 +521,9 @@ python deploy/agent_deployer.py --environment=staging --monitoring=enabled
 python monitor/agent_monitor.py --metrics=all --alerts=critical
 ```
 
-## 🧪 EXPERIMENTAL FEATURES
+## Experimental Features
 
-### Advanced AI Techniques
+### AI Techniques
 - **Chain-of-Thought Reasoning**: For complex accounting decisions
 - **Tool Use Optimization**: Dynamic tool selection and chaining
 - **Multi-Modal Processing**: Handle PDFs, images, and structured data
@@ -531,40 +531,40 @@ python monitor/agent_monitor.py --metrics=all --alerts=critical
 - **Fine-Tuning**: Custom models for domain-specific tasks
 
 ### Emerging Capabilities
-- **Autonomous Workflow Design**: Agents that create their own workflows
-- **Self-Healing Systems**: Automatic error detection and correction
-- **Predictive Analytics**: Forecast accounting issues before they occur
+- **Workflow Automation**: Automated task workflows
+- **Error Recovery**: Automatic error handling
+- **Analytics**: Data analysis and forecasting
 - **Natural Language Queries**: "Show me all invoices over $10k from last quarter"
 
-## 🎓 LEARNING ACCELERATION
+## Learning Path
 
-### Skill Acquisition Strategy
-1. **Foundation Phase**: Master Claude Code + basic accounting automation
-2. **Expansion Phase**: Add Microsoft AI and LangChain capabilities  
-3. **Specialization Phase**: Deep expertise in enterprise accounting systems
-4. **Innovation Phase**: Create novel solutions and thought leadership
+### Development Phases
+1. **Foundation**: Learn Claude Code and basic automation
+2. **Expansion**: Add additional framework capabilities  
+3. **Specialization**: Focus on specific domain expertise
+4. **Refinement**: Optimize and improve existing solutions
 
-### Portfolio Development
-- **Showcase Projects**: 5+ production-ready accounting automation systems
-- **Technical Depth**: Multi-framework implementations of same use case
-- **Business Impact**: Quantified ROI and efficiency improvements
-- **Thought Leadership**: Blog posts, conference talks, open-source contributions
+### Project Portfolio
+- **Working Projects**: Multiple functional automation systems
+- **Technical Variety**: Different framework implementations
+- **Practical Impact**: Measurable efficiency improvements
+- **Documentation**: Clear project documentation and examples
 
-## 🚨 CRITICAL SUCCESS FACTORS
+## Key Requirements
 
-### Non-Negotiable Requirements
-- **Business Value First**: Every feature must solve a real accounting problem
-- **Production Quality**: All code must be enterprise-ready with proper error handling
-- **Security by Design**: Financial data requires maximum security and compliance
-- **Continuous Learning**: Stay current with AI advances and accounting regulations
-- **User-Centric Design**: Solutions must be usable by non-technical accounting professionals
+### Core Requirements
+- **Practical Value**: Features should solve real problems
+- **Code Quality**: Implement proper error handling and testing
+- **Security**: Handle sensitive data appropriately
+- **Maintenance**: Keep code updated and documented
+- **Usability**: Design for target user expertise level
 
-### Failure Prevention
-- **Over-Engineering**: Start simple, add complexity only when needed
-- **Security Gaps**: Never compromise on data security or regulatory compliance  
-- **Technical Debt**: Refactor regularly to maintain code quality
-- **Scope Creep**: Stay focused on accountancy domain until mastery is achieved
-- **Isolation**: Actively engage with accounting professionals and AI communities
+### Best Practices
+- **Start Simple**: Build incrementally
+- **Security First**: Prioritize data protection  
+- **Code Maintenance**: Regular refactoring
+- **Stay Focused**: Complete features before expanding scope
+- **Collaboration**: Engage with relevant communities
 
 ---
 
@@ -609,4 +609,4 @@ python monitor/agent_monitor.py --metrics=all --alerts=critical
 - Clean separation of concerns
 - Proper async/await usage
 
-**Remember**: Focus on building practical, working AI agent systems that can coordinate effectively in a Windows development environment.
+**Remember**: Focus on building functional AI agent systems for experimentation in a Windows development environment.

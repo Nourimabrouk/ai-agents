@@ -24,11 +24,18 @@ fastapi>=0.104.0
 uvicorn>=0.24.0
 requests>=2.31.0
 httpx>=0.25.0
+websockets>=12.0
+starlette>=0.27.0
+Jinja2>=3.1.0
+python-multipart>=0.0.6
 
 # Database and storage
 sqlalchemy>=2.0.0
+alembic>=1.12.0
 psycopg2-binary>=2.9.7
+aiosqlite>=0.19.0
 redis>=5.0.0
+aioredis>=2.0.0
 networkx>=3.0
 
 # Accounting and finance specific
@@ -54,6 +61,15 @@ click>=8.1.7
 rich>=13.6.0
 tqdm>=4.66.0
 python-json-logger>=2.0.7
+psutil>=5.9.0
+passlib>=1.7.4
+bcrypt>=4.0.1
+python-jose>=3.3.0
+
+# Testing
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+pytest-mock>=3.12.0
 
 # Microsoft Azure (optional; see requirements-optional-azure.txt)
 
