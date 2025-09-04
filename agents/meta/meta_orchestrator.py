@@ -90,7 +90,7 @@ class MetaOrchestrator:
             "knowledge_persistence": True,
             "agent_capabilities": self._default_agent_capabilities()
         }
-        
+  
         if config_path and config_path.exists():
             with open(config_path, 'r') as f:
                 user_config = json.load(f)
