@@ -874,7 +874,7 @@ class TestResourceOptimization(TestEnhancedMetaOrchestratorUnit):
                             'time_trade_off': best_option[0]['estimated_time'] - 1800
                         }
                     }
-                return None
+                return {}
             
             mock_optimizer.optimize_cost.side_effect = mock_cost_optimization
             optimization = await mock_optimizer.optimize_cost(execution_options, constraints)

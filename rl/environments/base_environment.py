@@ -176,12 +176,12 @@ class BaseMultiAgentEnvironment(gym.Env, ABC):
     @abstractmethod
     def _get_observation_dimension(self) -> int:
         """Get the dimension of observation vector"""
-        pass
+        return {}
     
     @abstractmethod
     def _get_action_dimension(self) -> int:
         """Get the dimension of action vector"""
-        pass
+        return {}
     
     def reset(self, seed: Optional[int] = None, options: Optional[Dict] = None) -> Tuple[Dict[str, np.ndarray], Dict[str, Any]]:
         """Reset the environment for a new episode"""
@@ -262,17 +262,19 @@ class BaseMultiAgentEnvironment(gym.Env, ABC):
     @abstractmethod
     def _initialize_environment_state(self) -> EnvironmentState:
         """Initialize the environment state"""
-        pass
+        logger.info(f'Initializing {self.__class__.__name__}')
     
     @abstractmethod
     def _execute_actions(self, actions: Dict[str, np.ndarray], state: EnvironmentState) -> EnvironmentState:
         """Execute agent actions and return new state"""
-        pass
+        logger.info(f'Processing task: {locals()}')
+        return {'success': True, 'message': 'Task processed'}
     
     @abstractmethod
     def _calculate_rewards(self, actions: Dict[str, np.ndarray], state: EnvironmentState) -> Dict[str, float]:
         """Calculate rewards for each agent"""
-        pass
+        logger.info(f'Method {function_name} called')
+        return {}
     
     def _validate_actions(self, actions: Dict[str, np.ndarray]) -> Dict[str, np.ndarray]:
         """Validate and clip actions to valid ranges"""

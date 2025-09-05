@@ -258,7 +258,7 @@ class DocumentExtractor:
             except ValueError:
                 continue
         
-        return None
+        return {}
     
     async def categorize_expense(self, description: str, amount: Decimal, vendor: str = "") -> Tuple[str, float]:
         """Categorize expense based on description and vendor"""

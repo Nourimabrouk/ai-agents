@@ -274,7 +274,7 @@ class TaskAnalyzer:
     async def _update_patterns(self):
         """Update learned patterns from analysis history"""
         if len(self.analysis_history) < 10:  # Need minimum data
-            return
+            return {}
         
         # Analyze patterns in the last 100 analyses
         recent_analyses = self.analysis_history[-100:]
@@ -405,7 +405,7 @@ class StrategyLearner:
     async def _learn_new_strategies(self):
         """Learn new strategies by combining successful ones"""
         if len(self.execution_history) < 50:  # Need minimum data
-            return
+            return {}
         
         # Analyze recent successful executions
         recent_successes = [
@@ -414,7 +414,7 @@ class StrategyLearner:
         ]
         
         if len(recent_successes) < 10:
-            return
+            return {}
         
         # Find patterns in successful strategies
         successful_strategies = defaultdict(list)

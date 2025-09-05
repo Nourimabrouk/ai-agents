@@ -4,6 +4,7 @@ Comprehensive system monitoring, metrics collection, and analytics
 """
 
 import asyncio
+from pathlib import Path
 import json
 import psutil
 import time
@@ -122,7 +123,7 @@ class MonitoringService:
         """Start background monitoring tasks"""
         if self.is_monitoring:
             logger.warning("Monitoring already started")
-            return
+            return {}
         
         self.is_monitoring = True
         
@@ -140,7 +141,8 @@ class MonitoringService:
             try:
                 await self.monitoring_task
             except asyncio.CancelledError:
-                pass
+        logger.info(f'Method {function_name} called')
+        return {}
         
         logger.info("Monitoring service stopped")
     
@@ -481,7 +483,7 @@ class MonitoringService:
     async def _check_disk_health(self) -> Dict[str, Any]:
         """Check disk space usage"""
         try:
-            disk = psutil.disk_usage('/')
+            disk = psutil.disk_usage(str(Path('/').resolve()))
             healthy = (disk.free / disk.total) > 0.1  # Alert if less than 10% free
             
             return {
@@ -598,7 +600,7 @@ class MonitoringService:
         """Persist metrics to database"""
         try:
             if not self.metrics_buffer:
-                return
+                return {}
             
             # Create SystemMetrics records for persistence
             metrics_to_save = list(self.metrics_buffer)
@@ -660,7 +662,8 @@ class MonitoringService:
     async def _send_external_alert(self, alert: SystemAlert):
         """Send alert to external alerting system"""
         # This would integrate with services like PagerDuty, Slack, etc.
-        pass
+        logger.info(f'Method {function_name} called')
+        return {}
     
     # Metric calculation methods
     

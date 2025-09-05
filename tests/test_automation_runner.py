@@ -300,7 +300,7 @@ class TestExecutor:
         except Exception as e:
             logger.warning(f"Could not load coverage data for {test_name}: {e}")
             
-        return None
+        return {}
     
     def _load_performance_data(self, test_name: str) -> Optional[Dict[str, Any]]:
         """Load performance data for test"""
@@ -313,7 +313,7 @@ class TestExecutor:
         except Exception as e:
             logger.warning(f"Could not load performance data for {test_name}: {e}")
             
-        return None
+        return {}
     
     async def execute_test_suite(self, test_files: List[Path], test_type: TestType) -> TestSuiteResult:
         """Execute a complete test suite"""
@@ -862,7 +862,7 @@ async def main():
     if args.status:
         status = runner.get_test_status()
         print(json.dumps(status, indent=2))
-        return
+        return {}
     
     try:
         if args.test_type:

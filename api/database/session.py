@@ -4,6 +4,7 @@ Async SQLAlchemy session factory with connection pooling and health checks
 """
 
 import asyncio
+from pathlib import Path
 import logging
 from contextlib import asynccontextmanager
 from typing import AsyncGenerator, Optional
@@ -172,10 +173,11 @@ async def get_database() -> AsyncGenerator[AsyncSession, None]:
     - Ensures proper cleanup on completion
     
     Usage:
-        @app.get("/api/endpoint")
+        @app.get(str(Path("/api/endpoint").resolve()))
         async def endpoint(db: AsyncSession = Depends(get_database)):
             # Use db for database operations
-            pass
+            logger.info(f'Method {function_name} called')
+            return {}
     """
     if not _session_factory:
         raise RuntimeError("Database not initialized. Call init_database() first.")
@@ -200,7 +202,7 @@ async def get_database_session() -> AsyncGenerator[AsyncSession, None]:
     Usage:
         async with get_database_session() as db:
             # Use db for database operations
-            pass
+    return {}
     """
     if not _session_factory:
         raise RuntimeError("Database not initialized. Call init_database() first.")

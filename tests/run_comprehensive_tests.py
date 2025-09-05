@@ -496,7 +496,7 @@ def main():
         print("• Coverage analysis")
         print("• Performance benchmarking")
         print("• Integration smoke tests")
-        return
+        return []
     
     runner = TestRunner()
     results = runner.run_all_tests()

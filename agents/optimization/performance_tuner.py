@@ -294,7 +294,7 @@ class IntelligentCache:
         self._evict_expired()
         
         if self.current_size_bytes + required_space <= self.max_size_bytes:
-            return
+            return {}
         
         # Calculate eviction scores (lower = evict first)
         scored_entries = []

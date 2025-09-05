@@ -287,7 +287,7 @@ class SharedBlackboard:
                 logger.debug(f"Knowledge read: {key} by {reader}")
                 return knowledge_item.value
             
-            return None
+            return {}
     
     async def query(self, predicate: Callable[[KnowledgeItem], bool], 
                    requester: str) -> Dict[str, Any]:
@@ -418,7 +418,7 @@ class ConsensusManager:
         elapsed_time = (datetime.now() - consensus['start_time']).total_seconds()
         if elapsed_time > consensus['timeout']:
             await self._complete_consensus(consensus_id, 'timeout')
-            return
+            return {}
         
         # Check if all participants voted
         total_participants = len(consensus['participants'])
@@ -484,7 +484,7 @@ class ConsensusManager:
                     'final_vote_ratio': historical_consensus['final_vote_ratio']
                 }
         
-        return None
+        return {}
     
     def get_consensus_stats(self) -> Dict[str, Any]:
         """Get consensus manager statistics"""
@@ -566,7 +566,7 @@ class ConflictResolver:
             logger.warning(f"Conflict detected: {conflict_id} with {len(conflicts)} issues")
             return conflict_summary
         
-        return None
+        return {}
     
     def _detect_resource_conflicts(self, resource_requests: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         """Detect conflicts in resource allocation"""
@@ -807,7 +807,7 @@ class CollaborativeAgent(BaseAgent):
         
         if not self.router:
             logger.error("No router available for sending messages")
-            return None
+            return {}
         
         message = CollaborationMessage(
             message_id=str(uuid.uuid4()),
@@ -835,11 +835,11 @@ class CollaborativeAgent(BaseAgent):
             except asyncio.TimeoutError:
                 logger.warning(f"Message {message.message_id} timed out waiting for response")
                 del self.pending_responses[message.message_id]
-                return None
+                return {}
         else:
             # Fire and forget
             await self.router.send_message(message)
-            return None
+            return {}
     
     async def broadcast_message(self, message_type: MessageType, content: Any,
                                topic: str = None, priority: MessagePriority = MessagePriority.NORMAL):
@@ -872,7 +872,7 @@ class CollaborativeAgent(BaseAgent):
             future = self.pending_responses.pop(message.correlation_id)
             if not future.done():
                 future.set_result(message.content)
-            return
+            return {}
         
         # Handle other message types
         if message.message_type in self.message_handlers:
@@ -1051,7 +1051,7 @@ class CollaborationOrchestrator:
                 'resolution': resolution
             }
         
-        return None
+        return {}
     
     async def get_system_status(self) -> Dict[str, Any]:
         """Get comprehensive collaboration system status"""

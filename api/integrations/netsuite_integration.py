@@ -490,11 +490,11 @@ class NetSuiteIntegration(BaseIntegration):
                     return result_data["id"]
                 else:
                     logger.error(f"Failed to create vendor: {response.status}")
-                    return None
+                    return {}
                     
         except Exception as e:
             logger.error(f"Vendor creation failed: {e}")
-            return None
+            return {}
     
     async def _find_vendor(self, vendor_name: str) -> Optional[Dict[str, Any]]:
         """Find vendor by name using NetSuite search"""
@@ -516,11 +516,11 @@ class NetSuiteIntegration(BaseIntegration):
                     items = result_data.get("items", [])
                     return items[0] if items else None
                 else:
-                    return None
+                    return {}
                     
         except Exception as e:
             logger.error(f"Vendor search failed: {e}")
-            return None
+            return {}
     
     async def _get_or_create_customer(self, customer_name: str) -> str:
         """Get existing customer or create new one"""

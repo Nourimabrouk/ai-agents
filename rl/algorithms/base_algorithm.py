@@ -136,22 +136,26 @@ class BaseRLAgent(ABC):
     @abstractmethod
     def select_action(self, state: np.ndarray, evaluation: bool = False) -> np.ndarray:
         """Select action given state"""
-        pass
+        logger.info(f'Method {function_name} called')
+        return {}
     
     @abstractmethod
     def update(self, experiences: Dict[str, Any]) -> Dict[str, float]:
         """Update agent parameters from experiences"""
-        pass
+        logger.info(f'Method {function_name} called')
+        return {}
     
     @abstractmethod
     def save_checkpoint(self, filepath: str) -> None:
         """Save agent checkpoint"""
-        pass
+        logger.info(f'Method {function_name} called')
+        return {}
     
     @abstractmethod
     def load_checkpoint(self, filepath: str) -> None:
         """Load agent checkpoint"""
-        pass
+        logger.info(f'Method {function_name} called')
+        return {}
     
     def preprocess_state(self, state: Union[np.ndarray, torch.Tensor]) -> torch.Tensor:
         """Preprocess state for network input"""

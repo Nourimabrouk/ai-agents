@@ -1,0 +1,131 @@
+{
+  "timestamp": "2025-09-05T17:37:13.887000",
+  "overall_status": "PASSED",
+  "tests_passed": 5,
+  "total_tests": 5,
+  "success_rate": 1.0,
+  "detailed_results": {
+    "imports": [
+      {
+        "module": "core",
+        "status": "SUCCESS",
+        "error": null
+      },
+      {
+        "module": "core.shared",
+        "status": "SUCCESS",
+        "error": null
+      },
+      {
+        "module": "core.autonomous",
+        "status": "SUCCESS",
+        "error": null
+      },
+      {
+        "module": "core.security",
+        "status": "SUCCESS",
+        "error": null
+      },
+      {
+        "module": "core.reasoning",
+        "status": "SUCCESS",
+        "error": null
+      },
+      {
+        "module": "core.integration",
+        "status": "SUCCESS",
+        "error": null
+      }
+    ],
+    "system_startup": {
+      "status": "SUCCESS",
+      "health_check": "healthy",
+      "error": null
+    },
+    "demo_scripts": [
+      {
+        "script": "working_demo.py",
+        "status": "SUCCESS",
+        "error": null,
+        "syntax_valid": true
+      }
+    ],
+    "dependencies": [
+      {
+        "dependency": "psutil",
+        "status": "AVAILABLE"
+      },
+      {
+        "dependency": "asyncio",
+        "status": "AVAILABLE"
+      },
+      {
+        "dependency": "pathlib",
+        "status": "AVAILABLE"
+      },
+      {
+        "dependency": "json",
+        "status": "AVAILABLE"
+      },
+      {
+        "dependency": "datetime",
+        "status": "AVAILABLE"
+      },
+      {
+        "dependency": "logging",
+        "status": "AVAILABLE"
+      },
+      {
+        "dependency": "typing",
+        "status": "AVAILABLE"
+      }
+    ],
+    "file_structure": [
+      {
+        "path": "core/",
+        "status": "EXISTS",
+        "type": "directory"
+      },
+      {
+        "path": "core/__init__.py",
+        "status": "EXISTS",
+        "type": "file"
+      },
+      {
+        "path": "core/shared/",
+        "status": "EXISTS",
+        "type": "directory"
+      },
+      {
+        "path": "core/autonomous/",
+        "status": "EXISTS",
+        "type": "directory"
+      },
+      {
+        "path": "core/security/",
+        "status": "EXISTS",
+        "type": "directory"
+      },
+      {
+        "path": "core/reasoning/",
+        "status": "EXISTS",
+        "type": "directory"
+      },
+      {
+        "path": "core/integration/",
+        "status": "EXISTS",
+        "type": "directory"
+      },
+      {
+        "path": "system.py",
+        "status": "EXISTS",
+        "type": "file"
+      },
+      {
+        "path": "working_demo.py",
+        "status": "EXISTS",
+        "type": "file"
+      }
+    ]
+  }
+}

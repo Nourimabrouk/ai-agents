@@ -216,7 +216,7 @@ class DemoLauncher:
         
         if not self.running_demos:
             print("No demos currently running")
-            return
+            return {}
         
         for demo_name, process in self.running_demos.items():
             config = self.demo_configs[demo_name]

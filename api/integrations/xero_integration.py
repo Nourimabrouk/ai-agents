@@ -624,11 +624,11 @@ class XeroIntegration(BaseIntegration):
                     return contact["ContactID"]
                 else:
                     logger.error(f"Failed to create contact: {response.status}")
-                    return None
+                    return {}
                     
         except Exception as e:
             logger.error(f"Contact creation failed: {e}")
-            return None
+            return {}
     
     async def _find_contact(self, contact_name: str) -> Optional[Dict[str, Any]]:
         """Find contact by name"""
@@ -647,11 +647,11 @@ class XeroIntegration(BaseIntegration):
                     contacts = result_data.get("Contacts", [])
                     return contacts[0] if contacts else None
                 else:
-                    return None
+                    return {}
                     
         except Exception as e:
             logger.error(f"Contact search failed: {e}")
-            return None
+            return {}
     
     def _is_supplier_bill(self, document_data: Dict[str, Any]) -> bool:
         """Determine if this is a supplier bill or customer invoice"""

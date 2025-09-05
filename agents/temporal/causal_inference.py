@@ -111,7 +111,7 @@ class CausalInferenceEngine:
             effect_data = self.data_store[effect_var]
             
             if len(cause_data) < 10 or len(effect_data) < 10:
-                return None
+                return {}
             
             # Test different time delays
             best_correlation = 0.0
@@ -151,11 +151,11 @@ class CausalInferenceEngine:
                     relationship_type=relationship_type
                 )
             
-            return None
+            return {}
             
         except Exception as e:
             logger.error(f"Error testing causal relationship: {e}")
-            return None
+            return {}
     
     async def _calculate_delayed_correlation(self, cause_data: List[Tuple[datetime, float]], 
                                            effect_data: List[Tuple[datetime, float]], 
@@ -216,7 +216,7 @@ class CausalInferenceEngine:
             ]
             
             if not relationships:
-                return None
+                return {}
             
             # Use the strongest relationship
             relationship = max(relationships, key=lambda r: r.strength)
@@ -226,14 +226,14 @@ class CausalInferenceEngine:
             effect_data = self.data_store[effect_var]
             
             if not cause_data or not effect_data:
-                return None
+                return {}
             
             # Simple linear prediction based on recent data
             recent_cause = [val for _, val in cause_data[-20:]]
             recent_effect = [val for _, val in effect_data[-20:]]
             
             if len(recent_cause) < 2 or len(recent_effect) < 2:
-                return None
+                return {}
             
             cause_mean = np.mean(recent_cause)
             effect_mean = np.mean(recent_effect)
@@ -249,7 +249,7 @@ class CausalInferenceEngine:
             
         except Exception as e:
             logger.error(f"Error predicting effect: {e}")
-            return None
+            return {}
     
     async def get_intervention_recommendations(self, target_var: str, 
                                              target_value: float) -> List[Dict[str, Any]]:

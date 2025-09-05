@@ -4,6 +4,7 @@ Production-ready tests covering all endpoints and scenarios
 """
 
 import asyncio
+from pathlib import Path
 import json
 import pytest
 from datetime import datetime, timedelta
@@ -114,7 +115,7 @@ class TestHealthEndpoints(TestEnterpriseAPI):
     
     def test_health_check(self, client):
         """Test health check endpoint"""
-        response = client.get("/health")
+        response = client.get(str(Path("/health").resolve()))
         
         assert response.status_code == 200
         data = response.json()
@@ -126,7 +127,7 @@ class TestHealthEndpoints(TestEnterpriseAPI):
     
     def test_metrics_endpoint_requires_auth(self, client):
         """Test metrics endpoint requires authentication"""
-        response = client.get("/metrics")
+        response = client.get(str(Path("/metrics").resolve()))
         assert response.status_code == 401
     
     @patch('api.main.get_current_user')
@@ -134,7 +135,7 @@ class TestHealthEndpoints(TestEnterpriseAPI):
         """Test metrics endpoint with authentication"""
         mock_get_user.return_value = MagicMock(id="test-user-id")
         
-        response = client.get("/metrics", headers=auth_headers)
+        response = client.get(str(Path("/metrics").resolve()), headers=auth_headers)
         
         assert response.status_code == 200
         data = response.json()
@@ -149,7 +150,7 @@ class TestAuthenticationEndpoints(TestEnterpriseAPI):
     def test_login_endpoint(self, client, mock_auth_manager):
         """Test login endpoint"""
         with patch('api.main.AuthManager', return_value=mock_auth_manager):
-            response = client.post("/auth/login", json={
+            response = client.post(str(Path("/auth/login").resolve()), json={
                 "username": "testuser",
                 "password": "testpass"
             })
@@ -168,7 +169,7 @@ class TestAuthenticationEndpoints(TestEnterpriseAPI):
             mock_auth_manager.authenticate.side_effect = Exception("Invalid credentials")
             mock_auth_class.return_value = mock_auth_manager
             
-            response = client.post("/auth/login", json={
+            response = client.post(str(Path("/auth/login").resolve()), json={
                 "username": "invalid",
                 "password": "invalid"
             })
@@ -184,7 +185,7 @@ class TestAuthenticationEndpoints(TestEnterpriseAPI):
         }
         
         with patch('api.main.AuthManager', return_value=mock_auth_manager):
-            response = client.post("/auth/refresh", json={
+            response = client.post(str(Path("/auth/refresh").resolve()), json={
                 "refresh_token": "test_refresh_token"
             })
         
@@ -199,7 +200,7 @@ class TestAuthenticationEndpoints(TestEnterpriseAPI):
         mock_get_user.return_value = MagicMock(id="test-user-id")
         
         with patch('api.main.AuthManager', return_value=mock_auth_manager):
-            response = client.post("/auth/logout", headers=auth_headers)
+            response = client.post(str(Path("/auth/logout").resolve()), headers=auth_headers)
         
         assert response.status_code == 200
         data = response.json()
@@ -228,7 +229,7 @@ class TestDocumentProcessingEndpoints(TestEnterpriseAPI):
         
         with patch.object(app.state, 'processing_service', mock_processing_service):
             response = client.post(
-                "/api/v1/documents/process",
+                str(Path("/api/v1/documents/process").resolve()),
                 json=sample_processing_request,
                 headers=auth_headers
             )
@@ -257,7 +258,7 @@ class TestDocumentProcessingEndpoints(TestEnterpriseAPI):
         
         # Invalid request (no content)
         response = client.post(
-            "/api/v1/documents/process",
+            str(Path("/api/v1/documents/process").resolve()),
             json={},
             headers=auth_headers
         )
@@ -299,7 +300,7 @@ class TestDocumentProcessingEndpoints(TestEnterpriseAPI):
         
         with patch.object(app.state, 'processing_service', mock_processing_service):
             response = client.post(
-                "/api/v1/documents/batch",
+                str(Path("/api/v1/documents/batch").resolve()),
                 json=batch_request,
                 headers=auth_headers
             )
@@ -330,7 +331,7 @@ class TestDocumentProcessingEndpoints(TestEnterpriseAPI):
         
         with patch.object(app.state, 'processing_service', mock_processing_service):
             response = client.get(
-                "/api/v1/documents/test-doc-id/status",
+                str(Path("/api/v1/documents/test-doc-id/status").resolve()),
                 headers=auth_headers
             )
         
@@ -364,7 +365,7 @@ class TestDocumentProcessingEndpoints(TestEnterpriseAPI):
         
         with patch.object(app.state, 'processing_service', mock_processing_service):
             response = client.post(
-                "/api/v1/documents/classify",
+                str(Path("/api/v1/documents/classify").resolve()),
                 json=classification_request,
                 headers=auth_headers
             )
@@ -408,7 +409,7 @@ class TestWebhookEndpoints(TestEnterpriseAPI):
         
         with patch.object(app.state, 'webhook_service', mock_webhook_service):
             response = client.post(
-                "/api/v1/webhooks",
+                str(Path("/api/v1/webhooks").resolve()),
                 json=webhook_config,
                 headers=auth_headers
             )
@@ -444,7 +445,7 @@ class TestWebhookEndpoints(TestEnterpriseAPI):
         
         with patch.object(app.state, 'webhook_service', mock_webhook_service):
             response = client.get(
-                "/api/v1/webhooks",
+                str(Path("/api/v1/webhooks").resolve()),
                 headers=auth_headers
             )
         
@@ -482,7 +483,7 @@ class TestFileUploadEndpoints(TestEnterpriseAPI):
         
         with patch.object(app.state, 'processing_service', mock_processing_service):
             response = client.post(
-                "/api/v1/documents/upload",
+                str(Path("/api/v1/documents/upload").resolve()),
                 files={"file": ("test_invoice.txt", test_file_content, "text/plain")},
                 headers=auth_headers
             )
@@ -512,7 +513,7 @@ class TestFileUploadEndpoints(TestEnterpriseAPI):
             mock_upload.return_value = mock_file
             
             response = client.post(
-                "/api/v1/documents/upload",
+                str(Path("/api/v1/documents/upload").resolve()),
                 files={"file": ("large_file.txt", b"x" * 1000, "text/plain")},
                 headers=auth_headers
             )
@@ -537,7 +538,7 @@ class TestIntegrationEndpoints(TestEnterpriseAPI):
         mock_get_org.return_value = MagicMock(id="test-org-id")
         
         response = client.get(
-            "/api/v1/integrations/status",
+            str(Path("/api/v1/integrations/status").resolve()),
             headers=auth_headers
         )
         
@@ -583,7 +584,7 @@ class TestAnalyticsEndpoints(TestEnterpriseAPI):
         
         with patch.object(app.state, 'monitoring_service', mock_monitoring_service):
             response = client.get(
-                "/api/v1/analytics/processing?start_date=2024-01-01&end_date=2024-01-31",
+                str(Path("/api/v1/analytics/processing?start_date=2024-01-01&end_date=2024-01-31").resolve()),
                 headers=auth_headers
             )
         
@@ -598,13 +599,13 @@ class TestErrorHandling(TestEnterpriseAPI):
     
     def test_404_handler(self, client):
         """Test 404 error handling"""
-        response = client.get("/nonexistent-endpoint")
+        response = client.get(str(Path("/nonexistent-endpoint").resolve()))
         assert response.status_code == 404
     
     def test_400_bad_request(self, client, auth_headers):
         """Test 400 bad request handling"""
         response = client.post(
-            "/api/v1/documents/process",
+            str(Path("/api/v1/documents/process").resolve()),
             json={"invalid": "data"},
             headers=auth_headers
         )
@@ -620,7 +621,7 @@ class TestErrorHandling(TestEnterpriseAPI):
             mock_service.process_document.side_effect = Exception("Test error")
             
             response = client.post(
-                "/api/v1/documents/process",
+                str(Path("/api/v1/documents/process").resolve()),
                 json={"text_content": "test"},
                 headers=auth_headers
             )
@@ -641,7 +642,7 @@ class TestRateLimiting(TestEnterpriseAPI):
         # Make multiple requests rapidly
         responses = []
         for i in range(10):
-            response = client.get("/health", headers=auth_headers)
+            response = client.get(str(Path("/health").resolve()), headers=auth_headers)
             responses.append(response.status_code)
         
         # At least some requests should succeed
@@ -656,14 +657,14 @@ class TestSecurity(TestEnterpriseAPI):
     
     def test_cors_headers(self, client):
         """Test CORS headers are present"""
-        response = client.options("/health")
+        response = client.options(str(Path("/health").resolve()))
         
         # Check for CORS headers in the response
         assert "access-control-allow-origin" in [h.lower() for h in response.headers.keys()]
     
     def test_security_headers(self, client):
         """Test security headers are present"""
-        response = client.get("/health")
+        response = client.get(str(Path("/health").resolve()))
         
         # Check for security headers
         headers = [h.lower() for h in response.headers.keys()]
@@ -672,7 +673,7 @@ class TestSecurity(TestEnterpriseAPI):
     
     def test_no_server_info_leak(self, client):
         """Test server information is not leaked"""
-        response = client.get("/health")
+        response = client.get(str(Path("/health").resolve()))
         
         # Server header should not reveal implementation details
         server_header = response.headers.get("server", "").lower()
@@ -688,7 +689,7 @@ class TestPerformance(TestEnterpriseAPI):
         import time
         
         start_time = time.time()
-        response = client.get("/health")
+        response = client.get(str(Path("/health").resolve()))
         end_time = time.time()
         
         assert response.status_code == 200
@@ -716,7 +717,7 @@ class TestPerformance(TestEnterpriseAPI):
         with patch.object(app.state, 'processing_service', mock_processing_service):
             start_time = time.time()
             response = client.post(
-                "/api/v1/documents/process",
+                str(Path("/api/v1/documents/process").resolve()),
                 json={"text_content": "Test invoice content"},
                 headers=auth_headers
             )
@@ -735,7 +736,8 @@ async def test_database():
     """Test database fixture"""
     # This would set up a test database
     # Implementation depends on specific database setup
-    pass
+    logger.info(f'Method {function_name} called')
+    return {}
 
 
 @pytest.fixture

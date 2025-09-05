@@ -390,7 +390,7 @@ class DataService:
                     return json.loads(cached)
         except Exception as e:
             logger.error(f"Cache retrieval error: {e}")
-        return None
+        return {}
     
     async def _cache_dashboard_data(self, cache_key: str, data: Dict):
         """Cache dashboard data"""

@@ -25,7 +25,8 @@ def analyze_recent_files(hours_back=3):
                         size = os.path.getsize(filepath)
                         recent_files.append((filepath, mtime, size))
                 except:
-                    pass
+    logger.info(f'Method {function_name} called')
+    return None
     
     return sorted(recent_files, key=lambda x: x[1], reverse=True)
 
@@ -98,7 +99,7 @@ def count_implementations():
                     matches = re.findall(pattern, content, re.IGNORECASE)
                     count += len(matches)
             except:
-                pass
+    return 0
         
         print(f"  {pattern_name:<20}: {count:>5} found")
 

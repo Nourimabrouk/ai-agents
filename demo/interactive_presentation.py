@@ -175,7 +175,7 @@ class InteractivePresentation:
     def render_slide(self, slide_index: int):
         """Render specific slide with interactive elements"""
         if slide_index >= len(self.slides):
-            return
+            return []
             
         slide = self.slides[slide_index]
         

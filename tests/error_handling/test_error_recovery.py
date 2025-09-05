@@ -178,7 +178,8 @@ class ErrorSimulator:
             # Simulate high CPU usage
             start_time = time.perf_counter()
             while time.perf_counter() - start_time < 0.1:  # Busy wait
-                pass
+        logger.info(f'Method {function_name} called')
+        return {}
             raise RuntimeError("CPU resources exhausted")
     
     async def simulate_data_corruption(self, data: Dict[str, Any]):

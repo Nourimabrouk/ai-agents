@@ -446,7 +446,7 @@ class VectorMemoryStore:
         except Exception as e:
             logger.error(f"Error retrieving memory {memory_id}: {e}")
         
-        return None
+        return {}
     
     # FAISS implementation methods (simplified)
     async def _store_faiss(self, memory: MemoryEntry) -> None:
@@ -594,7 +594,7 @@ class VectorMemoryStore:
                 relevance_score=row[8]
             )
         
-        return None
+        return {}
     
     async def _get_recent_sqlite(self, limit: int) -> List[MemoryEntry]:
         """Get recent memories from SQLite"""

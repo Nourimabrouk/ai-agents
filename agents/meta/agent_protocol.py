@@ -101,7 +101,8 @@ class MessageBus:
             try:
                 await self._processor_task
             except asyncio.CancelledError:
-                pass
+        logger.info(f'Method {function_name} called')
+        return {}
         logger.info("Message bus stopped")
     
     def register_agent(self, agent_id: str, agent: 'AgentInterface'):
@@ -364,14 +365,14 @@ class AgentInterface:
         if self.paused:
             logger.info(f"Agent {self.agent_id} is paused, queuing message")
             await self.inbox.put(message)
-            return None
+            return {}
         
         handler = self.message_handlers.get(message.type)
         if handler:
             return await handler(message)
         else:
             logger.warning(f"No handler for message type: {message.type}")
-            return None
+            return {}
     
     async def send_message(self, 
                           recipient: str,

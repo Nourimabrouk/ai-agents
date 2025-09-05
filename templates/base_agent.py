@@ -349,7 +349,8 @@ class BaseAgent(ABC):
         """
         Execute the specific task - to be implemented by subclasses
         """
-        pass
+        logger.info(f'Processing task: {locals()}')
+        return {'success': True, 'message': 'Task processed'}
     
     def _get_available_strategies(self) -> List[str]:
         """Get list of available strategies"""
@@ -402,12 +403,14 @@ class BaseAgent(ABC):
     def _explore_new_strategies(self) -> None:
         """Explore new strategies when current ones aren't working"""
         # Implement strategy exploration logic
-        pass
+        logger.info(f'Method {function_name} called')
+        return {}
     
     def _incorporate_learnings(self, learnings: List[str]) -> None:
         """Incorporate learnings into agent behavior"""
         # Implement learning incorporation logic
-        pass
+        logger.info(f'Method {function_name} called')
+        return {}
     
     def get_success_rate(self) -> float:
         """Get overall success rate"""

@@ -5,6 +5,7 @@ Provides RESTful access with authentication, monitoring, and enterprise integrat
 """
 
 import asyncio
+from pathlib import Path
 import logging
 import time
 from contextlib import asynccontextmanager
@@ -188,20 +189,20 @@ async def general_exception_handler(request: Request, exc: Exception):
 
 
 # Custom documentation endpoints
-@app.get("/docs", include_in_schema=False)
+@app.get(str(Path("/docs").resolve()), include_in_schema=False)
 async def custom_swagger_ui_html():
     """Custom Swagger UI with authentication"""
     return get_swagger_ui_html(
-        openapi_url="/openapi.json",
+        openapi_url=str(Path("/openapi.json").resolve()),
         title="Enterprise Document Processing API - Swagger UI",
     )
 
 
-@app.get("/redoc", include_in_schema=False)
+@app.get(str(Path("/redoc").resolve()), include_in_schema=False)
 async def custom_redoc_html():
     """Custom ReDoc with authentication"""
     return get_redoc_html(
-        openapi_url="/openapi.json",
+        openapi_url=str(Path("/openapi.json").resolve()),
         title="Enterprise Document Processing API - ReDoc",
     )
 
@@ -210,7 +211,7 @@ async def custom_redoc_html():
 # SYSTEM ENDPOINTS
 # =============================================================================
 
-@app.get("/health", response_model=HealthResponse, tags=["system"])
+@app.get(str(Path("/health").resolve()), response_model=HealthResponse, tags=["system"])
 async def health_check():
     """
     System health check endpoint
@@ -255,7 +256,7 @@ async def health_check():
         )
 
 
-@app.get("/metrics", response_model=MetricsResponse, tags=["monitoring"])
+@app.get(str(Path("/metrics").resolve()), response_model=MetricsResponse, tags=["monitoring"])
 async def get_system_metrics(
     current_user = Depends(get_current_user),
     db: AsyncSession = Depends(get_database)
@@ -292,7 +293,7 @@ async def get_system_metrics(
 # AUTHENTICATION ENDPOINTS
 # =============================================================================
 
-@app.post("/auth/login", tags=["authentication"])
+@app.post(str(Path("/auth/login").resolve()), tags=["authentication"])
 async def login(credentials: Dict[str, str]):
     """
     Authenticate user and return JWT token
@@ -322,7 +323,7 @@ async def login(credentials: Dict[str, str]):
         )
 
 
-@app.post("/auth/refresh", tags=["authentication"])
+@app.post(str(Path("/auth/refresh").resolve()), tags=["authentication"])
 async def refresh_token(refresh_token: str):
     """Refresh JWT token using refresh token"""
     try:
@@ -343,7 +344,7 @@ async def refresh_token(refresh_token: str):
         )
 
 
-@app.post("/auth/logout", tags=["authentication"])
+@app.post(str(Path("/auth/logout").resolve()), tags=["authentication"])
 async def logout(
     current_user = Depends(get_current_user),
     token: str = Depends(oauth2_scheme)
@@ -367,7 +368,7 @@ async def logout(
 # DOCUMENT PROCESSING ENDPOINTS  
 # =============================================================================
 
-@app.post("/api/v1/documents/process", 
+@app.post(str(Path("/api/v1/documents/process").resolve()), 
           response_model=ProcessingResponse, 
           tags=["processing"])
 async def process_document(
@@ -426,7 +427,7 @@ async def process_document(
         )
 
 
-@app.post("/api/v1/documents/batch", tags=["processing"])
+@app.post(str(Path("/api/v1/documents/batch").resolve()), tags=["processing"])
 async def batch_process_documents(
     request: BatchProcessingRequest,
     background_tasks: BackgroundTasks,
@@ -458,7 +459,7 @@ async def batch_process_documents(
             "status": "processing",
             "total_documents": batch_result["total_documents"],
             "estimated_completion_time": batch_result["estimated_completion_time"],
-            "status_url": f"/api/v1/documents/batch/{batch_result['batch_id']}/status"
+            "status_url": fstr(Path("/api/v1/documents/batch/{batch_result[').resolve())batch_id']}/status"
         }
         
     except Exception as e:
@@ -469,7 +470,7 @@ async def batch_process_documents(
         )
 
 
-@app.get("/api/v1/documents/{document_id}/status", tags=["processing"])
+@app.get(str(Path("/api/v1/documents/{document_id}/status").resolve()), tags=["processing"])
 async def get_processing_status(
     document_id: str,
     current_user = Depends(get_current_user),
@@ -501,7 +502,7 @@ async def get_processing_status(
         )
 
 
-@app.get("/api/v1/documents/{document_id}/result", tags=["processing"])
+@app.get(str(Path("/api/v1/documents/{document_id}/result").resolve()), tags=["processing"])
 async def get_processing_result(
     document_id: str,
     format: str = "json",
@@ -543,7 +544,7 @@ async def get_processing_result(
         )
 
 
-@app.post("/api/v1/documents/classify", tags=["processing"])
+@app.post(str(Path("/api/v1/documents/classify").resolve()), tags=["processing"])
 async def classify_document(
     request: ClassificationRequest,
     current_user = Depends(get_current_user),
@@ -586,7 +587,7 @@ async def classify_document(
 # WEBHOOK ENDPOINTS
 # =============================================================================
 
-@app.post("/api/v1/webhooks", tags=["webhooks"])
+@app.post(str(Path("/api/v1/webhooks").resolve()), tags=["webhooks"])
 async def create_webhook(
     webhook_config: WebhookConfig,
     current_user = Depends(get_current_user),
@@ -626,7 +627,7 @@ async def create_webhook(
         )
 
 
-@app.get("/api/v1/webhooks", tags=["webhooks"])
+@app.get(str(Path("/api/v1/webhooks").resolve()), tags=["webhooks"])
 async def list_webhooks(
     current_user = Depends(get_current_user),
     current_org = Depends(get_current_organization),
@@ -653,7 +654,7 @@ async def list_webhooks(
 # INTEGRATION ENDPOINTS
 # =============================================================================
 
-@app.get("/api/v1/integrations/status", tags=["integrations"])
+@app.get(str(Path("/api/v1/integrations/status").resolve()), tags=["integrations"])
 async def get_integration_status(
     current_user = Depends(get_current_user),
     current_org = Depends(get_current_organization)
@@ -679,7 +680,7 @@ async def get_integration_status(
 # FILE UPLOAD ENDPOINTS
 # =============================================================================
 
-@app.post("/api/v1/documents/upload", tags=["processing"])
+@app.post(str(Path("/api/v1/documents/upload").resolve()), tags=["processing"])
 async def upload_and_process_document(
     file: UploadFile = File(...),
     processing_options: str = None,
@@ -739,7 +740,7 @@ async def upload_and_process_document(
 # ANALYTICS ENDPOINTS
 # =============================================================================
 
-@app.get("/api/v1/analytics/processing", tags=["monitoring"])
+@app.get(str(Path("/api/v1/analytics/processing").resolve()), tags=["monitoring"])
 async def get_processing_analytics(
     start_date: Optional[str] = None,
     end_date: Optional[str] = None,
@@ -781,7 +782,7 @@ async def get_processing_analytics(
 # ADMIN ENDPOINTS
 # =============================================================================
 
-@app.post("/api/v1/admin/config/reload", tags=["system"])
+@app.post(str(Path("/api/v1/admin/config/reload").resolve()), tags=["system"])
 async def reload_configuration(
     current_user = Depends(get_current_user)
 ):

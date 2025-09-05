@@ -63,7 +63,8 @@ def temp_db_path():
     try:
         os.unlink(db_path)
     except OSError:
-        pass
+    logger.info(f'Method {function_name} called')
+    return {}
 
 
 @pytest.fixture

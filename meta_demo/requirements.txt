@@ -1,0 +1,50 @@
+# Phase 7 Autonomous Intelligence Symphony - Meta Demo Requirements
+# =====================================================================
+
+# Core web framework and API
+fastapi>=0.104.1
+uvicorn[standard]>=0.24.0
+websockets>=12.0
+
+# Data visualization and analysis  
+plotly>=5.17.0
+numpy>=1.24.0
+pandas>=2.1.0
+
+# Web interface enhancements
+jinja2>=3.1.2
+python-multipart>=0.0.6
+
+# Async and performance
+asyncio-mqtt>=0.11.1
+aiofiles>=23.2.1
+
+# Data serialization and validation
+pydantic>=2.5.0
+pydantic-settings>=2.1.0
+
+# Logging and monitoring
+structlog>=23.2.0
+python-json-logger>=2.0.7
+
+# Security and validation
+cryptography>=41.0.7
+passlib[bcrypt]>=1.7.4
+
+# Database (optional - for persistence)
+databases[sqlite]>=0.8.0
+sqlalchemy>=2.0.23
+
+# Development and testing
+pytest>=7.4.3
+pytest-asyncio>=0.21.1
+httpx>=0.25.2
+
+# Production deployment
+gunicorn>=21.2.0
+docker>=6.1.3
+
+# Additional utilities
+python-dateutil>=2.8.2
+pytz>=2023.3
+click>=8.1.7

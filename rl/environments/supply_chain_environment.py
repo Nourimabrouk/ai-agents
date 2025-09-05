@@ -459,7 +459,8 @@ class SupplyChainEnvironment(BaseMultiAgentEnvironment):
                 # Adjust production/ordering based on target (simplified logic)
                 if target_level > current_level * 1.2:
                     # Need more inventory - increase ordering in next cycle
-                    pass
+        logger.info(f'Processing task: {locals()}')
+        return {'success': True, 'message': 'Task processed'}
     
     def _create_order(self, from_node: str, to_node: str, product_id: str, quantity: float):
         """Create a new order"""

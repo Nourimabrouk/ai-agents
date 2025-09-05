@@ -4,6 +4,7 @@ Test suite for the main FastAPI application
 """
 
 import asyncio
+from pathlib import Path
 import json
 import pytest
 from datetime import datetime
@@ -28,7 +29,7 @@ class TestHealthEndpoints:
     
     def test_health_check_success(self, client: TestClient):
         """Test successful health check"""
-        response = client.get("/health")
+        response = client.get(str(Path("/health").resolve()))
         
         assert response.status_code == 200
         data = response.json()
@@ -53,7 +54,7 @@ class TestHealthEndpoints:
                 "uptime_seconds": 3600
             }
             
-            response = client.get("/health")
+            response = client.get(str(Path("/health").resolve()))
             assert response.status_code == 200
             
             data = response.json()
@@ -77,7 +78,7 @@ class TestHealthEndpoints:
                 "uptime_seconds": 100
             }
             
-            response = client.get("/health")
+            response = client.get(str(Path("/health").resolve()))
             assert response.status_code == 200
             
             data = response.json()
@@ -104,7 +105,7 @@ class TestAuthenticationEndpoints:
                 }
             }
             
-            response = client.post("/auth/login", json={
+            response = client.post(str(Path("/auth/login").resolve()), json={
                 "username": "testuser",
                 "password": "testpass123"
             })
@@ -121,7 +122,7 @@ class TestAuthenticationEndpoints:
         with patch('api.auth.auth_manager.AuthManager.authenticate') as mock_auth:
             mock_auth.side_effect = Exception("Invalid credentials")
             
-            response = client.post("/auth/login", json={
+            response = client.post(str(Path("/auth/login").resolve()), json={
                 "username": "invalid",
                 "password": "wrongpass"
             })
@@ -138,7 +139,7 @@ class TestAuthenticationEndpoints:
                 "expires_in": 1800
             }
             
-            response = client.post("/auth/refresh", json={
+            response = client.post(str(Path("/auth/refresh").resolve()), json={
                 "refresh_token": "refresh_token_123"
             })
             
@@ -151,7 +152,7 @@ class TestAuthenticationEndpoints:
         with patch('api.auth.auth_manager.AuthManager.logout') as mock_logout:
             mock_logout.return_value = None
             
-            response = client.post("/auth/logout", headers=auth_headers)
+            response = client.post(str(Path("/auth/logout").resolve()), headers=auth_headers)
             
             assert response.status_code == 200
             assert response.json()["message"] == "Successfully logged out"
@@ -195,7 +196,7 @@ class TestDocumentProcessingEndpoints:
             }
             
             response = client.post(
-                "/api/v1/documents/process",
+                str(Path("/api/v1/documents/process").resolve()),
                 json=request_data,
                 headers=auth_headers
             )
@@ -213,7 +214,7 @@ class TestDocumentProcessingEndpoints:
         """Test document processing with validation error"""
         # Test with no input provided
         response = client.post(
-            "/api/v1/documents/process",
+            str(Path("/api/v1/documents/process").resolve()),
             json={},
             headers=auth_headers
         )
@@ -230,7 +231,7 @@ class TestDocumentProcessingEndpoints:
             }
             
             response = client.post(
-                "/api/v1/documents/process",
+                str(Path("/api/v1/documents/process").resolve()),
                 json=request_data,
                 headers=auth_headers
             )
@@ -257,7 +258,7 @@ class TestDocumentProcessingEndpoints:
             }
             
             response = client.post(
-                "/api/v1/documents/classify",
+                str(Path("/api/v1/documents/classify").resolve()),
                 json=request_data,
                 headers=auth_headers
             )
@@ -285,7 +286,7 @@ class TestDocumentProcessingEndpoints:
             }
             
             response = client.get(
-                "/api/v1/documents/doc_123/status",
+                str(Path("/api/v1/documents/doc_123/status").resolve()),
                 headers=auth_headers
             )
             
@@ -314,7 +315,7 @@ class TestDocumentProcessingEndpoints:
             }
             
             response = client.get(
-                "/api/v1/documents/doc_123/result",
+                str(Path("/api/v1/documents/doc_123/result").resolve()),
                 headers=auth_headers
             )
             
@@ -350,7 +351,7 @@ class TestBatchProcessingEndpoints:
             }
             
             response = client.post(
-                "/api/v1/documents/batch",
+                str(Path("/api/v1/documents/batch").resolve()),
                 json=request_data,
                 headers=auth_headers
             )
@@ -381,7 +382,7 @@ class TestFileUploadEndpoints:
             test_file = ("test.pdf", b"fake pdf content", "application/pdf")
             
             response = client.post(
-                "/api/v1/documents/upload",
+                str(Path("/api/v1/documents/upload").resolve()),
                 files={"file": test_file},
                 headers=auth_headers
             )
@@ -401,7 +402,7 @@ class TestFileUploadEndpoints:
             large_file = ("large.pdf", b"x" * (51 * 1024 * 1024), "application/pdf")
             
             response = client.post(
-                "/api/v1/documents/upload",
+                str(Path("/api/v1/documents/upload").resolve()),
                 files={"file": large_file},
                 headers=auth_headers
             )
@@ -434,7 +435,7 @@ class TestWebhookEndpoints:
             }
             
             response = client.post(
-                "/api/v1/webhooks",
+                str(Path("/api/v1/webhooks").resolve()),
                 json=request_data,
                 headers=auth_headers
             )
@@ -462,7 +463,7 @@ class TestWebhookEndpoints:
             ]
             
             response = client.get(
-                "/api/v1/webhooks",
+                str(Path("/api/v1/webhooks").resolve()),
                 headers=auth_headers
             )
             
@@ -499,7 +500,7 @@ class TestMetricsEndpoints:
             }
             
             response = client.get(
-                "/api/v1/metrics",
+                str(Path("/api/v1/metrics").resolve()),
                 headers=auth_headers
             )
             
@@ -530,7 +531,7 @@ class TestMetricsEndpoints:
             }
             
             response = client.get(
-                "/api/v1/analytics/processing",
+                str(Path("/api/v1/analytics/processing").resolve()),
                 params={
                     "start_date": "2024-01-01",
                     "end_date": "2024-01-15"
@@ -552,7 +553,7 @@ class TestIntegrationEndpoints:
     def test_get_integration_status(self, client: TestClient, auth_headers: Dict[str, str]):
         """Test getting integration status"""
         response = client.get(
-            "/api/v1/integrations/status",
+            str(Path("/api/v1/integrations/status").resolve()),
             headers=auth_headers
         )
         
@@ -571,20 +572,20 @@ class TestErrorHandling:
     
     def test_404_not_found(self, client: TestClient):
         """Test 404 error handling"""
-        response = client.get("/nonexistent/endpoint")
+        response = client.get(str(Path("/nonexistent/endpoint").resolve()))
         
         assert response.status_code == 404
     
     def test_unauthorized_access(self, client: TestClient):
         """Test unauthorized access"""
-        response = client.post("/api/v1/documents/process", json={})
+        response = client.post(str(Path("/api/v1/documents/process").resolve()), json={})
         
         assert response.status_code == 401
     
     def test_invalid_json(self, client: TestClient, auth_headers: Dict[str, str]):
         """Test invalid JSON handling"""
         response = client.post(
-            "/api/v1/documents/process",
+            str(Path("/api/v1/documents/process").resolve()),
             data="invalid json",
             headers={**auth_headers, "content-type": "application/json"}
         )
@@ -599,7 +600,7 @@ class TestAPIValidation:
         """Test processing request validation"""
         # Test missing required fields
         response = client.post(
-            "/api/v1/documents/process",
+            str(Path("/api/v1/documents/process").resolve()),
             json={"processing_config": {"strategy": "invalid_strategy"}},
             headers=auth_headers
         )
@@ -608,7 +609,7 @@ class TestAPIValidation:
         
         # Test invalid accuracy threshold
         response = client.post(
-            "/api/v1/documents/process",
+            str(Path("/api/v1/documents/process").resolve()),
             json={
                 "text_content": "test",
                 "processing_config": {"accuracy_threshold": 1.5}  # > 1.0
@@ -622,7 +623,7 @@ class TestAPIValidation:
         """Test webhook configuration validation"""
         # Test invalid URL
         response = client.post(
-            "/api/v1/webhooks",
+            str(Path("/api/v1/webhooks").resolve()),
             json={
                 "url": "invalid_url",
                 "events": ["document.processed"]
@@ -653,7 +654,7 @@ class TestAsyncEndpoints:
             requests = []
             for i in range(5):
                 request = async_client.post(
-                    "/api/v1/documents/process",
+                    str(Path("/api/v1/documents/process").resolve()),
                     json={"text_content": f"Document {i}"},
                     headers=auth_headers
                 )

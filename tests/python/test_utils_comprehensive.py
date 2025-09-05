@@ -4,6 +4,7 @@ Tests logging, metrics, and memory persistence functionality
 """
 
 import pytest
+from pathlib import Path
 import asyncio
 import tempfile
 import os
@@ -286,7 +287,8 @@ class TestMemoryPersistence:
         try:
             os.unlink(db_path)
         except OSError:
-            pass
+        logger.info(f'Method {function_name} called')
+        return {}
     
     @pytest.fixture
     def memory_store(self, temp_db_path):
@@ -450,7 +452,7 @@ class TestMemoryPersistence:
     def test_memory_store_error_handling(self):
         """Test memory store handles errors gracefully"""
         # Use non-existent directory path
-        invalid_path = "/definitely/not/a/valid/path/test.db"
+        invalid_path = str(Path("/definitely/not/a/valid/path/test.db").resolve())
         
         # Should handle initialization errors
         try:
@@ -458,7 +460,8 @@ class TestMemoryPersistence:
             # If it doesn't raise, that's also fine - it should handle gracefully
         except Exception:
             # Expected in some cases
-            pass
+        logger.info(f'Method {function_name} called')
+        return {}
     
     def test_semantic_proxy(self, memory_store):
         """Test SemanticProxy auto-persistence functionality"""
@@ -512,7 +515,8 @@ class TestUtilityIntegration:
         try:
             os.unlink(db_path)
         except OSError:
-            pass
+        logger.info(f'Method {function_name} called')
+        return {}
     
     @pytest.mark.asyncio
     async def test_agent_with_full_utility_integration(self, temp_db_path):
@@ -662,7 +666,7 @@ class TestWindowsCompatibility:
         # Create Windows-style path
         with tempfile.TemporaryDirectory() as temp_dir:
             # Use Windows-style separators
-            windows_path = os.path.join(temp_dir, "windows_test.db").replace('/', '\\')
+            windows_path = os.path.join(temp_dir, "windows_test.db").replace(str(Path('/').resolve()), '\\')
             
             store = SqliteMemoryStore(windows_path)
             

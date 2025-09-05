@@ -4,6 +4,7 @@ Real-time WebSocket streaming for AI agent network visualization
 """
 
 import asyncio
+from pathlib import Path
 import json
 import logging
 import random
@@ -331,7 +332,7 @@ class AgentSimulator:
         if random.random() < 0.15:  # 15% chance of trading event per update
             active_agents = [a for a in self.agents if a.status == 'active']
             if not active_agents:
-                return None
+                return {}
                 
             agent = random.choice(active_agents)
             event_types = ['buy', 'sell', 'analysis', 'decision', 'execution']
@@ -359,7 +360,7 @@ class AgentSimulator:
             
             return event
         
-        return None
+        return {}
 
     def generate_market_data(self) -> List[MarketData]:
         """Generate realistic market data"""
@@ -416,11 +417,11 @@ class AgentSimulator:
 simulator = AgentSimulator()
 
 # API Routes
-@app.get("/")
+@app.get(str(Path("/").resolve()))
 async def root():
     return {"message": "AI Agents Visualization Server", "status": "running", "version": "1.0.0"}
 
-@app.get("/health")
+@app.get(str(Path("/health").resolve()))
 async def health_check():
     return {
         "status": "healthy",
@@ -429,28 +430,28 @@ async def health_check():
         "agents": len(simulator.agents)
     }
 
-@app.get("/api/network", response_model=AgentNetwork)
+@app.get(str(Path("/api/network").resolve()), response_model=AgentNetwork)
 async def get_network():
     """Get current agent network state"""
     return simulator.get_network_state()
 
-@app.get("/api/metrics")
+@app.get(str(Path("/api/metrics").resolve()))
 async def get_metrics():
     """Get recent performance metrics"""
     return simulator.metrics_history[-100:]  # Return last 100 metrics
 
-@app.get("/api/events")
+@app.get(str(Path("/api/events").resolve()))
 async def get_trading_events():
     """Get recent trading events"""
     return simulator.trading_events
 
-@app.get("/api/market")
+@app.get(str(Path("/api/market").resolve()))
 async def get_market_data():
     """Get current market data"""
     return simulator.generate_market_data()
 
 # WebSocket endpoint
-@app.websocket("/ws")
+@app.websocket(str(Path("/ws").resolve()))
 async def websocket_endpoint(websocket: WebSocket):
     await manager.connect(websocket)
     

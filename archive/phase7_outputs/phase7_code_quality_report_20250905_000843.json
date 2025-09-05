@@ -1,0 +1,624 @@
+{
+  "analysis_timestamp": "2025-09-05T00:08:43.078395",
+  "summary": {
+    "total_files_analyzed": 32,
+    "total_lines_of_code": 16696,
+    "overall_quality_score": -0.04,
+    "grade": "F"
+  },
+  "aggregate_metrics": {
+    "average_complexity": 78.44,
+    "average_documentation_ratio": 0.106,
+    "average_security_score": 0.838,
+    "average_performance_score": 0.897,
+    "average_maintainability_score": 0.697
+  },
+  "issues_summary": {
+    "total_issues": 58,
+    "by_severity": {
+      "medium": 47,
+      "low": 4,
+      "high": 7
+    },
+    "critical_files": [
+      "core\\autonomous\\emergent_intelligence.py",
+      "core\\autonomous\\orchestrator.py",
+      "core\\autonomous\\safety.py",
+      "core\\autonomous\\self_modification.py",
+      "core\\coordination\\advanced_orchestrator.py",
+      "core\\coordination\\behavior_analytics.py",
+      "core\\coordination\\competitive_system.py",
+      "core\\coordination\\meta_learning.py",
+      "core\\coordination\\self_improvement.py",
+      "core\\coordination\\swarm_engine.py",
+      "core\\integration\\business_intelligence.py",
+      "core\\integration\\deployment_manager.py",
+      "core\\integration\\evolution_engine.py",
+      "core\\integration\\master_controller.py",
+      "core\\orchestration\\orchestrator.py",
+      "core\\reasoning\\causal_inference.py",
+      "core\\reasoning\\integrated_reasoning_controller.py",
+      "core\\reasoning\\performance_optimizer.py",
+      "core\\reasoning\\temporal_reasoning.py",
+      "core\\reasoning\\tree_of_thoughts.py",
+      "core\\reasoning\\working_memory.py",
+      "core\\security\\autonomous_security.py",
+      "core\\security\\behavioral_monitoring.py",
+      "core\\security\\code_validation.py",
+      "core\\security\\emergency_response.py",
+      "core\\security\\threat_detection.py"
+    ]
+  },
+  "recommendations": {
+    "top_priorities": [
+      "Add type hints for better code quality",
+      "Add more docstrings and comments",
+      "Review and secure potentially dangerous operations",
+      "Consider breaking down complex functions into smaller ones"
+    ],
+    "immediate_actions": [
+      "Review and fix all high-severity security issues",
+      "Refactor functions with complexity > 15",
+      "Add comprehensive docstrings to all public methods",
+      "Implement proper error handling and logging",
+      "Add type hints to improve code clarity"
+    ],
+    "long_term_improvements": [
+      "Implement comprehensive unit test coverage (target: 90%+)",
+      "Set up automated code quality checks in CI/CD",
+      "Create coding standards documentation",
+      "Implement performance monitoring and profiling",
+      "Consider implementing more async patterns for better performance",
+      "Add comprehensive integration tests",
+      "Implement automated security scanning"
+    ]
+  },
+  "file_rankings": [
+    {
+      "file_path": "core\\coordination\\integration.py",
+      "quality_score": 0.858,
+      "grade": "A",
+      "issues_count": 1,
+      "lines_of_code": 73
+    },
+    {
+      "file_path": "core\\autonomous\\__init__.py",
+      "quality_score": 0.856,
+      "grade": "A",
+      "issues_count": 2,
+      "lines_of_code": 22
+    },
+    {
+      "file_path": "core\\__init__.py",
+      "quality_score": 0.85,
+      "grade": "A",
+      "issues_count": 2,
+      "lines_of_code": 4
+    },
+    {
+      "file_path": "core\\security\\__init__.py",
+      "quality_score": 0.85,
+      "grade": "A",
+      "issues_count": 2,
+      "lines_of_code": 20
+    },
+    {
+      "file_path": "core\\orchestration\\__init__.py",
+      "quality_score": 0.843,
+      "grade": "A-",
+      "issues_count": 2,
+      "lines_of_code": 8
+    },
+    {
+      "file_path": "core\\reasoning\\__init__.py",
+      "quality_score": 0.818,
+      "grade": "A-",
+      "issues_count": 1,
+      "lines_of_code": 63
+    },
+    {
+      "file_path": "core\\security\\autonomous_security.py",
+      "quality_score": 0.522,
+      "grade": "C-",
+      "issues_count": 3,
+      "lines_of_code": 257
+    },
+    {
+      "file_path": "core\\security\\behavioral_monitoring.py",
+      "quality_score": 0.398,
+      "grade": "F",
+      "issues_count": 2,
+      "lines_of_code": 354
+    },
+    {
+      "file_path": "core\\security\\threat_detection.py",
+      "quality_score": 0.32,
+      "grade": "F",
+      "issues_count": 3,
+      "lines_of_code": 353
+    },
+    {
+      "file_path": "core\\security\\code_validation.py",
+      "quality_score": 0.254,
+      "grade": "F",
+      "issues_count": 3,
+      "lines_of_code": 330
+    },
+    {
+      "file_path": "core\\security\\emergency_response.py",
+      "quality_score": 0.246,
+      "grade": "F",
+      "issues_count": 2,
+      "lines_of_code": 443
+    },
+    {
+      "file_path": "core\\coordination\\competitive_system.py",
+      "quality_score": 0.21,
+      "grade": "F",
+      "issues_count": 2,
+      "lines_of_code": 525
+    },
+    {
+      "file_path": "core\\coordination\\behavior_analytics.py",
+      "quality_score": 0.2,
+      "grade": "F",
+      "issues_count": 1,
+      "lines_of_code": 0
+    },
+    {
+      "file_path": "core\\coordination\\meta_learning.py",
+      "quality_score": 0.2,
+      "grade": "F",
+      "issues_count": 1,
+      "lines_of_code": 0
+    },
+    {
+      "file_path": "core\\coordination\\self_improvement.py",
+      "quality_score": 0.2,
+      "grade": "F",
+      "issues_count": 1,
+      "lines_of_code": 0
+    },
+    {
+      "file_path": "core\\coordination\\swarm_engine.py",
+      "quality_score": 0.112,
+      "grade": "F",
+      "issues_count": 2,
+      "lines_of_code": 563
+    },
+    {
+      "file_path": "core\\coordination\\advanced_orchestrator.py",
+      "quality_score": 0.023,
+      "grade": "F",
+      "issues_count": 1,
+      "lines_of_code": 463
+    },
+    {
+      "file_path": "core\\orchestration\\orchestrator.py",
+      "quality_score": 0.019,
+      "grade": "F",
+      "issues_count": 1,
+      "lines_of_code": 449
+    },
+    {
+      "file_path": "core\\integration\\master_controller.py",
+      "quality_score": -0.086,
+      "grade": "F",
+      "issues_count": 1,
+      "lines_of_code": 755
+    },
+    {
+      "file_path": "core\\autonomous\\orchestrator.py",
+      "quality_score": -0.196,
+      "grade": "F",
+      "issues_count": 1,
+      "lines_of_code": 693
+    },
+    {
+      "file_path": "core\\autonomous\\safety.py",
+      "quality_score": -0.239,
+      "grade": "F",
+      "issues_count": 3,
+      "lines_of_code": 649
+    },
+    {
+      "file_path": "core\\reasoning\\integrated_reasoning_controller.py",
+      "quality_score": -0.32,
+      "grade": "F",
+      "issues_count": 2,
+      "lines_of_code": 745
+    },
+    {
+      "file_path": "core\\integration\\business_intelligence.py",
+      "quality_score": -0.362,
+      "grade": "F",
+      "issues_count": 2,
+      "lines_of_code": 1094
+    },
+    {
+      "file_path": "core\\reasoning\\performance_optimizer.py",
+      "quality_score": -0.368,
+      "grade": "F",
+      "issues_count": 2,
+      "lines_of_code": 631
+    },
+    {
+      "file_path": "core\\autonomous\\self_modification.py",
+      "quality_score": -0.416,
+      "grade": "F",
+      "issues_count": 2,
+      "lines_of_code": 902
+    },
+    {
+      "file_path": "core\\integration\\deployment_manager.py",
+      "quality_score": -0.447,
+      "grade": "F",
+      "issues_count": 1,
+      "lines_of_code": 805
+    },
+    {
+      "file_path": "core\\integration\\evolution_engine.py",
+      "quality_score": -0.509,
+      "grade": "F",
+      "issues_count": 2,
+      "lines_of_code": 949
+    },
+    {
+      "file_path": "core\\autonomous\\emergent_intelligence.py",
+      "quality_score": -0.811,
+      "grade": "F",
+      "issues_count": 2,
+      "lines_of_code": 1004
+    },
+    {
+      "file_path": "core\\reasoning\\causal_inference.py",
+      "quality_score": -1.108,
+      "grade": "F",
+      "issues_count": 2,
+      "lines_of_code": 985
+    },
+    {
+      "file_path": "core\\reasoning\\tree_of_thoughts.py",
+      "quality_score": -1.221,
+      "grade": "F",
+      "issues_count": 2,
+      "lines_of_code": 1092
+    },
+    {
+      "file_path": "core\\reasoning\\working_memory.py",
+      "quality_score": -1.388,
+      "grade": "F",
+      "issues_count": 2,
+      "lines_of_code": 1118
+    },
+    {
+      "file_path": "core\\reasoning\\temporal_reasoning.py",
+      "quality_score": -1.594,
+      "grade": "F",
+      "issues_count": 2,
+      "lines_of_code": 1347
+    }
+  ],
+  "detailed_metrics": {
+    "core\\__init__.py": {
+      "lines_of_code": 4,
+      "complexity_score": 0,
+      "documentation_ratio": 0.0,
+      "security_score": 1.0,
+      "performance_score": 1.0,
+      "maintainability_score": 1.0,
+      "issues_count": 2,
+      "recommendations_count": 2
+    },
+    "core\\autonomous\\emergent_intelligence.py": {
+      "lines_of_code": 1004,
+      "complexity_score": 164,
+      "documentation_ratio": 0.12856099342585828,
+      "security_score": 1.0,
+      "performance_score": 1.0,
+      "maintainability_score": 0.7999999999999999,
+      "issues_count": 2,
+      "recommendations_count": 2
+    },
+    "core\\autonomous\\orchestrator.py": {
+      "lines_of_code": 693,
+      "complexity_score": 101,
+      "documentation_ratio": 0.15859938208032956,
+      "security_score": 1.0,
+      "performance_score": 1.0,
+      "maintainability_score": 0.7,
+      "issues_count": 1,
+      "recommendations_count": 1
+    },
+    "core\\autonomous\\safety.py": {
+      "lines_of_code": 649,
+      "complexity_score": 97,
+      "documentation_ratio": 0.12341407151095732,
+      "security_score": 0.7693194925028835,
+      "performance_score": 1.0,
+      "maintainability_score": 0.6,
+      "issues_count": 3,
+      "recommendations_count": 3
+    },
+    "core\\autonomous\\self_modification.py": {
+      "lines_of_code": 902,
+      "complexity_score": 110,
+      "documentation_ratio": 0.10904480135249366,
+      "security_score": 0.830938292476754,
+      "performance_score": 1.0,
+      "maintainability_score": 0.29999999999999993,
+      "issues_count": 2,
+      "recommendations_count": 2
+    },
+    "core\\autonomous\\__init__.py": {
+      "lines_of_code": 22,
+      "complexity_score": 0,
+      "documentation_ratio": 0.038461538461538464,
+      "security_score": 1.0,
+      "performance_score": 1.0,
+      "maintainability_score": 1.0,
+      "issues_count": 2,
+      "recommendations_count": 2
+    },
+    "core\\coordination\\advanced_orchestrator.py": {
+      "lines_of_code": 463,
+      "complexity_score": 81,
+      "documentation_ratio": 0.15454545454545454,
+      "security_score": 1.0,
+      "performance_score": 1.0,
+      "maintainability_score": 0.7999999999999999,
+      "issues_count": 1,
+      "recommendations_count": 1
+    },
+    "core\\coordination\\behavior_analytics.py": {
+      "lines_of_code": 0,
+      "complexity_score": 0.0,
+      "documentation_ratio": 0.0,
+      "security_score": 0.0,
+      "performance_score": 0.0,
+      "maintainability_score": 0.0,
+      "issues_count": 1,
+      "recommendations_count": 0
+    },
+    "core\\coordination\\competitive_system.py": {
+      "lines_of_code": 525,
+      "complexity_score": 60,
+      "documentation_ratio": 0.13183730715287517,
+      "security_score": 1.0,
+      "performance_score": 1.0,
+      "maintainability_score": 0.7,
+      "issues_count": 2,
+      "recommendations_count": 2
+    },
+    "core\\coordination\\integration.py": {
+      "lines_of_code": 73,
+      "complexity_score": 1,
+      "documentation_ratio": 0.11956521739130435,
+      "security_score": 1.0,
+      "performance_score": 1.0,
+      "maintainability_score": 1.0,
+      "issues_count": 1,
+      "recommendations_count": 1
+    },
+    "core\\coordination\\meta_learning.py": {
+      "lines_of_code": 0,
+      "complexity_score": 0.0,
+      "documentation_ratio": 0.0,
+      "security_score": 0.0,
+      "performance_score": 0.0,
+      "maintainability_score": 0.0,
+      "issues_count": 1,
+      "recommendations_count": 0
+    },
+    "core\\coordination\\self_improvement.py": {
+      "lines_of_code": 0,
+      "complexity_score": 0.0,
+      "documentation_ratio": 0.0,
+      "security_score": 0.0,
+      "performance_score": 0.0,
+      "maintainability_score": 0.0,
+      "issues_count": 1,
+      "recommendations_count": 0
+    },
+    "core\\coordination\\swarm_engine.py": {
+      "lines_of_code": 563,
+      "complexity_score": 66,
+      "documentation_ratio": 0.14411027568922305,
+      "security_score": 1.0,
+      "performance_score": 0.8999999999999999,
+      "maintainability_score": 0.6,
+      "issues_count": 2,
+      "recommendations_count": 2
+    },
+    "core\\integration\\business_intelligence.py": {
+      "lines_of_code": 1094,
+      "complexity_score": 111,
+      "documentation_ratio": 0.11740890688259109,
+      "security_score": 1.0,
+      "performance_score": 1.0,
+      "maintainability_score": 0.3999999999999999,
+      "issues_count": 2,
+      "recommendations_count": 2
+    },
+    "core\\integration\\deployment_manager.py": {
+      "lines_of_code": 805,
+      "complexity_score": 120,
+      "documentation_ratio": 0.1527777777777778,
+      "security_score": 1.0,
+      "performance_score": 1.0,
+      "maintainability_score": 0.3999999999999999,
+      "issues_count": 1,
+      "recommendations_count": 1
+    },
+    "core\\integration\\evolution_engine.py": {
+      "lines_of_code": 949,
+      "complexity_score": 130,
+      "documentation_ratio": 0.1432791728212703,
+      "security_score": 1.0,
+      "performance_score": 1.0,
+      "maintainability_score": 0.6,
+      "issues_count": 2,
+      "recommendations_count": 2
+    },
+    "core\\integration\\master_controller.py": {
+      "lines_of_code": 755,
+      "complexity_score": 92,
+      "documentation_ratio": 0.1598173515981735,
+      "security_score": 1.0,
+      "performance_score": 1.0,
+      "maintainability_score": 0.7999999999999999,
+      "issues_count": 1,
+      "recommendations_count": 1
+    },
+    "core\\orchestration\\orchestrator.py": {
+      "lines_of_code": 449,
+      "complexity_score": 86,
+      "documentation_ratio": 0.19462025316455697,
+      "security_score": 1.0,
+      "performance_score": 1.0,
+      "maintainability_score": 1.0,
+      "issues_count": 1,
+      "recommendations_count": 1
+    },
+    "core\\orchestration\\__init__.py": {
+      "lines_of_code": 8,
+      "complexity_score": 0,
+      "documentation_ratio": 0.08333333333333333,
+      "security_score": 1.0,
+      "performance_score": 0.9,
+      "maintainability_score": 1.0,
+      "issues_count": 2,
+      "recommendations_count": 2
+    },
+    "core\\reasoning\\causal_inference.py": {
+      "lines_of_code": 985,
+      "complexity_score": 194,
+      "documentation_ratio": 0.14632405424696646,
+      "security_score": 1.0,
+      "performance_score": 1.0,
+      "maintainability_score": 0.8,
+      "issues_count": 2,
+      "recommendations_count": 2
+    },
+    "core\\reasoning\\integrated_reasoning_controller.py": {
+      "lines_of_code": 745,
+      "complexity_score": 111,
+      "documentation_ratio": 0.13202247191011235,
+      "security_score": 1.0,
+      "performance_score": 1.0,
+      "maintainability_score": 0.6,
+      "issues_count": 2,
+      "recommendations_count": 2
+    },
+    "core\\reasoning\\performance_optimizer.py": {
+      "lines_of_code": 631,
+      "complexity_score": 124,
+      "documentation_ratio": 0.1460794844253491,
+      "security_score": 1.0,
+      "performance_score": 1.0,
+      "maintainability_score": 1.0,
+      "issues_count": 2,
+      "recommendations_count": 2
+    },
+    "core\\reasoning\\temporal_reasoning.py": {
+      "lines_of_code": 1347,
+      "complexity_score": 226,
+      "documentation_ratio": 0.10853530031612224,
+      "security_score": 1.0,
+      "performance_score": 1.0,
+      "maintainability_score": 0.0,
+      "issues_count": 2,
+      "recommendations_count": 2
+    },
+    "core\\reasoning\\tree_of_thoughts.py": {
+      "lines_of_code": 1092,
+      "complexity_score": 205,
+      "documentation_ratio": 0.1240024554941682,
+      "security_score": 1.0,
+      "performance_score": 1.0,
+      "maintainability_score": 0.8,
+      "issues_count": 2,
+      "recommendations_count": 2
+    },
+    "core\\reasoning\\working_memory.py": {
+      "lines_of_code": 1118,
+      "complexity_score": 218,
+      "documentation_ratio": 0.14726840855106887,
+      "security_score": 1.0,
+      "performance_score": 0.8999999999999999,
+      "maintainability_score": 0.7,
+      "issues_count": 2,
+      "recommendations_count": 2
+    },
+    "core\\reasoning\\__init__.py": {
+      "lines_of_code": 63,
+      "complexity_score": 3,
+      "documentation_ratio": 0.12048192771084337,
+      "security_score": 1.0,
+      "performance_score": 1.0,
+      "maintainability_score": 0.9,
+      "issues_count": 1,
+      "recommendations_count": 1
+    },
+    "core\\security\\autonomous_security.py": {
+      "lines_of_code": 257,
+      "complexity_score": 19,
+      "documentation_ratio": 0.10429447852760736,
+      "security_score": 0.38650306748466257,
+      "performance_score": 1.0,
+      "maintainability_score": 1.0,
+      "issues_count": 3,
+      "recommendations_count": 3
+    },
+    "core\\security\\behavioral_monitoring.py": {
+      "lines_of_code": 354,
+      "complexity_score": 45,
+      "documentation_ratio": 0.11839323467230443,
+      "security_score": 1.0,
+      "performance_score": 1.0,
+      "maintainability_score": 0.9,
+      "issues_count": 2,
+      "recommendations_count": 2
+    },
+    "core\\security\\code_validation.py": {
+      "lines_of_code": 330,
+      "complexity_score": 41,
+      "documentation_ratio": 0.09090909090909091,
+      "security_score": 0.28229665071770327,
+      "performance_score": 1.0,
+      "maintainability_score": 0.9,
+      "issues_count": 3,
+      "recommendations_count": 3
+    },
+    "core\\security\\emergency_response.py": {
+      "lines_of_code": 443,
+      "complexity_score": 62,
+      "documentation_ratio": 0.1097770154373928,
+      "security_score": 1.0,
+      "performance_score": 1.0,
+      "maintainability_score": 1.0,
+      "issues_count": 2,
+      "recommendations_count": 2
+    },
+    "core\\security\\threat_detection.py": {
+      "lines_of_code": 353,
+      "complexity_score": 43,
+      "documentation_ratio": 0.09382151029748284,
+      "security_score": 0.5423340961098398,
+      "performance_score": 1.0,
+      "maintainability_score": 1.0,
+      "issues_count": 3,
+      "recommendations_count": 3
+    },
+    "core\\security\\__init__.py": {
+      "lines_of_code": 20,
+      "complexity_score": 0,
+      "documentation_ratio": 0.0,
+      "security_score": 1.0,
+      "performance_score": 1.0,
+      "maintainability_score": 1.0,
+      "issues_count": 2,
+      "recommendations_count": 2
+    }
+  }
+}

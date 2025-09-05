@@ -4,6 +4,7 @@ Tests the complete think-act-observe-evolve cycle with mocking
 """
 
 import pytest
+from pathlib import Path
 import asyncio
 from unittest.mock import Mock, patch, AsyncMock, MagicMock
 from datetime import datetime
@@ -31,7 +32,8 @@ class TestBaseAgent:
         try:
             os.unlink(db_path)
         except OSError:
-            pass
+        logger.info(f'Method {function_name} called')
+        return {}
     
     @pytest.fixture
     def mock_anthropic_client(self):
@@ -444,7 +446,7 @@ class TestWindowsCompatibility(TestBaseAgent):
     def test_windows_path_handling(self, temp_db):
         """Test Windows path handling in memory store"""
         # Use Windows-style path separators
-        windows_path = temp_db.replace('/', '\\')
+        windows_path = temp_db.replace(str(Path('/').resolve()), '\\')
         
         config = {
             "memory_backend": "sqlite",

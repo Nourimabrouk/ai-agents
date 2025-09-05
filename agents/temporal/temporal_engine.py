@@ -329,7 +329,7 @@ class TemporalReasoningEngine:
     async def _detect_trend_patterns(self, events: List[TemporalEvent]) -> None:
         """Detect trend patterns in event data"""
         if len(events) < 5:
-            return
+            return {}
         
         # Extract numerical features for trend analysis
         timestamps = [e.timestamp for e in events[-10:]]
@@ -462,7 +462,7 @@ class RealtimeProcessor:
     def _calculate_average_interval(self, events: List[TemporalEvent]) -> Optional[timedelta]:
         """Calculate average time interval between events"""
         if len(events) < 2:
-            return None
+            return {}
         
         intervals = []
         for i in range(len(events) - 1):
@@ -473,7 +473,7 @@ class RealtimeProcessor:
             avg_seconds = sum(i.total_seconds() for i in intervals) / len(intervals)
             return timedelta(seconds=avg_seconds)
         
-        return None
+        return {}
     
     async def optimize(self, objective: str, current_state: Dict, constraints: Dict, cross_horizon_context: Dict) -> Any:
         """Optimize for real-time objectives"""

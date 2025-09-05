@@ -106,7 +106,8 @@ class SystemResourceMonitor:
             try:
                 await self.monitor_task
             except asyncio.CancelledError:
-                pass
+        logger.info(f'Method {function_name} called')
+        return {}
     
     async def _monitor_loop(self, interval: float):
         """Monitor resources in a loop"""
@@ -235,7 +236,7 @@ class ConcurrentTaskSimulator:
                 'error': str(e)
             }
     
-    async def simulate_api_request(self, request_id: str, endpoint: str = '/api/process'):
+    async def simulate_api_request(self, request_id: str, endpoint: str = str(Path('/api/process').resolve())):
         """Simulate API request processing"""
         start_time = time.perf_counter()
         
@@ -639,7 +640,7 @@ class TestAPIPerformance:
         # Generate concurrent API requests
         requests = []
         for i in range(concurrent_requests):
-            endpoint = ['/api/process', '/api/analyze', '/api/report'][i % 3]
+            endpoint = [str(Path('/api/process').resolve()), str(Path('/api/analyze').resolve()), str(Path('/api/report').resolve())][i % 3]
             request = simulator.simulate_api_request(
                 request_id=f"api_req_{i}",
                 endpoint=endpoint

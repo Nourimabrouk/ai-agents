@@ -144,7 +144,7 @@ class AgentOrchestrator:
         
         if not suitable_agents:
             logger.error(f"No suitable agents found for task {task.id}")
-            return None
+            return {}
         
         # Assign task to agents
         task.assigned_agents = [agent.name for agent in suitable_agents]

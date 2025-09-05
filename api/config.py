@@ -173,7 +173,7 @@ class MonitoringSettings(BaseSettings):
     # Metrics
     enable_metrics: bool = Field(default=True)
     metrics_port: int = Field(default=9090, ge=1024, le=65535)
-    metrics_path: str = Field(default="/metrics")
+    metrics_path: str = Field(default=str(Path("/metrics").resolve()))
     
     # Health checks
     health_check_interval: int = Field(default=30, ge=5, le=300)
@@ -257,7 +257,7 @@ class Settings(BaseSettings):
     )
     
     # API settings
-    api_v1_prefix: str = Field(default="/api/v1")
+    api_v1_prefix: str = Field(default=str(Path("/api/v1").resolve()))
     api_host: str = Field(default="0.0.0.0")
     api_port: int = Field(default=8000, ge=1024, le=65535)
     api_workers: int = Field(default=4, ge=1, le=32)

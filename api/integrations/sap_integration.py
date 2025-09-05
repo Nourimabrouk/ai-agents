@@ -4,6 +4,7 @@ Enterprise SAP integration with multiple SAP product support
 """
 
 import asyncio
+from pathlib import Path
 import json
 from datetime import datetime, timedelta
 from typing import Any, Dict, List, Optional
@@ -95,8 +96,8 @@ class SAPIntegration(BaseIntegration):
     
     def _setup_s4hana_config(self, config: Dict[str, Any]):
         """Configure for SAP S/4HANA"""
-        self.odata_service_path = "/sap/opu/odata/sap"
-        self.rest_api_path = "/sap/bc/rest"
+        self.odata_service_path = str(Path("/sap/opu/odata/sap").resolve())
+        self.rest_api_path = str(Path("/sap/bc/rest").resolve())
         
         # Common S/4HANA services
         self.services = {
@@ -108,7 +109,7 @@ class SAPIntegration(BaseIntegration):
     
     def _setup_business_one_config(self, config: Dict[str, Any]):
         """Configure for SAP Business One"""
-        self.service_layer_path = "/b1s/v1"
+        self.service_layer_path = str(Path("/b1s/v1").resolve())
         
         self.services = {
             "invoice": f"{self.service_layer_path}/PurchaseInvoices",
@@ -119,7 +120,7 @@ class SAPIntegration(BaseIntegration):
     
     def _setup_ariba_config(self, config: Dict[str, Any]):
         """Configure for SAP Ariba"""
-        self.ariba_api_path = "/api"
+        self.ariba_api_path = str(Path("/api").resolve())
         
         self.services = {
             "invoice": f"{self.ariba_api_path}/invoices",
@@ -129,7 +130,7 @@ class SAPIntegration(BaseIntegration):
     
     def _setup_concur_config(self, config: Dict[str, Any]):
         """Configure for SAP Concur"""
-        self.concur_api_path = "/api/v3.0"
+        self.concur_api_path = str(Path("/api/v3.0").resolve())
         
         self.services = {
             "expense": f"{self.concur_api_path}/expense/reports",

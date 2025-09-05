@@ -43,7 +43,7 @@ class RequestLoggingMiddleware(BaseHTTPMiddleware):
         self.log_request_body = kwargs.get("log_request_body", False)
         self.log_response_body = kwargs.get("log_response_body", False)
         self.max_body_size = kwargs.get("max_body_size", 1000)  # Max chars to log
-        self.exclude_paths = set(kwargs.get("exclude_paths", ["/health", "/metrics"]))
+        self.exclude_paths = set(kwargs.get("exclude_paths", [str(Path("/health").resolve()), str(Path("/metrics").resolve())]))
         self.exclude_headers = set(kwargs.get("exclude_headers", [
             "authorization", "cookie", "x-api-key", "x-csrf-token"
         ]))
@@ -247,7 +247,7 @@ class RequestLoggingMiddleware(BaseHTTPMiddleware):
         # Use different log levels based on method
         if context["method"] in ["DELETE"]:
             log_level = "WARNING"
-        elif context["path"].startswith("/admin/"):
+        elif context["path"].startswith(str(Path("/admin/").resolve())):
             log_level = "WARNING"
         
         logger.log(
@@ -302,10 +302,10 @@ class RequestLoggingMiddleware(BaseHTTPMiddleware):
         
         # Define operations that require audit logging
         audit_paths = [
-            "/api/v1/auth/login",
-            "/api/v1/auth/logout", 
-            "/api/v1/documents/process",
-            "/api/v1/admin/"
+            str(Path("/api/v1/auth/login").resolve()),
+            str(Path("/api/v1/auth/logout").resolve()), 
+            str(Path("/api/v1/documents/process").resolve()),
+            str(Path("/api/v1/admin/").resolve())
         ]
         
         # Check if this request needs audit logging
@@ -314,7 +314,7 @@ class RequestLoggingMiddleware(BaseHTTPMiddleware):
         )
         
         if not should_audit:
-            return
+            return {}
         
         # Create audit log entry
         audit_entry = {
@@ -332,7 +332,7 @@ class RequestLoggingMiddleware(BaseHTTPMiddleware):
         }
         
         # Add specific details based on endpoint
-        if request.url.path.startswith("/api/v1/documents/process"):
+        if request.url.path.startswith(str(Path("/api/v1/documents/process").resolve())):
             audit_entry["document_processing"] = True
             audit_entry["content_type"] = request_context.get("content_type")
             audit_entry["content_length"] = request_context.get("content_length")

@@ -538,11 +538,11 @@ class QuickBooksIntegration(BaseIntegration):
                     return {"value": vendor["Id"], "name": vendor["Name"]}
                 else:
                     logger.error(f"Failed to create vendor: {response.status}")
-                    return None
+                    return {}
                     
         except Exception as e:
             logger.error(f"Vendor creation failed: {e}")
-            return None
+            return {}
     
     async def _find_vendor(self, vendor_name: str) -> Optional[Dict[str, Any]]:
         """Find vendor by name"""
@@ -563,11 +563,11 @@ class QuickBooksIntegration(BaseIntegration):
                     vendors = result_data.get("QueryResponse", {}).get("Vendor", [])
                     return vendors[0] if vendors else None
                 else:
-                    return None
+                    return {}
                     
         except Exception as e:
             logger.error(f"Vendor search failed: {e}")
-            return None
+            return {}
     
     async def _get_or_create_customer(self, customer_name: str) -> Dict[str, str]:
         """Get existing customer or create new one"""
@@ -641,17 +641,18 @@ class QuickBooksIntegration(BaseIntegration):
                     result_data = await response.json()
                     return result_data["QueryResponse"][entity_type.title()][0]
                 else:
-                    return None
+                    return {}
                     
         except Exception as e:
             logger.error(f"Failed to get document: {e}")
-            return None
+            return {}
     
     async def _save_credentials(self):
         """Save credentials to database"""
         # This would save encrypted credentials to the Integration model
         # Implementation depends on database session availability
-        pass
+        logger.info(f'Method {function_name} called')
+        return {}
 
 
 # Export class

@@ -38,7 +38,8 @@ class MockComponent:
         return self
     
     async def __aexit__(self, *args):
-        pass
+        logger.info(f'Method {function_name} called')
+        return {}
     
     def record_call(self, method: str, args: tuple, kwargs: dict):
         self._call_history.append({

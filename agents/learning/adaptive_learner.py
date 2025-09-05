@@ -659,7 +659,7 @@ class AdaptiveLearningSystem:
     async def update_patterns(self):
         """Update discovered patterns based on recent experiences"""
         if len(self.experiences) < 5:
-            return
+            return {}
         
         # Select optimal learning strategy
         domain_counts = defaultdict(int)
@@ -703,7 +703,7 @@ class AdaptiveLearningSystem:
     async def perform_meta_learning(self):
         """Perform meta-learning to optimize learning strategies"""
         if len(self.learning_history) < 5:
-            return
+            return {}
         
         # Analyze learning performance over time
         recent_performance = []

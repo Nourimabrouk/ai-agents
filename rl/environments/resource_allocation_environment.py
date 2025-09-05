@@ -489,7 +489,7 @@ class ResourceAllocationEnvironment(BaseMultiAgentEnvironment):
     def _allocate_resources(self):
         """Allocate resources to pending requests based on allocation mechanism"""
         if not self.pending_requests:
-            return
+            return {}
         
         if self.allocation_mechanism == "proportional":
             self._allocate_proportional()

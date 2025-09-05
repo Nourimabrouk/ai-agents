@@ -171,7 +171,8 @@ class BaseIntegration(ABC):
         Returns:
             True if authentication successful, False otherwise
         """
-        pass
+        logger.info(f'Method {function_name} called')
+        return {}
     
     @abstractmethod
     async def test_connection(self) -> bool:
@@ -181,7 +182,8 @@ class BaseIntegration(ABC):
         Returns:
             True if connection successful, False otherwise
         """
-        pass
+        logger.info(f'Method {function_name} called')
+        return {}
     
     @abstractmethod
     async def post_document(
@@ -214,7 +216,7 @@ class BaseIntegration(ABC):
         Returns:
             Current posting status
         """
-        pass
+        return {}
     
     @abstractmethod
     async def cancel_posting(self, transaction_id: str) -> bool:
@@ -227,7 +229,8 @@ class BaseIntegration(ABC):
         Returns:
             True if cancelled successfully, False otherwise
         """
-        pass
+        logger.info(f'Method {function_name} called')
+        return {}
     
     async def post_document_safe(
         self,

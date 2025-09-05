@@ -78,7 +78,7 @@ class PPOBuffer:
         """Store experience"""
         if self.ptr >= self.max_size:
             logger.warning("PPO buffer overflow - consider increasing buffer size")
-            return
+            return {}
         
         self.states[self.ptr] = torch.FloatTensor(state).to(self.device)
         self.actions[self.ptr] = torch.FloatTensor(action).to(self.device)

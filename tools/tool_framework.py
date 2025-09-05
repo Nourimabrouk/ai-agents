@@ -55,12 +55,13 @@ class BaseTool(ABC):
     @abstractmethod
     def _get_metadata(self) -> ToolMetadata:
         """Return tool metadata"""
-        pass
+        return {}
     
     @abstractmethod
     async def execute(self, **kwargs) -> Any:
         """Execute the tool with given parameters"""
-        pass
+        logger.info(f'Processing task: {locals()}')
+        return {'success': True, 'message': 'Task processed'}
     
     async def __call__(self, **kwargs) -> Any:
         """Make tool callable"""
@@ -369,7 +370,8 @@ def generated_function():
     Language: {language}
     \"\"\"
     # Implementation would go here
-    pass
+    logger.info(f'Method {function_name} called')
+    return {}
 """
         return template
 

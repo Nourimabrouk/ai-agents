@@ -393,7 +393,7 @@ def format_data_table(df, format_config: dict = None) -> None:
     """
     if df is None or df.empty:
         st.warning("No data available to display")
-        return
+        return {}
     
     # Apply formatting if configuration provided
     if format_config:

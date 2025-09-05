@@ -89,9 +89,9 @@ class AuthManager:
             payload = jwt.decode(token, self.secret_key, algorithms=['HS256'])
             return payload
         except jwt.ExpiredSignatureError:
-            return None
+            return {}
         except jwt.InvalidTokenError:
-            return None
+            return {}
     
     def authenticate(self, email: str, password: str) -> bool:
         """Authenticate user with email and password"""
@@ -148,7 +148,7 @@ class AuthManager:
         """Get current authenticated user info"""
         if self.is_authenticated():
             return st.session_state.user_info
-        return None
+        return {}
     
     def has_permission(self, permission: str) -> bool:
         """Check if current user has specific permission"""
@@ -232,7 +232,7 @@ class AuthManager:
         """Render user profile in sidebar"""
         user_info = self.get_current_user()
         if not user_info:
-            return
+            return {}
         
         st.sidebar.markdown("---")
         st.sidebar.markdown("### 👤 User Profile")
@@ -288,7 +288,7 @@ class AuthManager:
         """Get organization filter for current user"""
         user_info = self.get_current_user()
         if not user_info:
-            return None
+            return {}
         
         organization = user_info.get('organization')
         if organization == "All Organizations":
@@ -300,7 +300,7 @@ class AuthManager:
         """Render content based on user role"""
         user_info = self.get_current_user()
         if not user_info:
-            return
+            return {}
         
         user_role = user_info.get('role', 'user')
         
@@ -316,7 +316,7 @@ class AuthManager:
         """Log user actions for audit trail"""
         user_info = self.get_current_user()
         if not user_info:
-            return
+            return {}
         
         log_entry = {
             'timestamp': datetime.utcnow().isoformat(),

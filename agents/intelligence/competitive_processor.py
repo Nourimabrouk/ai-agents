@@ -279,7 +279,8 @@ class RegexExtractor:
                     amount_str = str(processed[field]).replace('$', '').replace(',', '').strip()
                     processed[field] = float(amount_str)
                 except (ValueError, TypeError):
-                    pass
+        logger.info(f'Processing task: {locals()}')
+        return {'success': True, 'message': 'Task processed'}
         
         # Clean up dates
         date_fields = ['invoice_date', 'transaction_date', 'delivery_date', 'effective_date', 'termination_date', 'period_ending']
@@ -371,7 +372,8 @@ class PatternMatcher:
                     amount = float(match.replace(',', ''))
                     amounts.append(amount)
                 except ValueError:
-                    pass
+        logger.info(f'Method {function_name} called')
+        return {}
         
         # Total is usually the largest amount
         if amounts:

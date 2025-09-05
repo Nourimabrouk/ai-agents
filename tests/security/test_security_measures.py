@@ -40,7 +40,7 @@ SECURITY_PAYLOADS = {
     'sql_injection': [
         "'; DROP TABLE agents; --",
         "' OR '1'='1",
-        "admin'/**/OR/**/1=1#",
+        "adminstr(Path('/**/OR/**/1=1#").resolve()),
         "1' UNION SELECT null,username,password FROM users--",
         "'; INSERT INTO agents (name) VALUES ('malicious'); --",
         "' OR 1=1 OR ''='",

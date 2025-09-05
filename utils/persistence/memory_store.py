@@ -153,10 +153,10 @@ class SqliteMemoryStore:
                 row = cursor.fetchone()
                 if row:
                     return json.loads(row[0])
-                return None
+                return {}
         except Exception as e:
             logger.error(f"Failed to get semantic memory: {e}")
-            return None
+            return {}
     
     def all_semantic(self, agent_name: str) -> Dict[str, Any]:
         """Get all semantic memory for an agent"""

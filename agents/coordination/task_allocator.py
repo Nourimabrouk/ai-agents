@@ -233,7 +233,7 @@ class MarketMaker:
     async def update_market_conditions(self, completed_tasks: List[AllocationTask]):
         """Update market conditions based on recent task completions"""
         if not completed_tasks:
-            return
+            return {}
         
         # Calculate demand pressure
         recent_tasks = [t for t in completed_tasks if t.completion_time and 
@@ -373,7 +373,7 @@ class IntelligentTaskAllocator:
             if not bids:
                 logger.warning(f"No bids received for task {task_id}")
                 task.status = TaskStatus.FAILED
-                return
+                return {}
             
             task.bids = bids
             
@@ -383,7 +383,7 @@ class IntelligentTaskAllocator:
             if not winning_bid:
                 logger.warning(f"No suitable bid found for task {task_id}")
                 task.status = TaskStatus.FAILED
-                return
+                return {}
             
             # Phase 3: Allocate task
             await self._allocate_to_agent(task, winning_bid)
@@ -463,7 +463,7 @@ class IntelligentTaskAllocator:
             
         except Exception as e:
             logger.error(f"Failed to get bid from agent {agent_id}: {e}")
-            return None
+            return {}
     
     async def _generate_agent_bid(self, agent: BaseAgent, task: AllocationTask, 
                                  reputation: AgentReputation) -> TaskBid:
@@ -523,7 +523,7 @@ class IntelligentTaskAllocator:
     async def _select_winning_bid(self, task: AllocationTask, bids: List[TaskBid]) -> Optional[TaskBid]:
         """Select winning bid using multi-criteria decision making"""
         if not bids:
-            return None
+            return {}
         
         # Calculate scores for each bid
         bid_scores = []

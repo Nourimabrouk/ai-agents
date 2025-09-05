@@ -4,6 +4,7 @@ Comprehensive security features for enterprise API
 """
 
 import hashlib
+from pathlib import Path
 import hmac
 import time
 import uuid
@@ -212,7 +213,7 @@ class SecurityMiddleware(BaseHTTPMiddleware):
             )
         
         # All checks passed
-        return None
+        return {}
     
     def _get_client_ip(self, request: Request) -> str:
         """Extract client IP address from request"""
@@ -309,7 +310,7 @@ class SecurityMiddleware(BaseHTTPMiddleware):
     def _validate_csrf_token(self, request: Request) -> bool:
         """Validate CSRF token (basic implementation)"""
         # Skip CSRF for API endpoints (they use other authentication)
-        if request.url.path.startswith("/api/"):
+        if request.url.path.startswith(str(Path("/api/").resolve())):
             return True
         
         # For web forms, check CSRF token
@@ -339,7 +340,7 @@ class SecurityMiddleware(BaseHTTPMiddleware):
             "union select", "drop table", "delete from",
             "insert into", "update set", "exec(",
             "script>", "<script", "javascript:",
-            "'; --", "'; #", "'/*"
+            "'; --", "'; #", "str(Path('/*").resolve())
         ]
         
         # Check query parameters
@@ -359,7 +360,7 @@ class SecurityMiddleware(BaseHTTPMiddleware):
                         return True
             except Exception:
                 # If we can't read body, skip this check
-                pass
+        return True
         
         return False
     
@@ -371,7 +372,8 @@ class SecurityMiddleware(BaseHTTPMiddleware):
     def _update_ip_tracking(self, client_ip: str):
         """Update IP tracking for analytics"""
         # This could update database or external monitoring system
-        pass
+        logger.info(f'Method {function_name} called')
+        return {}
     
     def get_security_metrics(self) -> Dict:
         """Get security metrics for monitoring"""

@@ -79,10 +79,10 @@ class CoordinationDashboard:
         dashboard_path = Path(__file__).parent
         static_path = dashboard_path / "static"
         if static_path.exists():
-            app.mount("/static", StaticFiles(directory=str(static_path)), name="static")
+            app.mount(str(Path("/static").resolve()), StaticFiles(directory=str(static_path)), name="static")
         
         # WebSocket endpoint
-        @app.websocket("/ws")
+        @app.websocket(str(Path("/ws").resolve()))
         async def websocket_endpoint(websocket: WebSocket):
             await self.websocket_handler.connect(websocket)
             self.active_connections.add(websocket)
@@ -101,12 +101,12 @@ class CoordinationDashboard:
                 await self.websocket_handler.disconnect(websocket)
         
         # Main dashboard page
-        @app.get("/", response_class=HTMLResponse)
+        @app.get(str(Path("/").resolve()), response_class=HTMLResponse)
         async def dashboard_home():
             return self._generate_dashboard_html()
         
         # API endpoints
-        @app.get("/api/agents")
+        @app.get(str(Path("/api/agents").resolve()))
         async def get_agents():
             """Get current agents status"""
             if not self.orchestrator:
@@ -123,12 +123,12 @@ class CoordinationDashboard:
             
             return {"agents": agents_data}
         
-        @app.get("/api/metrics")
+        @app.get(str(Path("/api/metrics").resolve()))
         async def get_metrics():
             """Get system metrics"""
             return await self.metrics_collector.get_current_metrics()
         
-        @app.get("/api/interactions")
+        @app.get(str(Path("/api/interactions").resolve()))
         async def get_interactions():
             """Get recent agent interactions"""
             return {
@@ -136,7 +136,7 @@ class CoordinationDashboard:
                 "network_graph": await self.visualization_engine.generate_network_graph()
             }
         
-        @app.post("/api/agents/{agent_name}/task")
+        @app.post(str(Path("/api/agents/{agent_name}/task").resolve()))
         async def assign_task(agent_name: str, task_data: Dict[str, Any]):
             """Assign a task to a specific agent"""
             if not self.orchestrator or agent_name not in self.orchestrator.agents:
@@ -175,7 +175,7 @@ class CoordinationDashboard:
         """Start the dashboard server"""
         if not FASTAPI_AVAILABLE:
             logger.error("Cannot start dashboard server - FastAPI not available")
-            return
+            return {}
         
         self.is_running = True
         
@@ -350,7 +350,8 @@ class CoordinationDashboard:
         elif message_type == "pause_updates":
             # Client wants to pause updates temporarily
             # This could be implemented with per-client settings
-            pass
+        logger.info(f'Method {function_name} called')
+        return {}
         
         elif message_type == "resume_updates":
             # Client wants to resume updates

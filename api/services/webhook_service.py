@@ -108,7 +108,7 @@ class WebhookService:
         """Start webhook delivery worker tasks"""
         if self.is_running:
             logger.warning("Webhook delivery workers already running")
-            return
+            return {}
         
         self.is_running = True
         
@@ -122,7 +122,7 @@ class WebhookService:
     async def stop_delivery_workers(self):
         """Stop webhook delivery workers"""
         if not self.is_running:
-            return
+            return {}
         
         self.is_running = False
         
@@ -262,7 +262,7 @@ class WebhookService:
                 
                 if not webhooks:
                     logger.debug(f"No active webhooks found for event {event_type.value}")
-                    return
+                    return {}
                 
                 # Create webhook payload
                 payload = WebhookPayload(
@@ -444,7 +444,7 @@ class WebhookService:
             # Check if URL is temporarily blacklisted
             if self._is_webhook_blacklisted(webhook_url):
                 logger.debug(f"Skipping blacklisted webhook: {webhook_url}")
-                return
+                return {}
             
             # Check rate limiting
             if self._is_rate_limited(webhook_url):
@@ -452,7 +452,7 @@ class WebhookService:
                 # Re-queue for later
                 await asyncio.sleep(60)  # Wait 1 minute
                 await self.delivery_queue.put(delivery_data)
-                return
+                return {}
             
             # Prepare request
             headers = {
@@ -621,7 +621,7 @@ class WebhookService:
     async def _update_webhook_stats(self, webhook_id: Optional[str], success: bool):
         """Update webhook statistics"""
         if not webhook_id:
-            return
+            return {}
         
         try:
             async with get_database_session() as db:

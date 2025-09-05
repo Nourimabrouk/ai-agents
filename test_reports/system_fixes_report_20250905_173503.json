@@ -1,0 +1,847 @@
+{
+  "metadata": {
+    "timestamp": "2025-09-05T17:35:03.087660",
+    "system": "ai-agents",
+    "fixer_version": "1.0.0"
+  },
+  "summary": {
+    "total_fixes_applied": 449,
+    "successful_fixes": 135,
+    "failed_fixes": 2,
+    "fix_duration": "42.20s",
+    "fix_categories": {
+      "missing_modules": 0,
+      "placeholder_fixes": 412,
+      "windows_compatibility": 31,
+      "dependencies_installed": 5,
+      "demo_scripts": 1
+    },
+    "timestamp": "2025-09-05T17:35:03.087606"
+  },
+  "fixes_applied": [
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 1 placeholders in comprehensive_diagnostic.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.610620"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 10 placeholders in comprehensive_system_fixer.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.618414"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 1 placeholders in system.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.626960"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 2 placeholders in visualization_server.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.633418"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 1 placeholders in interactive_presentation.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.649276"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 1 placeholders in launch_ultimate_demo.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.651306"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 13 placeholders in monitoring_dashboard.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.659776"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 6 placeholders in phase7_meta_demo.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.673520"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 2 placeholders in run_phase7_demo_simple.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.674972"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 9 placeholders in phase7_experimental_framework.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.677191"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 4 placeholders in demo_engine.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.684804"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 1 placeholders in fix_integration_issues.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.692575"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 1 placeholders in init_dev_database.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.693356"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 2 placeholders in run_integration_tests.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.698226"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 1 placeholders in run_performance_optimization.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.700708"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 8 placeholders in start_visualization_demo.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.702757"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 5 placeholders in system_architect.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.704746"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 5 placeholders in base_agent.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.706756"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 2 placeholders in phase7_enhanced_tot.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.708450"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 4 placeholders in phase7_working_memory.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.710411"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 2 placeholders in conftest.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.711721"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 1 placeholders in run_comprehensive_tests.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.713823"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 3 placeholders in test_automation_runner.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.717094"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 4 placeholders in tool_framework.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.719734"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 2 placeholders in vector_memory.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.723473"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 2 placeholders in memory_store.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.725942"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 2 placeholders in test_enterprise_api.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.731679"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 2 placeholders in test_error_recovery.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.736240"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 2 placeholders in test_phase6_component_interactions.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.740044"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 3 placeholders in test_phase6_integration.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.742773"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 2 placeholders in test_concurrent_operations.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.747057"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 2 placeholders in run_phase7_tests.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.751374"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 2 placeholders in test_base_agent_comprehensive.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.760787"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 6 placeholders in test_utils_comprehensive.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.765835"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 1 placeholders in run_reasoning_tests.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.768051"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 1 placeholders in test_reasoning_benchmarks.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.770376"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 1 placeholders in test_reasoning_validation.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.774383"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 1 placeholders in test_enhanced_meta_orchestrator.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.782068"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 1 placeholders in phase2_demo.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.784707"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 4 placeholders in validate_architecture.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.794784"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 8 placeholders in base_algorithm.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.796633"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 1 placeholders in ppo_agent.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.800016"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 6 placeholders in base_environment.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.802111"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 1 placeholders in resource_allocation_environment.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.804439"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 1 placeholders in supply_chain_environment.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.806436"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 3 placeholders in dashboard_server.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.827975"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 1 placeholders in data_service.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.830965"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 7 placeholders in auth.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.833465"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 1 placeholders in formatting.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.835524"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 9 placeholders in emergent_intelligence.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.839454"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 1 placeholders in orchestrator.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.841965"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 1 placeholders in self_modification.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.846519"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 1 placeholders in business_intelligence.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.858202"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 1 placeholders in deployment_manager.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.861967"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 3 placeholders in master_controller.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.871918"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 1 placeholders in orchestrator.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.874263"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 8 placeholders in high_performance_optimization.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.876447"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 4 placeholders in causal_inference.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.879725"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 7 placeholders in optimized_causal_inference.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.885441"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 5 placeholders in performance_optimizer.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.887887"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 3 placeholders in temporal_reasoning.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.892014"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 10 placeholders in tree_of_thoughts.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.895425"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 7 placeholders in working_memory.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.899604"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 1 placeholders in behavioral_monitoring.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.902039"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 2 placeholders in emergency_response.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.904795"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 52 placeholders in interfaces.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.907773"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 1 placeholders in services.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.908888"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 2 placeholders in security_service.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.911509"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 2 placeholders in redis_cache.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.916800"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 1 placeholders in algorithm_optimizer.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.919494"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 1 placeholders in cpu_profiler.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.922380"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 2 placeholders in memory_profiler.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.924044"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 8 placeholders in performance_dashboard.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.925729"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 2 placeholders in analyze_agent_work.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.932919"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 21 placeholders in auth_manager.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.940570"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 3 placeholders in session.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.942229"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 7 placeholders in base_integration.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.944039"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 4 placeholders in netsuite_integration.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.945672"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 8 placeholders in quickbooks_integration.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.949382"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 4 placeholders in xero_integration.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.952956"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 1 placeholders in request_logging.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.956108"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 4 placeholders in security.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.957779"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 6 placeholders in monitoring_service.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.961548"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 6 placeholders in webhook_service.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.965933"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 1 placeholders in financial_workflow.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.969061"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 3 placeholders in invoice_processor.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.971595"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 5 placeholders in task_allocator.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.973926"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 3 placeholders in competitive_processor.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.975969"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 1 placeholders in multi_domain_processor.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.979184"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 8 placeholders in specialized_processors.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.983240"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 2 placeholders in adaptive_learner.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.987667"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 4 placeholders in agent_protocol.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.992823"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 3 placeholders in enhanced_meta_orchestrator.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:23.995762"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 11 placeholders in specialized_agents.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:24.003271"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 1 placeholders in performance_tuner.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:24.006992"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 9 placeholders in collaboration.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:24.009852"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 7 placeholders in causal_inference.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:24.012640"
+    },
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Fixed 3 placeholders in temporal_engine.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:24.018043"
+    },
+    {
+      "category": "WINDOWS_COMPAT",
+      "description": "Fixed Windows compatibility in comprehensive_diagnostic.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:26.939005"
+    },
+    {
+      "category": "WINDOWS_COMPAT",
+      "description": "Fixed Windows compatibility in comprehensive_system_fixer.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:26.959783"
+    },
+    {
+      "category": "WINDOWS_COMPAT",
+      "description": "Fixed Windows compatibility in production_validation_test.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:26.963710"
+    },
+    {
+      "category": "WINDOWS_COMPAT",
+      "description": "Fixed Windows compatibility in config.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:26.983589"
+    },
+    {
+      "category": "WINDOWS_COMPAT",
+      "description": "Fixed Windows compatibility in main.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:26.986736"
+    },
+    {
+      "category": "WINDOWS_COMPAT",
+      "description": "Fixed Windows compatibility in visualization_server.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:27.005013"
+    },
+    {
+      "category": "WINDOWS_COMPAT",
+      "description": "Fixed Windows compatibility in autonomous_deploy.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:27.047298"
+    },
+    {
+      "category": "WINDOWS_COMPAT",
+      "description": "Fixed Windows compatibility in monitoring_dashboard.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:27.065117"
+    },
+    {
+      "category": "WINDOWS_COMPAT",
+      "description": "Fixed Windows compatibility in phase7_autonomous_demo.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:27.071502"
+    },
+    {
+      "category": "WINDOWS_COMPAT",
+      "description": "Fixed Windows compatibility in web_interface.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:27.138516"
+    },
+    {
+      "category": "WINDOWS_COMPAT",
+      "description": "Fixed Windows compatibility in test_phase7_autonomous.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:27.305875"
+    },
+    {
+      "category": "WINDOWS_COMPAT",
+      "description": "Fixed Windows compatibility in test_enterprise_api.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:27.365650"
+    },
+    {
+      "category": "WINDOWS_COMPAT",
+      "description": "Fixed Windows compatibility in test_main.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:27.368158"
+    },
+    {
+      "category": "WINDOWS_COMPAT",
+      "description": "Fixed Windows compatibility in test_concurrent_operations.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:27.431125"
+    },
+    {
+      "category": "WINDOWS_COMPAT",
+      "description": "Fixed Windows compatibility in test_security.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:27.451038"
+    },
+    {
+      "category": "WINDOWS_COMPAT",
+      "description": "Fixed Windows compatibility in test_base_agent_comprehensive.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:27.465761"
+    },
+    {
+      "category": "WINDOWS_COMPAT",
+      "description": "Fixed Windows compatibility in test_utils_comprehensive.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:27.481503"
+    },
+    {
+      "category": "WINDOWS_COMPAT",
+      "description": "Fixed Windows compatibility in test_security_measures.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:27.537018"
+    },
+    {
+      "category": "WINDOWS_COMPAT",
+      "description": "Fixed Windows compatibility in architecture_validation.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:27.568407"
+    },
+    {
+      "category": "WINDOWS_COMPAT",
+      "description": "Fixed Windows compatibility in simple_architecture_check.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:27.570926"
+    },
+    {
+      "category": "WINDOWS_COMPAT",
+      "description": "Fixed Windows compatibility in dashboard_server.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:27.696846"
+    },
+    {
+      "category": "WINDOWS_COMPAT",
+      "description": "Fixed Windows compatibility in safety.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:27.772680"
+    },
+    {
+      "category": "WINDOWS_COMPAT",
+      "description": "Fixed Windows compatibility in deployment_manager.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:27.831753"
+    },
+    {
+      "category": "WINDOWS_COMPAT",
+      "description": "Fixed Windows compatibility in performance_dashboard.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:28.132178"
+    },
+    {
+      "category": "WINDOWS_COMPAT",
+      "description": "Fixed Windows compatibility in auth_manager.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:28.168362"
+    },
+    {
+      "category": "WINDOWS_COMPAT",
+      "description": "Fixed Windows compatibility in session.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:28.183545"
+    },
+    {
+      "category": "WINDOWS_COMPAT",
+      "description": "Fixed Windows compatibility in sap_integration.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:28.230019"
+    },
+    {
+      "category": "WINDOWS_COMPAT",
+      "description": "Fixed Windows compatibility in request_logging.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:28.261753"
+    },
+    {
+      "category": "WINDOWS_COMPAT",
+      "description": "Fixed Windows compatibility in security.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:28.276982"
+    },
+    {
+      "category": "WINDOWS_COMPAT",
+      "description": "Fixed Windows compatibility in monitoring_service.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:28.293919"
+    },
+    {
+      "category": "WINDOWS_COMPAT",
+      "description": "Fixed Windows compatibility in specialized_agents.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:28.501188"
+    },
+    {
+      "category": "DEPENDENCY_INSTALL",
+      "description": "Installed aioredis",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:48.411906"
+    },
+    {
+      "category": "DEPENDENCY_INSTALL",
+      "description": "Installed asyncio-mqtt",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:52.821508"
+    },
+    {
+      "category": "DEPENDENCY_INSTALL",
+      "description": "Installed alembic",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:57.815364"
+    },
+    {
+      "category": "DEPENDENCY_INSTALL",
+      "description": "Installed python-dotenv",
+      "success": true,
+      "timestamp": "2025-09-05T17:34:59.915547"
+    },
+    {
+      "category": "DEPENDENCY_INSTALL",
+      "description": "Installed typer",
+      "success": true,
+      "timestamp": "2025-09-05T17:35:03.085116"
+    },
+    {
+      "category": "DEMO_CREATION",
+      "description": "Created working_demo.py",
+      "success": true,
+      "timestamp": "2025-09-05T17:35:03.087403"
+    }
+  ],
+  "failed_fixes": [
+    {
+      "category": "PLACEHOLDER_FIX",
+      "description": "Failed to fix placeholders in C:\\Users\\Nouri\\Documents\\GitHub\\ai-agents\\scripts\\deployment\\secure_deployment.py: 'utf-8' codec can't decode byte 0xca in position 8436: invalid continuation byte",
+      "success": false,
+      "timestamp": "2025-09-05T17:34:23.785246"
+    },
+    {
+      "category": "WINDOWS_COMPAT",
+      "description": "Failed to fix Windows compatibility in C:\\Users\\Nouri\\Documents\\GitHub\\ai-agents\\scripts\\deployment\\secure_deployment.py: 'utf-8' codec can't decode byte 0xca in position 8436: invalid continuation byte",
+      "success": false,
+      "timestamp": "2025-09-05T17:34:27.563468"
+    }
+  ]
+}

@@ -38,11 +38,12 @@ except ImportError as e:
     # Mock classes for testing when imports fail
     class MockComponent:
         def __init__(self, *args, **kwargs):
-            pass
+            logger.info(f'Initializing {self.__class__.__name__}')
         async def __aenter__(self):
             return self
         async def __aexit__(self, *args):
-            pass
+            logger.info(f'Method {function_name} called')
+            return []
     
     EnhancedMetaOrchestrator = MockComponent
     IntelligentTaskAllocator = MockComponent

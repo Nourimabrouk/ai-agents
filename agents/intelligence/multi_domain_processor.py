@@ -106,7 +106,7 @@ class SpecializedProcessorRegistry:
         """Get best processor for a document type based on criterion"""
         processors = self.get_processors(document_type)
         if not processors:
-            return None
+            return {}
         
         best_processor = None
         best_score = -1.0

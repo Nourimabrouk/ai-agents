@@ -372,7 +372,8 @@ class InvoiceParser:
                 try:
                     invoice_data.total_amount = Decimal(str(result_data['total_amount']))
                 except InvalidOperation:
-                    pass
+        logger.info(f'Method {function_name} called')
+        return {}
             
         except Exception as e:
             logger.error(f"Claude parsing error: {e}")
@@ -394,7 +395,7 @@ class InvoiceParser:
             except ValueError:
                 continue
         
-        return None
+        return {}
 
 
 class InvoiceValidator:
